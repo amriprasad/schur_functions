@@ -11,8 +11,9 @@
 \maketitle
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \subsection{Symmetric Functions}
+\label{sec:symmetric-functions}
 We consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
-Given a tuple $\alpha=(\alpha_1,\dotsc, \alpha_n)$, $x^\alpha$ denotes the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$
+Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, $x^\alpha$ denotes the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$
 A symmetric polynomial in $n$ variables $x_1,\dotsc, x_n$ is a polynomial of the form
 \begin{displaymath}
   f(x_1,\dotsc, x_n) = \sum_{\alpha} c_\alpha x^\alpha,
@@ -32,7 +33,7 @@ Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts
   Take $n=4$. Compute the monomial symmetric function $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
 \end{exercise}
 \begin{theorem}
-The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homegeneous symmetric polynomials of degree $d$ in $n$ variables.
+The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
 \end{theorem}
 \subsection{Complete and Elementary Symmetric Polynomials}
 \label{sec:compl-elem-symm}
@@ -88,16 +89,95 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   \end{displaymath}
 \end{theorem}
 \begin{proof}
-  We first prove the second identity involving elemenatry symmetric functions.
-  A monomial in the expansion of
+  We first prove the second identity involving elementary symmetric functions.
+  A monomial in the expansion:
   \begin{displaymath}
     e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}} 
   \end{displaymath}
-  corresponds to the choice of a summand from each factor.
-  Construct a matrix $(a_{ij})$ corresponding to such a choice as follows:
-  if the factor $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lamnda_j}}$ to be $1$.
+  is a product of summands, one chosen from each of the $l$ factors.
+  Construct an $l\times m$ matrix $(a_{ij})$ corresponding to such a choice as follows:
+  if the summand $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$ to be $1$ (the remaining entries of the $i$th row are $0$).
   Clearly the $i$th row of such a matrix sums to $\lambda_i$.
-  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in $a_{i,j_1},\dotsc, a_{i, j_{\lamnda_j}}$, which is the sum of the $j$th column of the matrix $(a_{ij})$.
+  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$, which is the sum of the $j$th column of the matrix $(a_{ij})$.
   It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric functions of degree $n$, is $N_{\lambda\mu}$.
+
+A similar proof can be given for the first identity involving complete symmetric functions. The only difference is that a variables are repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
 \end{proof}
+
+\subsection{Alternating Polynomials}
+\label{sec:alt-poly}
+An \emph{alternating polynomial} in $x_1,\dotsc, x_n$ is of the form:
+\begin{equation}
+  \label{eq:alt-form}
+  f(x_1,\dotsc,x_n) = \sum_{\alpha} c_\alpha x_\alpha,
+\end{equation}
+where, $c_{w(\alpha)} = \epsilon(w)c_\alpha$ for every multiindex $\alpha$ as in Section~\ref{sec:symmetric-functions}.
+Here $\epsilon:S_n\to \{\pm 1\}$ denotes the sign function.
+Equivalently, an alternating polynomial is one whose sign is reversed upon the interchange of any two variables.
+\begin{exercise}
+  If $\alpha$ is a multiindex where $\alpha_i=\alpha_j$ for some $i\neq j$, then $c_\alpha = 0$.
+\end{exercise}
+In particular, every monomial in an alternating polynomial must be composed of distinct powers.
+Moreover, the polynomial is completely determined by the coefficients $c_\alpha$ of strictly decreasing multiindices, namely, multiindices of the form $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
+\begin{exercise}
+  Let $\delta$ denote the strictly increasing multiindex $(n-1,n-2,\dotsc,1, 0)$ of lowest degree.
+  Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex.
+  Then $\lambda\mapsto \lambda+\delta$ is a bijection from the set of integer partitions with at most $n$ onto the set of strictly decreasing multiindices.
+\end{exercise}
+\begin{example}
+  Let $\lambda = (\lambda_1,\dotsc, \lambda_n)$ be a weakly decreasing multiindex.
+  The polynomial:
+  \begin{displaymath}
+    a_{\lambda+\delta} = \det(x_i^{\lambda_j + n - j})
+  \end{displaymath}
+  is alternating, with unique strictly decreasing monomial $x^{\lambda+\delta}$.
+\end{example}
+\begin{exercise}
+  \label{exercise:alt-basis}
+  The alternating polynomial of the form \textup{(\ref{eq:alt-form})} is equal to  \begin{displaymath}
+    \sum_{\lambda} c_\lambda a_{\lambda+\delta},
+  \end{displaymath}
+  the sum being over all weakly decreasing multiindices.
+\end{exercise}
+
+\subsection{Cauchy's bialternant form of a Schur function}
+\label{sec:cauchys-bialt-form}
+
+
+The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
+\begin{displaymath}
+  a_\delta = \prod_{1\leq i<j\leq n}(x_i-x_j).
+\end{displaymath}
+\begin{exercise}
+  Show that, for every weakly decreasing multiindex $\lambda$, $a_{\lambda+\delta}$ is divisible by $a_\delta$ in the ring of polynomials in $x_1,\dotsc,x_n$.
+\end{exercise}
+\begin{exercise}
+  \label{exercise:vandermonde-iso}
+  Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$. 
+\end{exercise}
+The above exercise allows us to give the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
+\begin{equation}
+  \label{eq:schur}
+  s_\lambda(x_1,\dotsc,x_n) = a_{\lambda+\delta}/a_\delta,
+\end{equation}
+for any partition $\lambda$ with at most $n$ parts.
+If $\lambda$ has more than $n$ parts, set $s_\lambda(x_1,\dotsc,x_n) =0$.
+This is clearly a symmetric function of degree $|\lambda|$.
+When $\lambda$ has more than $n$ parts, we shall write $s_\lambda(x_1,\dotsc,x_n)=0$
+\begin{theorem}
+  As $\lambda$ runs over all integer partitions of $d$ with at most $n$ parts, the Schur functions $s_\lambda(x_1,\dotsc,x_n)$ form a basis of the space of all homogeneous symmetric functions in $x_1,\dotsc,x_n$ of degree $d$.
+\end{theorem}
+\begin{proof}
+  This follows from Exercises~\ref{exercise:alt-basis} and~\ref{exercise:vandermonde-iso}.
+\end{proof}
+\begin{exercise}
+  Show that substituting $x_n=0$ in the Schur function $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur function $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
+\end{exercise}
+\begin{exercise}
+  From Cauchy's bialternant form \textup{(\ref{eq:schur})}, deduce that
+  \begin{enumerate}
+  \item $s_{(i)} = h_i$, and
+  \item $s_{(1^i)} = e_i$.
+  \end{enumerate}
+\end{exercise}
 \end{document}
