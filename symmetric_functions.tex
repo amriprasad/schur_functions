@@ -1,0 +1,103 @@
+\documentclass[12pt]{amsart}
+\title{An Introduction to Schur Functions}
+\author{Amritanshu Prasad}
+\newtheorem{theorem}{Theorem}[subsection]
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{example}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\begin{document}
+\maketitle
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\subsection{Symmetric Functions}
+We consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
+Given a tuple $\alpha=(\alpha_1,\dotsc, \alpha_n)$, $x^\alpha$ denotes the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$
+A symmetric polynomial in $n$ variables $x_1,\dotsc, x_n$ is a polynomial of the form
+\begin{displaymath}
+  f(x_1,\dotsc, x_n) = \sum_{\alpha} c_\alpha x^\alpha,
+\end{displaymath}
+where, for any permutation $w\in S_n$,
+\begin{displaymath}
+  c_{(\alpha_1,\dotsc,\alpha_n)} = c_{(\alpha_{w(1)},\dotsc,\alpha_{w(n)})}.
+\end{displaymath}
+
+We call the integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$ the shape of $\alpha$ and write $\lambda = \lambda(\alpha)$.
+The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric function}, defined for each integer partition $\lambda$:
+\begin{displaymath}
+  m_\lambda = \sum_{\lambda(\alpha) = \lambda} c_\alpha x^\alpha.
+\end{displaymath}
+Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts of $\lambda$).
+\begin{exercise}
+  Take $n=4$. Compute the monomial symmetric function $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
+\end{exercise}
+\begin{theorem}
+The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homegeneous symmetric polynomials of degree $d$ in $n$ variables.
+\end{theorem}
+\subsection{Complete and Elementary Symmetric Polynomials}
+\label{sec:compl-elem-symm}
+Recall that the coefficients of a polynomial are symmetric polynomials in its roots:
+\begin{multline}
+  \label{eq:elem-id}
+  (t-x_1)(t-x_2)\dotsb (t-x_n) \\= t^n - e_1(x_1,\dotsc, x_n)t^{n-1} + \dotsb + (-1)^n e_n(x_1,\dotsc, x_n),
+\end{multline}
+where coefficient $e_i(x_1,\dotsc, x_n)$ of $t^{n-i}$ is given by:
+\begin{equation}
+  \label{eq:elem}
+  e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1<\dotsb<j_i\leq n} x_{j_1}x_{j_2}\dotsb x_{j_i}.
+\end{equation}
+The polynomial $e_i$ is called the $i$th \emph{elementary symmetric polynomial}.
+By convention, write $e_i(x_1,\dotsc,x_n)=0$, for $i>n$.
+
+The identity (\ref{eq:elem-id}) can be written more elegantly as:
+\begin{displaymath}
+  (1+t x_1) \dotsb (1+tx_n) = \sum_{i=0}^n e_i(x_1,\dotsb, x_n)t^i.
+\end{displaymath}
+
+Dually\footnote{We will refer to the replacing of $(1+u)$ by $(1-u)^{-1}$ in a formal identity as \emph{dualization}.}, the \emph{complete symmetric polynomials} are defined by the formal identity:
+\begin{displaymath}
+  \frac 1{(1-x_1t)\dotsb (1-x_nt)} = \sum_{i=0}^\infty h_i(x_1,\dotsb, x_n)t^i.
+\end{displaymath}
+\begin{example}
+  In three variables, we have:
+  \begin{align*}
+    e_2(x_1,x_2,x_3) & = x_1x_2 + x_1x_3 + x_2x_3,\\
+    h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_2^3.
+  \end{align*}
+\end{example}
+\begin{exercise}
+  Show that
+  \begin{displaymath}
+    h_i(x_1,\dotsb x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+  \end{displaymath}
+\end{exercise}
+More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)$, define:
+\begin{align*}
+  h_\lambda &= h_{\lambda_1} h_{\lambda_2}\dotsb h_{\lambda_l},\\
+  e_\lambda &= e_{\lambda_1} e_{\lambda_2}\dotsb e_{\lambda_l}.
+\end{align*}
+\begin{theorem}
+  Given integer partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsb, \mu_m)$ of and integer $d$, let $M_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with non-negative entries whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Then
+  \begin{displaymath}
+    h_\lambda = \sum_\mu M_{\lambda\mu} m_\mu.
+  \end{displaymath}
+  Dually, let $=N_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with entries $0$ or $1$, whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  \begin{displaymath}
+    e_\lambda = \sum_\mu N_{\lambda\mu} m_\mu.
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  We first prove the second identity involving elemenatry symmetric functions.
+  A monomial in the expansion of
+  \begin{displaymath}
+    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}} 
+  \end{displaymath}
+  corresponds to the choice of a summand from each factor.
+  Construct a matrix $(a_{ij})$ corresponding to such a choice as follows:
+  if the factor $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lamnda_j}}$ to be $1$.
+  Clearly the $i$th row of such a matrix sums to $\lambda_i$.
+  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in $a_{i,j_1},\dotsc, a_{i, j_{\lamnda_j}}$, which is the sum of the $j$th column of the matrix $(a_{ij})$.
+  It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric functions of degree $n$, is $N_{\lambda\mu}$.
+\end{proof}
+\end{document}
