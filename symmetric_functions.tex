@@ -1,4 +1,5 @@
 \documentclass[12pt]{amsart}
+\usepackage{graphicx}
 \title{An Introduction to Schur Functions}
 \author{Amritanshu Prasad}
 \newtheorem{theorem}{Theorem}[subsection]
@@ -236,11 +237,17 @@ The remaining weights are all zero.
   Only rightward or downward steps have non-zero weights.
   So every path with non-zero weight is composed of unit downward and rightward steps.
   A path with non-zero weight from $(i, n)$ to $(i+j, 1)$ must have exactly $j$ rightward steps, say in rows $n\geq i_1\geq i_2 \dotsb \geq i_j\geq 1$.
-  The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$.
+  The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
 \end{proof}
-Let $A_i = (n-i, n)$ and $B_j=(\lambda_j+n-j, 1)$ for $i=1,\dotsc, n$.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{path_example.png}
+  \caption{A path from $(0, 5)$ to $(6, 1)$ representing the monomial $x_1x_3^3x_5^2$ in $h_6$.}
+  \label{fig:path_example}
+\end{figure}
+Let $A_i = (n-i, n)$ and $B_i=(\lambda_i+n-i, 1)$ for $i=1,\dotsc, n$.
 Then  by Lemma~\ref{lemma:entry},
 \begin{displaymath}
-  \sum_{\omega:A_i\to B_j} = h_{\lambda_j+i-j}.
+  \sum_{\omega:A_i\to B_j} v(\omega) = h_{\lambda_j+i-j}.
 \end{displaymath}
 \end{document}
