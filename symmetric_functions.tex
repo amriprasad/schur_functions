@@ -1,9 +1,11 @@
 \documentclass[12pt]{amsart}
-\usepackage{graphicx}
+\usepackage{ytableau,graphicx, xypic}
+\xyoption{all}
 \title{An Introduction to Schur Functions}
 \author{Amritanshu Prasad}
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{example}
@@ -24,7 +26,6 @@ where, for any permutation $w\in S_n$,
 \begin{displaymath}
   c_{(\alpha_1,\dotsc,\alpha_n)} = c_{(\alpha_{w(1)},\dotsc,\alpha_{w(n)})}.
 \end{displaymath}
-
 We call the integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$ the shape of $\alpha$ and write $\lambda = \lambda(\alpha)$.
 The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric function}, defined for each integer partition $\lambda$:
 \begin{displaymath}
@@ -94,7 +95,7 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   We first prove the second identity involving elementary symmetric functions.
   A monomial in the expansion:
   \begin{displaymath}
-    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}} 
+    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}}
   \end{displaymath}
   is a product of summands, one chosen from each of the $l$ factors.
   Construct an $l\times m$ matrix $(a_{ij})$ corresponding to such a choice as follows:
@@ -105,7 +106,6 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
 
 A similar proof can be given for the first identity involving complete symmetric functions. The only difference is that a variables are repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
 \end{proof}
-
 \subsection{Alternating Polynomials}
 \label{sec:alt-poly}
 An \emph{alternating polynomial} in $x_1,\dotsc, x_n$ is of the form:
@@ -141,11 +141,8 @@ Moreover, the polynomial is completely determined by the coefficients $c_\alpha$
   \end{displaymath}
   the sum being over all weakly decreasing multiindices.
 \end{exercise}
-
 \subsection{Cauchy's bialternant form of a Schur function}
 \label{sec:cauchys-bialt-form}
-
-
 The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
 \begin{displaymath}
   a_\delta = \prod_{1\leq i<j\leq n}(x_i-x_j).
@@ -155,7 +152,7 @@ The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$
 \end{exercise}
 \begin{exercise}
   \label{exercise:vandermonde-iso}
-  Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$. 
+  Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$.
 \end{exercise}
 The above exercise allows us to give the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
 \begin{equation}
@@ -176,14 +173,82 @@ When $\lambda$ has more than $n$ parts, we shall write $s_\lambda(x_1,\dotsc,x_n
   [Stability of Schur functions]
   Show that substituting $x_n=0$ in the Schur function $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur function $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
 \end{exercise}
-\begin{exercise}
-  From Cauchy's bialternant form \textup{(\ref{eq:schur})}, deduce that
-  \begin{enumerate}
-  \item $s_{(i)} = h_i$, and
-  \item $s_{(1^i)} = e_i$.
-  \end{enumerate}
-\end{exercise}
+\subsection{Pieri's rule}
+\label{sec:pieri}
+The set of integer partitions is endowed with the \emph{containment order}.
+We say that a partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ \emph{contains} a partition $\mu=(\mu_1,\dotsc, \mu_m)$ if $l \geq m$, and $\lambda_i\geq \mu_i$ for every $i=1,\dotsb, m$.
+We write $\lambda\supset\mu$ or $\mu \subset \lambda$.
+Recall that the Young diagram of the partition $\lambda$ is the set of points 
+\begin{displaymath}
+\{(i, j)\mid 1\leq i\leq l,\; 1\leq j\leq \lambda_i\}.
+\end{displaymath}
+Visually, each node $(i,j)$ of the Young diagram is replaced by a box, and the box corresponding to $(i,j)$ is placed in the $i$th row and $j$th column (matrix notation).
+Thus, the Young diagram of $\lambda=(6, 5, 3, 3)$ is depicetd by:
+\begin{displaymath}
+  \ydiagram{6,5,3,3}
+\end{displaymath}
+Note that containment of partitions is nothing but the containment relation on their Young diagrams.
+By abuse of notation, we will also use $\lambda$ to denote the Young diagram of $\lambda$.
 
+By a skew-shape, we mean a difference of Young diagrams $\lambda \setminus \mu$, where $\lambda \supset \mu$.
+We write $\lambda/\mu$ for this skew-shape.
+A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical strip}) if it has at most one element in each vertical column (respectively, horizontal row).
+
+\begin{theorem}
+  For every partition $\lambda$, and every positive integer $k$,
+  \begin{displaymath}
+    s_\lambda h_k = \sum_\mu s_\mu,
+  \end{displaymath}
+  where the sum runs over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a horizontal strip of size $k$.
+  Dually,
+  \begin{displaymath}
+    s_\lambda e_k = \sum_\mu s_\mu,
+  \end{displaymath}
+  where the sum runs over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a vertical strip of size $k$.
+\end{theorem}
+\begin{proof}
+  The first identity is equivalent to showing that:
+  \begin{displaymath}
+    a_{\lambda+\delta} \sum_{\alpha_1+\dotsb+\alpha_n=k} x_1^{\alpha_1}\dotsb x_n^{\alpha_n} = \sum_\mu a_{\mu+\delta},
+  \end{displaymath}
+  the sum on the right being over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a horizontal strip.
+
+  Writing $\alpha=(\alpha_1,\dotsc,\alpha_n)$, the sum on the left hand side can be regarded as a sum of determinants:
+  \begin{equation}
+    \label{eq:pieri-canc}
+    a_{\lambda+\delta} \sum_{|\alpha|=k} x_1^{\alpha_1}\dotsb x_n^{\alpha_n} = \sum_{|\alpha|=k} a_{\lambda + \alpha + \delta}.
+  \end{equation}
+  Suppose there exists an integer $\alpha_i$ such that $\alpha_i>\lambda_i-\lambda_{i+1}$ (in other words, $(\lambda + \alpha)/\lambda$ is not a horizontal strip), then define $\beta=(\beta_1,\dotsc,\beta_n)$ by $\beta_i = \alpha_{i+1} - (\lambda_i - \lambda_{i+1} + 1)$, $\beta_{i+1} = \alpha_i + (\lambda_i - \lambda_{i+1} +1)$, and $\beta_j=\alpha_j$ for all $j\notin \{i, i+1\}$.
+  Then $a_{\lambda+\alpha+\delta} = -a_{\lambda+\beta+\delta}$.
+  So the only terms that survive on the right hand side of (\ref{eq:pieri-canc}) are of the form $a_{\mu+\delta}$, where $\mu/\lambda$ is a horizontal strip.
+
+  The proof of the second identity in the theorem is similar (in fact, a little simpler) and is left to the reader as an exercise.
+\end{proof}
+As a special case of Pieri's rule, we have:
+\begin{corollary}
+  For every positive integer $k$,
+  \begin{displaymath}
+    s_{(k)} = h_k, \text{ and } s_{(1^k)} = e_k.
+  \end{displaymath}
+\end{corollary}
+\subsection{Schur to Complete and Elementary via Tableaux}
+Pieri's rule allows us to compute the complete and elementary symmetric functions $h_\lambda$ and $e_\lambda$ in terms of Schur functions.
+\begin{example}
+  Repeated application of Pieri's rule gives,:
+  \begin{displaymath}
+    e_{(2, 2, 1)} = 
+    \xymatrix@R-1pc{
+     &&&&e_2 e_2 e_1\ar[d]&&\\
+    &&&&s_{(1^2)} e_2 e_1\ar[dll]\ar[d]\ar[dr]&&\\
+    &&s_{(2^2)}e_1\ar[dll]\ar[dl] \ar[d]&& s_{(2, 1^2)}e_1\ar[dl]\ar[d]\ar[dr] & s_{(1^4)}e_1 \ar[dr]\ar[drr]&&\\
+    s_{(3, 2)} & s_{(2^2, 1)} & s_{(3, 1^2)} & s_{(2^2, 1)} & s_{(2, 1^3)}] & s_{(2, 1^3)} & s_{(1^5)}
+    }
+  \end{displaymath}
+  The steps going from the first line of the above calculation to each term of the last line can be recorded by putting numbers into Young diagrams:
+  \begin{displaymath}
+    \ytableaushort{113,22},
+  \end{displaymath}
+\end{example}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
@@ -198,7 +263,6 @@ The weight of the path $\omega$ is defined to be:
   [non-crossing paths]
   Two paths $\omega=(s_0,\dotsc, s_k)$ and $\eta=(t_0,\dotsc,t_l)$ are said to be non-crossing if $s_i\neq t_j$ for all $0\leq i \leq k$ and $0\leq t \leq l$.
 \end{definition}
-
 Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\times n$ matrix $(a_{ij})$ by:
 \begin{displaymath}
   a_{ij} = \sum_{\omega:A_i\to B_j} v(\omega).
@@ -212,10 +276,8 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   \end{displaymath}
   where the sum is over all $n$-tuples $(\omega_1,\dotsc, \omega_n)$ of pairwise non-crossing paths.
 \end{theorem}
-
 \subsection{The Jacobi-Trudi Identities}
 \label{sec:jacobi-trudi-ident}
-
 \begin{displaymath}
   s_\lambda = \det(h_{\lambda_i-i+j}), \quad s_{\lambda'} = \det(e_{\lambda_i-i+j}).
 \end{displaymath}
