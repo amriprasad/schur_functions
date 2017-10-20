@@ -1,4 +1,4 @@
-\documentclass[12pt]{amsart}
+\documentclass[11pt]{amsart}
 \usepackage{ytableau,graphicx, xypic}
 \xyoption{all}
 \title{An Introduction to Schur Functions}
@@ -141,7 +141,7 @@ Moreover, the polynomial is completely determined by the coefficients $c_\alpha$
   \end{displaymath}
   the sum being over all weakly decreasing multiindices.
 \end{exercise}
-\subsection{Cauchy's bialternant form of a Schur function}
+\subsection{Cauchy's Bialternant Form of a Schur Function}
 \label{sec:cauchys-bialt-form}
 The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
 \begin{displaymath}
@@ -183,7 +183,8 @@ Recall that the Young diagram of the partition $\lambda$ is the set of points
 \{(i, j)\mid 1\leq i\leq l,\; 1\leq j\leq \lambda_i\}.
 \end{displaymath}
 Visually, each node $(i,j)$ of the Young diagram is replaced by a box, and the box corresponding to $(i,j)$ is placed in the $i$th row and $j$th column (matrix notation).
-Thus, the Young diagram of $\lambda=(6, 5, 3, 3)$ is depicetd by:
+Thus, the Young diagram of $\lambda=(6, 5, 3, 3)$ is depicted by:
+\ytableausetup{smalltableaux}
 \begin{displaymath}
   \ydiagram{6,5,3,3}
 \end{displaymath}
@@ -234,21 +235,150 @@ As a special case of Pieri's rule, we have:
 \subsection{Schur to Complete and Elementary via Tableaux}
 Pieri's rule allows us to compute the complete and elementary symmetric functions $h_\lambda$ and $e_\lambda$ in terms of Schur functions.
 \begin{example}
-  Repeated application of Pieri's rule gives,:
+  \label{example:expansion-e}
+  Repeated application of Pieri's rule gives an expansion of $e_{(2, 2, 1)} = e_2e_2e_1$ as:
   \begin{displaymath}
-    e_{(2, 2, 1)} = 
-    \xymatrix@R-1pc{
-     &&&&e_2 e_2 e_1\ar[d]&&\\
-    &&&&s_{(1^2)} e_2 e_1\ar[dll]\ar[d]\ar[dr]&&\\
-    &&s_{(2^2)}e_1\ar[dll]\ar[dl] \ar[d]&& s_{(2, 1^2)}e_1\ar[dl]\ar[d]\ar[dr] & s_{(1^4)}e_1 \ar[dr]\ar[drr]&&\\
-    s_{(3, 2)} & s_{(2^2, 1)} & s_{(3, 1^2)} & s_{(2^2, 1)} & s_{(2, 1^3)}] & s_{(2, 1^3)} & s_{(1^5)}
+    \resizebox{\textwidth}{!}{
+      \xymatrix@R-15pt{
+        &&&e_2 e_2 e_1\ar[d]&&&\\
+        &&&s_{(1^2)} e_2 e_1\ar[dll]\ar[d]\ar[drr]&&\\
+        &s_{(2^2)}e_1\ar[dl]\ar[d] && s_{(2, 1^2)}e_1\ar[dl]\ar[d]\ar[dr] && s_{(1^4)}e_1 \ar[d]\ar[dr]&\\
+        s_{(3, 2)} & s_{(2^2, 1)} & s_{(3, 1^2)} & s_{(2^2, 1)} & s_{(2, 1^3)} & s_{(2, 1^3)} & s_{(1^5)}
+      }
     }
+  \end{displaymath}
+  giving:
+  \begin{displaymath}
+    e_{(2^2,1)} = s_{(3,2)} + 2s_{(2^2,1)} + s_{(3,1^2)} + 2s_{(2,1^3)} + s_{(1^5)}.
   \end{displaymath}
   The steps going from the first line of the above calculation to each term of the last line can be recorded by putting numbers into Young diagrams:
   \begin{displaymath}
-    \ytableaushort{113,22},
+    \resizebox{0.75\textwidth}{!}{
+      \xymatrix@R-15pt{
+        &&&\emptyset\ar[d]&&&\\
+        &&&\ytableaushort{1,1}\ar[dll]\ar[d]\ar[drr]&&\\
+        &\ytableaushort{12,12}\ar[dl]\ar[d] && \ytableaushort{12,1,2}\ar[dl]\ar[d]\ar[dr] && \ytableaushort{1,1,2,2}\ar[d]\ar[dr]&\\
+        \ytableaushort{123,12} & \ytableaushort{12,12,3} & \ytableaushort{123,1,2} & \ytableaushort{12,13,2} & \ytableaushort{12,1,2,3} & \ytableaushort{13,1,2,2} & \ytableaushort{1,1,2,2,3}
+      }
+    }
   \end{displaymath}
+  The boxes in the horizontal strip added at the $i$th stage are filled with the number $i$.
 \end{example}
+\begin{example}
+  \label{example:expansion-h}
+  Repeated application of Pieri's rule gives an expansion of $h_{(2, 2, 1)} = h_2h_2h_1$ as:
+  \begin{displaymath}
+    \resizebox{\textwidth}{!}{
+      \xymatrix@R-15pt{
+        &&&h_2 h_2 h_1\ar[d]&&&\\
+        &&&s_{(2)} h_2 h_1\ar[dll]\ar[d]\ar[drr]&&\\
+        &s_{(4)}h_1\ar[dl]\ar[d] && s_{(3,1)}h_1\ar[dl]\ar[d]\ar[dr] && s_{(3,2)}h_1 \ar[d]\ar[dr]&\\
+        h_{(5)} & s_{(4, 1)} & s_{(4,1)} & s_{(3, 2)} & s_{(3, 1^2)} & s_{(3,2)} & s_{(2,2,1)}
+      }
+    }
+  \end{displaymath}
+  giving:
+  \begin{displaymath}
+    h_{(2^2,1)} = s_{(5)} + 2s_{(4,1)} + 2s_{(3,2)} + s_{(3,1^2)} + s_{(2,2,1)}.
+  \end{displaymath}
+  The steps going from the first line of the above calculation to each term of the last line can be recorded by putting numbers into Young diagrams:
+  \ytableausetup{smalltableaux}
+  \begin{displaymath}
+    \resizebox{\textwidth}{!}{
+      \xymatrix@R-15pt{
+        &&&\emptyset\ar[d]&&&\\
+        &&&\ytableaushort{11}\ar[dll]\ar[d]\ar[drr]&&\\
+        &\ytableaushort{1122}\ar[dl]\ar[d] && \ytableaushort{112,2}\ar[dl]\ar[d]\ar[dr] && \ytableaushort{11,22}\ar[d]\ar[dr]&\\
+        \ytableaushort{11223} & \ytableaushort{1122,3} & \ytableaushort{1123,2} & \ytableaushort{112,23} & \ytableaushort{112,2,3} & \ytableaushort{113,22} & \ytableaushort{11,22,3}
+      }
+    }
+  \end{displaymath}
+  The boxes in the vertical strip added at the $i$th stage are filled with $i$.
+\end{example}
+\begin{definition}
+  [Semistandard tableau]
+  A semistandard tableau of shape $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and type $\mu=(\mu_1,\dotsc,\mu_m)$ is the Young diagram of $\lambda$ filled with numbers $1,\dotsc, m$ such that the number $i$ appears $\mu_i$ times, the numbers weakly increase along rows, and strictly increase along columns.
+\end{definition}
+\begin{exercise}
+  Semistandard tableaux of shape $\lambda$ and type $\mu$ correspond to chains of integer partitions
+  \begin{displaymath}
+    \emptyset = \lambda^{(0)} \subset \lambda^{(1)}\subset \lambda^{(2)} \subset \dotsb \subset \lambda^{(m)} = \lambda
+  \end{displaymath}
+  where $\lambda^{(i)}/\lambda^{(i-1)}$ is a horizontal strip of size $\mu_i$.
+\end{exercise}
+\begin{example}
+  The semistandard tableau of type $(3,2)$ and type $(2,2,1)$ are $\ytableaushort{112,23}$ and $\ytableaushort{113,22}$.
+  They correspond to the chains:
+  \begin{displaymath}
+    \ydiagram{2}\subset \ydiagram{3,1}\subset \ydiagram{3,2} \text{ and } \ydiagram{2}\subset \ydiagram{2,2}\subset \ydiagram{3,2},
+  \end{displaymath}
+  respectively.
+  As illustrated in Example~\ref{example:expansion-h}, the coefficient of $s_{(3,2)}$ in the complete symmetric function $h_{(2,2,1)}$ is the number of semistandard tableau of shape $(3,2)$ and type $(2,2,1)$.
+\end{example}
+\begin{definition}
+  [Kostka number]
+  Given two partitions $\lambda$ and $\mu$, the Kostka number $K_{\lambda\mu}$ is the number of semistandard tableau of shape $\lambda$ and type $\mu$.
+\end{definition}
+\begin{exercise}
+  For every partition $\lambda$, show that $K_{\lambda\lambda}=1$.
+\end{exercise}
+In order to understand the expansion of elementary symmetric functions we would need a variant of semistandard tableaux, one where the difference between successive shapes are vertical strips, rather than horizontal strips.
+However, it has become common practice to \emph{conjugate} partitions instead:
+\begin{definition}
+  [Conjugate of a partition]
+  The \emph{conjugate} of a partition $\lambda$ is the partition $\lambda'$ whose Young diagram is given by:
+  \begin{displaymath}
+    \lambda' = \{(j,i)\mid (i, j)\in \lambda\}.
+  \end{displaymath}
+  In other words, the Young diagram of $\lambda'$ is the reflection of the Young diagram of $\lambda$ about its principal diagonal.
+\end{definition}
+Clearly $\lambda\mapsto\lambda'$ is an involution.
+For example, if $\lambda=(2,2,1)$, then $\lambda'=(3,2)$.
+\begin{exercise}
+Semistandard tableaux of shape $\lambda'$ and type $\mu$ correspond to chains of integer partitions
+  \begin{displaymath}
+    \emptyset = \lambda^{(0)} \subset \lambda^{(1)}\subset \lambda^{(2)} \subset \dotsb \subset \lambda^{(m)} = \lambda
+  \end{displaymath}
+  where $\lambda^{(i)}/\lambda^{(i-1)}$ is a \emph{vertical} strip of size $\mu_i$.  
+\end{exercise}
+\begin{theorem}
+  The expansion of complete symmetric functions in terms of Schur functions is given by:
+  \begin{displaymath}
+    h_\mu = \sum_\lambda K_{\lambda\mu}s_\lambda.
+  \end{displaymath}
+  Dually, the extension of elementary symmetric functions in terms of Schur functions is given by:
+  \begin{displaymath}
+    e_\mu = \sum_\lambda K_{\lambda'\mu}s_\lambda.
+  \end{displaymath}
+\end{theorem}
+\subsection{Triangularity of Kostka Numbers}
+\label{sec:triang-kostka-numb}
+In this section we give a necessary and sufficient condition for the positivity of Kostka number.
+As usual, take $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_m)$.
+Suppose $K_{\lambda\mu}>0$.
+Then there exists a semistandard tableau $t$ of shape $\lambda$ and type $\mu$.
+Since the columns of $t$ are strictly increasing, all the $1$'s in $t$ must occur in its first row, so $\lambda_1\geq \mu_1$.
+Also, all the $2$'s must occur in the first two rows (along with all the $1$'s), so $\lambda_1+\lambda_2\geq \mu_1+\mu_2$.
+More generally, all the numbers $1,\dotsc, i$ for $i=1,\dotsc,m$ should occur in the first $m$ rows of $t$.
+We have:
+\begin{equation}
+  \label{eq:dominance}
+  \lambda_1+\dotsb + \lambda_i \geq \mu_1+\dotsb \mu_i \text{ for } i=1,\dotsc, m.
+\end{equation}
+\begin{definition}
+  We say that an integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ \emph{dominates} the integer partition $\mu=(\mu_1,\dotsc,\mu_m)$ $|\lambda|=|\mu|$ and if the condition (\ref{eq:dominance}) holds.
+  When this happens we write $\lambda\rhd \mu$.
+  This relation defines a partial order on the set of all integer partitions of $n$ for any non-negative integer $n$.
+\end{definition}
+\begin{exercise}
+  Show that $(n)$ is maximal and $(1^n)$ is minimal among all the integer partitions of $n$.
+  What is the smallest integer $n$ for which the dominance order on partitions of $n$ is not a linear order?
+\end{exercise}
+\begin{theorem}
+  [Triangularity of Kostka Numbers]
+  \label{theorem:Kostka-triangularity}
+  Given partition $\lambda$ and $\mu$ of an integer $n$, $K_{\lambda\mu}>0$ if and only if $\lambda\rhd\mu$.
+\end{theorem}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
