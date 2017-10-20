@@ -320,6 +320,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
   Given two partitions $\lambda$ and $\mu$, the Kostka number $K_{\lambda\mu}$ is the number of semistandard tableau of shape $\lambda$ and type $\mu$.
 \end{definition}
 \begin{exercise}
+  \label{exercise:unit-kostka}
   For every partition $\lambda$, show that $K_{\lambda\lambda}=1$.
 \end{exercise}
 In order to understand the expansion of elementary symmetric functions we would need a variant of semistandard tableaux, one where the difference between successive shapes are vertical strips, rather than horizontal strips.
@@ -342,6 +343,7 @@ Semistandard tableaux of shape $\lambda'$ and type $\mu$ correspond to chains of
   where $\lambda^{(i)}/\lambda^{(i-1)}$ is a \emph{vertical} strip of size $\mu_i$.  
 \end{exercise}
 \begin{theorem}
+  \label{theorem:schur-to-eh}
   The expansion of complete symmetric functions in terms of Schur functions is given by:
   \begin{displaymath}
     h_\mu = \sum_\lambda K_{\lambda\mu}s_\lambda.
@@ -379,6 +381,67 @@ We have:
   \label{theorem:Kostka-triangularity}
   Given partition $\lambda$ and $\mu$ of an integer $n$, $K_{\lambda\mu}>0$ if and only if $\lambda\rhd\mu$.
 \end{theorem}
+\begin{proof}
+  We have already seen that if $K_{\lambda\mu}>0$, then $\lambda \rhd \mu$.
+  While reading the proof of the converse, it is helpful to keep in mind Example~\ref{example:can-tab} below.
+  Suppose that $\lambda\rhd\mu$.
+  Then $\lambda_1\geq \mu_1\geq \mu_m$.
+  Therefore, the Young diagram of $\lambda$ has at least $\mu_m$ cells in its first row, or in other words, it has at least $\mu_m$ columns.
+  Choose the smallest integer $i$ for which $\lambda_i\geq\mu_m$.
+  Fill the bottom-most box in the $\lambda_{i+1}$ leftmost columns with $m$.
+  Also, from the $i$th row, fill the rightmost $\mu_m-\lambda_{i+1}$ boxes with $m$.
+  The remaining (unfilled) boxes in the Young diagram of $\lambda$ now form the Young diagram of the partition
+  \begin{displaymath}
+  \eta=(\lambda_1,\dotsc,\lambda_{i-1}, \lambda_i - \mu_m + \lambda_{i+1}, \lambda_{i+2},\dotsc,\lambda_l), 
+  \end{displaymath}
+  a partition with $l-1$ parts.
+  Writing $(\eta_1,\dotsc,\eta_{l-1})$ for the parts of $\eta$, note that, since the first $i-1$ parts of $\eta$ are the same as those of $\lambda$,
+  we have:
+  \begin{displaymath}
+    \eta_1+\dotsb + \eta_j\geq \mu_1 + \dotsb + \mu_j
+  \end{displaymath}
+  for $j\leq i-1$.
+  For $j\geq i$, we have
+  \begin{align*}
+    \eta_1 + \dotsb + \eta_j & = \lambda_1 + \dotsb + \lambda_{j+1} -\mu_m\\
+                             & \geq \mu_1 + \dotsb + \mu_j + \mu_{j+1} - \mu_m\\
+                             & \geq \mu_1 + \dotsb + \mu_j.
+  \end{align*}
+  It follows that $\eta\rhd (\mu_1,\dotsc,\mu_{m-1})$.
+  The result now follows by induction in $m$.
+\end{proof}
+\begin{example}
+  \label{example:can-tab}
+  Consider the case where $\lambda=(7,3,2)$ and $\mu=(4,4,4)$.
+  Then the smallest integer $i$ such that $\lambda_i\geq 4$ is $1$.
+  Accordingly, we enter $3$ into the bottom-most boxes in the three leftmost columns, and also into one rightmost box in the first column:
+  \begin{displaymath}
+    \ytableaushort{{}{}{}{}{}{}3,{}{}3,33}
+  \end{displaymath}
+  We are left with the problem of finding a semistandard tableau of shape $(6,2)$ and type $(4,4)$.
+  Recursively applying our process to this smaller problem gives:
+  \begin{displaymath}
+    \ytableaushort{{}{}{}{}223,223,33},
+  \end{displaymath}
+  and finally the desired tableau
+  \begin{displaymath}
+    \ytableaushort{1111223,223,33}.
+  \end{displaymath}
+\end{example}
+\begin{theorem}
+  The complete symmetric functions:
+  \begin{displaymath}
+    \{h_\mu \mid \text{$\mu$ is a partition of $d$ with at most $n$ parts}\}
+  \end{displaymath}
+  and the elementary symmetric functions:
+  \begin{displaymath}
+    \{e_\mu\mid \text{$\mu$ is a partition of $d$ with $\mu_1\leq n$}\}
+  \end{displaymath}
+  form bases of the space of homogeneous symmetric polynomials of degree $d$ in variables $x_1,\dotsc,x_n$.
+\end{theorem}
+\begin{proof}
+  In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
+\end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
@@ -404,7 +467,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   \begin{displaymath}
     \det(a_{ij}) = \sum_{\omega_i:A_i\to B_i} v(\omega_1)\dotsb v(\omega_n),
   \end{displaymath}
-  where the sum is over all $n$-tuples $(\omega_1,\dotsc, \omega_n)$ of pairwise non-crossing paths.
+  where the sum is over all $n$-tuples $(\omega_1,\dotsc, \omega_n)$ of pairwise non-crossing paths $\omega_i:A_i\to B_i$.
 \end{theorem}
 \subsection{The Jacobi-Trudi Identities}
 \label{sec:jacobi-trudi-ident}
