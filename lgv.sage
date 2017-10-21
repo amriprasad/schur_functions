@@ -27,7 +27,33 @@ def path(n, startj, steps):
     return G
 
 # for the tableau [[2, 3], [4, 5], [5], [6]]
-G = jacobi1(5, 7) + path(5, 4, 'ururuu') + path(5, 3, 'uuurur') + path(5, 2, 'uuuur') + path(5, 1, 'uuuu') + path (5, 0, 'uuuu')
-for u, i in enumerate([6, 5, 3, 2, 0]):
-    G += circle((i, 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i, 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (4-u, 0.6), color='blue', fontsize=14) + circle((4-u, 1), 0.05, fill=True, color="blue") 
+# G = jacobi1(5, 7) + path(5, 4, 'ururuu') + path(5, 3, 'uuurur') + path(5, 2, 'uuuur') + path(5, 1, 'uuuu') + path (5, 0, 'uuuu')
+# for u, i in enumerate([6, 5, 3, 1, 0]):
+#     G += circle((i, 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i, 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (4-u, 0.6), color='blue', fontsize=14) + circle((4-u, 1), 0.05, fill=True, color="blue") 
 
+def jacobi2(n, k):
+    G = Graphics()
+    for i in range(k):
+        for j in range(n+1):
+            if j < n and i < k-1:
+                G += circle((i, j), 0.05, fill=True, color="grey")
+                G += arrow(tailpoint=(i, j), headpoint=(i+1, j+1), color="grey")
+                G += text('$x_%s$'%(j+1), (i+0.4, j+0.6), color="grey", fontsize=14)
+            if j>0:
+                G += arrow(headpoint=(i, j), tailpoint=(i, j-1), color="grey")
+    for i in range(k):
+        G += text("(%s,5)"%(i), (i, 5.2), color="lightgrey") + text("(%s,0)"%(i), (i, -0.2), color="grey")
+    return G
+
+def path2(starti, path):
+    G = Graphics()
+    now = (starti,0)
+    for a in path:
+        if a == 'r':
+            nxt = (now[0]+1, now[1]+1)
+        else:
+            nxt = (now[0], now[1]+1)
+        G += arrow(tailpoint=now, headpoint=nxt)
+        G += text('$x_%s$'%(now[1]+1), (now[0] + 0.4, now[1] + 0.6), fontsize=14)
+        now = nxt
+    return G

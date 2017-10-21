@@ -123,7 +123,7 @@ In particular, every monomial in an alternating polynomial must be composed of d
 Moreover, the polynomial is completely determined by the coefficients $c_\alpha$ of strictly decreasing multiindices, namely, multiindices of the form $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
 \begin{exercise}
   Let $\delta$ denote the strictly increasing multiindex $(n-1,n-2,\dotsc,1, 0)$ of lowest degree.
-  Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex.
+  Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex of length $n$.
   Then $\lambda\mapsto \lambda+\delta$ is a bijection from the set of integer partitions with at most $n$ onto the set of strictly decreasing multiindices.
 \end{exercise}
 \begin{example}
@@ -483,46 +483,92 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
 \end{theorem}
 \subsection{The Jacobi-Trudi Identities}
 \label{sec:jacobi-trudi-ident}
-\begin{displaymath}
-  s_\lambda = \det(h_{\lambda_i-i+j}), \quad s_{\lambda'} = \det(e_{\lambda_i-i+j}).
-\end{displaymath}
-
-For the first Jacobi-Trudi identity take $S$ to be the positive cone in the the integer lattice:
-\begin{displaymath}
-  S = \{(i,j)\mid i\geq 0,\; j>0 \text{ are integers}\}.
-\end{displaymath}
-Set the weight $v((i,j), (i+1,j))$ of each rightward horizontal edge to be $x_j$ for $j=1,\dotsc, n$, the weight of each upward vertical edge $v((i,j), (i,j+1))$ to be $1$ for all $j=1,\dotsc,n-1$.
-The remaining weights are all zero.
-\begin{lemma}
-  \label{lemma:entry}
-  For all integers $i>0$ and $j\geq 0$, we have:
+We have seen that the Kostka numbers can be used to express complete and elementary symmetric functions in terms of Schur functions.
+The reverse operation---that of expressing Schur functions in terms of complete or elementary symmetric functions---is done by the Jacobi-Trudi identities:
+\begin{theorem}
+  [Jacobi-Trudi identities]
+  For each $n$, and every integer partition $\lambda$ with at most $n$ parts\footnote{If $\lambda$ has fewer than $n$ parts, it is padded with zeros on the right to make it have exactly $n$ parts}, form the $n\times n$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda_i-i+j}$ respectively.
+  Then
   \begin{displaymath}
-    \sum_{\omega:(i, n)\to (i+j, 1)} v(\omega) = h_j(x_1,\dotsc,x_n).
+    s_\lambda = \det(h_{\lambda_i-i+j}), \quad s_{\lambda'} = \det(e_{\lambda_i-i+j}).
   \end{displaymath}
-\end{lemma}
+\end{theorem}
 \begin{proof}
-  Only rightward or upward steps have non-zero weights.
-  So every path with non-zero weight is composed of unit upward and rightward steps.
-  A path with non-zero weight from $(i, 1)$ to $(i+j, n)$ must have exactly $j$ rightward steps, say in rows $1\leq i_1\geq i_2 \dotsb \leq i_j\leq n$.
-  The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
+  The Jacobi-Trudi identities can be proved using the Lindstr\"om-Gessel-Viennot lemma (Theorem~\ref{lemma:lgv}).
+  For the first identity take $S$ to be the positive cone in the the integer lattice:
+  \begin{displaymath}
+    S = \{(i,j)\mid i\geq 0,\; j>0 \text{ are integers}\}.
+  \end{displaymath}
+  Set the weight $v((i,j), (i+1,j))$ of each rightward horizontal edge to be $x_j$ for $j=1,\dotsc, n$, the weight of each upward vertical edge $v((i,j), (i,j+1))$ to be $1$ for all $j=1,\dotsc,n-1$.
+  The remaining weights are all zero.
+  \begin{lemma}
+    \label{lemma:entry}
+    For all integers $i>0$ and $j\geq 0$, we have:
+    \begin{displaymath}
+      \sum_{\omega:(i, 1)\to (i+j, n)} v(\omega) = h_j(x_1,\dotsc,x_n).
+    \end{displaymath}
+  \end{lemma}
+  \begin{proof}
+    Only rightward or upward steps have non-zero weights.
+    So every path with non-zero weight is composed of unit upward and rightward steps.
+    A path with non-zero weight from $(i, 1)$ to $(i+j, n)$ must have exactly $j$ rightward steps, say in rows $1\leq i_1\geq i_2 \dotsb \leq i_j\leq n$.
+    The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
+  \end{proof}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{path_example.png}
+    \caption{A path from $(0, 5)$ to $(6, 1)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
+    \label{fig:path_example}
+  \end{figure}
+  Let $\lambda$ be a partition of $d$ with at most $n$ parts.
+  By appending $0$'s to the right of $\lambda$, think of $\lambda$ as an $n$-tuple $(\lambda_1,\dotsc, \lambda_n)$ with weakly decreasing coordinates.
+  Let $A_i = (n-i, 1)$ and $B_i=(\lambda_i+n-i, n)$ for $i=1,\dotsc, n$.
+  Then  by Lemma~\ref{lemma:entry},
+  \begin{displaymath}
+    \sum_{\omega:A_i\to B_j} v(\omega) = h_{\lambda_j+i-j}.
+  \end{displaymath}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{jt.png}
+    \caption{Non-crossing paths corresponding to the tableau $\ytableaushort{23,45,5}$}
+    \label{fig:jacobi-trudi}
+  \end{figure}
+  The right hand side of the Linstr\'om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  Reading the row numbers of the horizontal steps in $\omega_i$ gives a weakly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda_i}\leq n$.
+  Enter these numbers into the $i$th row of the Young diagram of $\lambda$ for $i=1,\dotsc,n$.
+  Since the paths are non-crossing, the $j$th rightward step of $\omega_i$ must be strictly higher than the $j$th rightward step of $\omega_{i+1}$.
+  This means that the columns of the resulting numbering are strictly increasing, resulting in a semistandard tableau of shape $\lambda$.
+
+  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(2,2,1,0,0)$ which corresponds to the semistandard tableau $\ytableaushort{23,45,5}$.
+
+  For the second Jacobi-Trudi identity take
+  \begin{displaymath}
+    S = \{(i,j)\mid i\geq 0,\;j\geq 0\}.
+  \end{displaymath}
+  Define $v((i,j),(i+1,j))=1$ (as before) and $v((i-1,j),(i,j+1))=x_i$; all other weights are zero.
+  For the new weights, the analog of Lemma~\ref{lemma:entry} is:
+  \begin{lemma}
+    For all integers $i>0$ and $j>0$, we have:
+    \begin{displaymath}
+      \sum_{\omega:(i,0)\to (i+j,n)} v(\omega) = e_j(x_1,\dotsc,x_n).
+    \end{displaymath}
+  \end{lemma}
+  \begin{proof}
+    Every path with non-zero weights consists of unit upward or upper-rightward diagonal steps.
+    A path with non-zero weight from $(i,0)$ to $(i+j,n)$ must have $n$ such steps, of which $j$ must be diagonal.
+    If the steps numbered $i_1,\dotsc,i_j$ are the diagonal steps, then the path has weight $x_{i_1}\dotsb x_{i_j}$.
+    Summing over all possible paths gives
+    \begin{displaymath}
+      \sum_{1\leq i_1<\dotsb <i_j\leq n} x_{i_1}\dotsb x_{i_j} = e_j(x_1,\dotsc,x_n),
+    \end{displaymath}
+    as required.
+  \end{proof}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{path_example2.png}
+    \caption{A path from $(2,0)$ to $(4,5)$ whose weight is the monomial $x_1x_4$ in $e_2(x_1,\dotsc,x_5)$.}
+    \label{fig:example_path_e}
+  \end{figure}
 \end{proof}
-\begin{figure}
-  \centering
-  \includegraphics[width=0.7\textwidth]{path_example.png}
-  \caption{A path from $(0, 5)$ to $(6, 1)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
-  \label{fig:path_example}
-\end{figure}
-Let $\lambda$ be a partition of $d$ with at most $n$ parts.
-By appending $0$'s to the right of $\lambda$, think of $\lambda$ as an $n$-tuple $(\lambda_1,\dotsc, \lambda_n)$ with weakly decreasing coordinates.
-Let $A_i = (n-i, 1)$ and $B_i=(\lambda_i+n-i, n)$ for $i=1,\dotsc, n$.
-Then  by Lemma~\ref{lemma:entry},
-\begin{displaymath}
-  \sum_{\omega:A_i\to B_j} v(\omega) = h_{\lambda_j+i-j}.
-\end{displaymath}
-\begin{figure}
-  \centering
-  \includegraphics[width=0.7\textwidth]{jt.png}
-  \caption{Non-intersecting paths corresponding to the tableau $\ytableaushort{23,45,5}$}
-  \label{fig:jacobi-trudi}
-\end{figure}
 \end{document}
+
