@@ -262,7 +262,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
       }
     }
   \end{displaymath}
-  The boxes in the horizontal strip added at the $i$th stage are filled with the number $i$.
+  The boxes in the vertical strip added at the $i$th stage are filled with $i$.
 \end{example}
 \begin{example}
   \label{example:expansion-h}
@@ -293,7 +293,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
       }
     }
   \end{displaymath}
-  The boxes in the vertical strip added at the $i$th stage are filled with $i$.
+  The boxes in the horizontal strip added at the $i$th stage are filled with $i$.
 \end{example}
 \begin{definition}
   [Semistandard tableau]
@@ -322,6 +322,18 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
 \begin{exercise}
   \label{exercise:unit-kostka}
   For every partition $\lambda$, show that $K_{\lambda\lambda}=1$.
+\end{exercise}
+\begin{exercise}
+  [$f$-number]
+  The $f$-number of a partition $\lambda$ of $n$ is defined to be the Kostka number $K_{\lambda,(1^n)}$, and is denoted $f_\lambda$.
+\end{exercise}
+\begin{exercise}
+  For a partition $\lambda$, let $\lambda^-$ denote the set of all partitions whose Young diagram can be obtained by removing one box from the Young diagram of $\lambda$.
+  Show that $f_\lambda = \sum_{\mu\in \lambda^-} f_\mu$.
+\end{exercise}
+\begin{exercise}
+  A hook is a partition of the form $h(a,b)=(a+1,1^b)$.
+  Show that $f_{h(a,b)}=\binom{a+b}a$.
 \end{exercise}
 In order to understand the expansion of elementary symmetric functions we would need a variant of semistandard tableaux, one where the difference between successive shapes are vertical strips, rather than horizontal strips.
 However, it has become common practice to \emph{conjugate} partitions instead:
@@ -414,7 +426,7 @@ We have:
   \label{example:can-tab}
   Consider the case where $\lambda=(7,3,2)$ and $\mu=(4,4,4)$.
   Then the smallest integer $i$ such that $\lambda_i\geq 4$ is $1$.
-  Accordingly, we enter $3$ into the bottom-most boxes in the three leftmost columns, and also into one rightmost box in the first column:
+  Accordingly, we enter $3$ into the bottom-most boxes in the three leftmost columns, and also into one rightmost box in the first row:
   \begin{displaymath}
     \ytableaushort{{}{}{}{}{}{}3,{}{}3,33}
   \end{displaymath}
@@ -479,7 +491,7 @@ For the first Jacobi-Trudi identity take $S$ to be the positive cone in the the 
 \begin{displaymath}
   S = \{(i,j)\mid i\geq 0,\; j>0 \text{ are integers}\}.
 \end{displaymath}
-Set the weight $v((i,j), (i+1,j))$ of each rightward horizontal edge to be $x_j$ for $j=1,\dotsc, n$, the weight of each downward vertical edge $v((i,j), (i,j-1))$ to be $1$ for all $j=2,\dotsc,n$.
+Set the weight $v((i,j), (i+1,j))$ of each rightward horizontal edge to be $x_j$ for $j=1,\dotsc, n$, the weight of each upward vertical edge $v((i,j), (i,j+1))$ to be $1$ for all $j=1,\dotsc,n-1$.
 The remaining weights are all zero.
 \begin{lemma}
   \label{lemma:entry}
@@ -489,20 +501,28 @@ The remaining weights are all zero.
   \end{displaymath}
 \end{lemma}
 \begin{proof}
-  Only rightward or downward steps have non-zero weights.
-  So every path with non-zero weight is composed of unit downward and rightward steps.
-  A path with non-zero weight from $(i, n)$ to $(i+j, 1)$ must have exactly $j$ rightward steps, say in rows $n\geq i_1\geq i_2 \dotsb \geq i_j\geq 1$.
+  Only rightward or upward steps have non-zero weights.
+  So every path with non-zero weight is composed of unit upward and rightward steps.
+  A path with non-zero weight from $(i, 1)$ to $(i+j, n)$ must have exactly $j$ rightward steps, say in rows $1\leq i_1\geq i_2 \dotsb \leq i_j\leq n$.
   The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
 \end{proof}
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{path_example.png}
-  \caption{A path from $(0, 5)$ to $(6, 1)$ representing the monomial $x_1x_3^3x_5^2$ in $h_6$.}
+  \includegraphics[width=0.7\textwidth]{path_example.png}
+  \caption{A path from $(0, 5)$ to $(6, 1)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
   \label{fig:path_example}
 \end{figure}
-Let $A_i = (n-i, n)$ and $B_i=(\lambda_i+n-i, 1)$ for $i=1,\dotsc, n$.
+Let $\lambda$ be a partition of $d$ with at most $n$ parts.
+By appending $0$'s to the right of $\lambda$, think of $\lambda$ as an $n$-tuple $(\lambda_1,\dotsc, \lambda_n)$ with weakly decreasing coordinates.
+Let $A_i = (n-i, 1)$ and $B_i=(\lambda_i+n-i, n)$ for $i=1,\dotsc, n$.
 Then  by Lemma~\ref{lemma:entry},
 \begin{displaymath}
   \sum_{\omega:A_i\to B_j} v(\omega) = h_{\lambda_j+i-j}.
 \end{displaymath}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{jt.png}
+  \caption{Non-intersecting paths corresponding to the tableau $\ytableaushort{23,45,5}$}
+  \label{fig:jacobi-trudi}
+\end{figure}
 \end{document}
