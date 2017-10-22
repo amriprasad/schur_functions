@@ -11,9 +11,10 @@
 \theoremstyle{example}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
-\renewcommand{\thesubsection}{\arabic{subsection}}
 \subsection{Symmetric Functions}
 \label{sec:symmetric-functions}
 We consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
@@ -454,6 +455,9 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
+\subsection{The Plactic Monoid}
+\subsection{Tableaux Correspondences}
+\subsection{Monomials in the Schur function}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
@@ -487,7 +491,7 @@ We have seen that the Kostka numbers can be used to express complete and element
 The reverse operation---that of expressing Schur functions in terms of complete or elementary symmetric functions---is done by the Jacobi-Trudi identities:
 \begin{theorem}
   [Jacobi-Trudi identities]
-  For each $n$, and every integer partition $\lambda$ with at most $n$ parts\footnote{If $\lambda$ has fewer than $n$ parts, it is padded with zeros on the right to make it have exactly $n$ parts}, form the $n\times n$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda_i-i+j}$ respectively.
+  For every integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ form the $l\times l$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda_i-i+j}$ respectively.
   Then
   \begin{displaymath}
     s_\lambda = \det(h_{\lambda_i-i+j}), \quad s_{\lambda'} = \det(e_{\lambda_i-i+j}).
@@ -520,26 +524,29 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     \caption{A path from $(0, 5)$ to $(6, 1)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
     \label{fig:path_example}
   \end{figure}
-  Let $\lambda$ be a partition of $d$ with at most $n$ parts.
-  By appending $0$'s to the right of $\lambda$, think of $\lambda$ as an $n$-tuple $(\lambda_1,\dotsc, \lambda_n)$ with weakly decreasing coordinates.
-  Let $A_i = (n-i, 1)$ and $B_i=(\lambda_i+n-i, n)$ for $i=1,\dotsc, n$.
+  Gien $\lambda=(\lambda_1,\dotsc,\lambda_l)$, and working with $n$ variables $x_1,\dotsc,x_n$, let $A_i = (l-i, 1)$ and $B_i=(\lambda_i+l-i, n)$ for $i=1,\dotsc, l$.
   Then  by Lemma~\ref{lemma:entry},
   \begin{displaymath}
     \sum_{\omega:A_i\to B_j} v(\omega) = h_{\lambda_j+i-j}.
   \end{displaymath}
   \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{jt.png}
-    \caption{Non-crossing paths corresponding to the tableau $\ytableaushort{23,45,5}$}
+    \includegraphics[width=0.7\textwidth]{jth.png}
+    \caption{Non-crossing paths corresponding to the tableau \small{$\ytableaushort{113,24,35,5}$}}
     \label{fig:jacobi-trudi}
   \end{figure}
+  So the left-hand-side of the first Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
   The right hand side of the Linstr\'om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
   Reading the row numbers of the horizontal steps in $\omega_i$ gives a weakly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda_i}\leq n$.
   Enter these numbers into the $i$th row of the Young diagram of $\lambda$ for $i=1,\dotsc,n$.
   Since the paths are non-crossing, the $j$th rightward step of $\omega_i$ must be strictly higher than the $j$th rightward step of $\omega_{i+1}$.
   This means that the columns of the resulting numbering are strictly increasing, resulting in a semistandard tableau of shape $\lambda$.
 
-  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(2,2,1,0,0)$ which corresponds to the semistandard tableau $\ytableaushort{23,45,5}$.
+  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=()$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  Thus, it follows from the Lindst\"om-Gessel-Viennot lemma that
+  \begin{displaymath}
+    \det(h_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda)} x^t.
+  \end{displaymath}
 
   For the second Jacobi-Trudi identity take
   \begin{displaymath}
@@ -548,6 +555,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   Define $v((i,j),(i+1,j))=1$ (as before) and $v((i-1,j),(i,j+1))=x_i$; all other weights are zero.
   For the new weights, the analog of Lemma~\ref{lemma:entry} is:
   \begin{lemma}
+    \label{lemma:entry-e}
     For all integers $i>0$ and $j>0$, we have:
     \begin{displaymath}
       \sum_{\omega:(i,0)\to (i+j,n)} v(\omega) = e_j(x_1,\dotsc,x_n).
@@ -557,11 +565,8 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     Every path with non-zero weights consists of unit upward or upper-rightward diagonal steps.
     A path with non-zero weight from $(i,0)$ to $(i+j,n)$ must have $n$ such steps, of which $j$ must be diagonal.
     If the steps numbered $i_1,\dotsc,i_j$ are the diagonal steps, then the path has weight $x_{i_1}\dotsb x_{i_j}$.
-    Summing over all possible paths gives
-    \begin{displaymath}
-      \sum_{1\leq i_1<\dotsb <i_j\leq n} x_{i_1}\dotsb x_{i_j} = e_j(x_1,\dotsc,x_n),
-    \end{displaymath}
-    as required.
+    For an example of such a path, see Fig.~\ref{fig:example_path_e}.
+    Summing over all possible paths gives $e_j(x_1,\dotsc,x_n)$.
   \end{proof}
   \begin{figure}
     \centering
@@ -569,6 +574,30 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     \caption{A path from $(2,0)$ to $(4,5)$ whose weight is the monomial $x_1x_4$ in $e_2(x_1,\dotsc,x_5)$.}
     \label{fig:example_path_e}
   \end{figure}
+  Suppose that the conjugate partition $\lambda'=(\lambda'_1,\dotsc,\lambda'_k$.
+  In order to apply the Lindstr\"om-Gessel-Viennot lemma to obtain the second Jacobi-Trudi identity, take $A_i=(k-i, 0)$ and $B_i=(\lambda'_i+k-i, n)$ for $i=1,\dotsc,k$.
+  Then by Lemma~\ref{lemma:entry-e},
+  \begin{displaymath}
+    \sum_{\omega_i:A_i\to B_j} v(\omega) = e_{\lambda_j+i-j}.
+  \end{displaymath}
+  So the left-hand-side of the second Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
+
+  The right hand side of the Linstr\'om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  Reading the row numbers where the upper-rightward steps in $\omega_i$ originate gives a strictly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda'_i}\leq n$.
+  Enter these numbers into the $i$th column of the Young diagram of $\lambda$.
+  Since the paths are non-crossing, the $j$th upper-rightward step of $\omega_i$ must be no lower than the $j$th upper-rightward step of $\omega_{i+1}$.
+  This means that the rows of the resulting numbering are weakly increasing, resulting in a semistandard tableau of shape $\lambda$.
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{jte.png}
+    \caption{Non-crossing paths corresponding to the tableau \small{$\ytableaushort{113,24,35,5}$}.}
+    \label{fig:jte}
+  \end{figure}
+  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=()$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  Thus, it follows from the Lindst\"om-Gessel-Viennot lemma that
+  \begin{displaymath}
+    \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t.
+  \end{displaymath}
 \end{proof}
 \end{document}
 
