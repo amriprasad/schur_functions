@@ -12,6 +12,8 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
 \renewcommand{\thesubsection}{\arabic{subsection}}
+\newcommand{\ins}{\textup{INSERT}}
+\newcommand{\del}{\textup{DELETE}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
@@ -455,6 +457,36 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
+\subsection{Tableau as words}
+\label{sec:tableau-as-words}
+Given a semistandard tableau $t$, its reading word $w$ is defined to be the sequence of numbers obtained from reading its rows from left to right, starting with the bottom row, and moving up sequentially to the top row.
+Since the first entry of each row is strictly smaller than the last entry of the row below it, the tableau $t$ can be recovered from $w$ by chopping it up into segments with a cut after each $a_i$ with $a_{i+1}<a_i$ (we say that $w$ has a descent at $i$). The resulting segments, taken from right to left, form the rows of $t$.
+\begin{example}
+  The reading word of the tableau $t$ formed at the end of Example~\ref{example:can-tab} is:
+  \begin{displaymath}
+    w = 332231111223.
+  \end{displaymath}
+  The tableau $t$ is recovered by marking off the descents $w = 333|223|1111223$, and then rearranging the segments into a tableau.
+\end{example}
+
+\subsection{Schensted's insertion algorithm}
+\label{sec:schenst-insert-algor}
+Let $t$ be a semistandard tableau, and $x$ be a positive integer.
+Schensted's insertion algorithm is a method of inserting a box with the number $x$ into $t$, resulting in a new tableau $t\leftarrow x$, which has remarkable combinatorial properties, which will be discussed in the upcoming sections.
+
+We first consider the case where $t$ has a single row $\ytableaushort{{a_1}{a_2}{\dotsb}{a_k}}$.
+For typographical convenience, we do away with the boxes in the tableau.
+\begin{displaymath}
+  {a_1}{a_2}{\dotsb}{a_k} \leftarrow x =
+  \begin{cases}
+    \setlength\arraycolsep{0pt}
+    \begin{matrix}a_1&a_2&\dotsb&a_k&x\end{matrix} & \text{ if } x\geq a_k,\\
+    \\
+    \setlength\arraycolsep{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{matrix}{a_j}\\{a_1}&{\dotsb}&{a_{j-1}}&{x}&{a_{j+1}}&{\dotsb}&{a_k}\end{matrix} & \text{ if } j = \min\{k \mid a_k > x\}.
+  \end{cases}
+\end{displaymath}
 \subsection{The Plactic Monoid}
 \subsection{Tableaux Correspondences}
 \subsection{Monomials in the Schur function}
