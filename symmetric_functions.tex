@@ -19,9 +19,9 @@
 \maketitle
 \subsection{Symmetric Functions}
 \label{sec:symmetric-functions}
-We consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
-Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, $x^\alpha$ denotes the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$
-A symmetric polynomial in $n$ variables $x_1,\dotsc, x_n$ is a polynomial of the form
+Consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
+Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, let $x^\alpha$ denote the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
+A \emph{symmetric polynomial} is a polynomial of the form
 \begin{displaymath}
   f(x_1,\dotsc, x_n) = \sum_{\alpha} c_\alpha x^\alpha,
 \end{displaymath}
@@ -29,7 +29,7 @@ where, for any permutation $w\in S_n$,
 \begin{displaymath}
   c_{(\alpha_1,\dotsc,\alpha_n)} = c_{(\alpha_{w(1)},\dotsc,\alpha_{w(n)})}.
 \end{displaymath}
-We call the integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$ the shape of $\alpha$ and write $\lambda = \lambda(\alpha)$.
+The integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$  is called the \emph{shape} of $\alpha$, denoted $\lambda(\alpha)$.
 The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric function}, defined for each integer partition $\lambda$:
 \begin{displaymath}
   m_\lambda = \sum_{\lambda(\alpha) = \lambda} c_\alpha x^\alpha.
@@ -54,7 +54,7 @@ where coefficient $e_i(x_1,\dotsc, x_n)$ of $t^{n-i}$ is given by:
   e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1<\dotsb<j_i\leq n} x_{j_1}x_{j_2}\dotsb x_{j_i}.
 \end{equation}
 The polynomial $e_i$ is called the $i$th \emph{elementary symmetric polynomial}.
-By convention, write $e_i(x_1,\dotsc,x_n)=0$, for $i>n$.
+By convention, $e_i(x_1,\dotsc,x_n)=0$, for $i>n$.
 
 The identity (\ref{eq:elem-id}) can be written more elegantly as:
 \begin{displaymath}
@@ -66,7 +66,7 @@ Dually\footnote{We will refer to the replacing of $(1+u)$ by $(1-u)^{-1}$ in a f
   \frac 1{(1-x_1t)\dotsb (1-x_nt)} = \sum_{i=0}^\infty h_i(x_1,\dotsb, x_n)t^i.
 \end{displaymath}
 \begin{example}
-  In three variables, we have:
+  In three variables:
   \begin{align*}
     e_2(x_1,x_2,x_3) & = x_1x_2 + x_1x_3 + x_2x_3,\\
     h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_2^3.
@@ -84,7 +84,7 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   e_\lambda &= e_{\lambda_1} e_{\lambda_2}\dotsb e_{\lambda_l}.
 \end{align*}
 \begin{theorem}
-  Given integer partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsb, \mu_m)$ of and integer $d$, let $M_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with non-negative entries whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Given partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsb, \mu_m)$ of $d$, let $M_{\lambda\mu}$ denote the number of matrices $(a_{ij})$ with non-negative integer entries whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
   Then
   \begin{displaymath}
     h_\lambda = \sum_\mu M_{\lambda\mu} m_\mu.
@@ -95,8 +95,7 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   \end{displaymath}
 \end{theorem}
 \begin{proof}
-  We first prove the second identity involving elementary symmetric functions.
-  A monomial in the expansion:
+  To prove the second identity involving elementary symmetric functions, note that a monomial in the expansion of
   \begin{displaymath}
     e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}}
   \end{displaymath}
@@ -104,10 +103,10 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   Construct an $l\times m$ matrix $(a_{ij})$ corresponding to such a choice as follows:
   if the summand $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$ to be $1$ (the remaining entries of the $i$th row are $0$).
   Clearly the $i$th row of such a matrix sums to $\lambda_i$.
-  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$, which is the sum of the $j$th column of the matrix $(a_{ij})$.
+  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in the monomial corresponding to the $i$gth row is $\mu_j$. This is just the sum of the $j$th column of the matrix $(a_{ij})$.
   It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric functions of degree $n$, is $N_{\lambda\mu}$.
 
-A similar proof can be given for the first identity involving complete symmetric functions. The only difference is that a variables are repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
+A similar proof can be given for the first identity involving complete symmetric functions. The only difference is that variables may be repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
 \end{proof}
 \subsection{Alternating Polynomials}
 \label{sec:alt-poly}
@@ -125,7 +124,7 @@ Equivalently, an alternating polynomial is one whose sign is reversed upon the i
 In particular, every monomial in an alternating polynomial must be composed of distinct powers.
 Moreover, the polynomial is completely determined by the coefficients $c_\alpha$ of strictly decreasing multiindices, namely, multiindices of the form $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
 \begin{exercise}
-  Let $\delta$ denote the strictly increasing multiindex $(n-1,n-2,\dotsc,1, 0)$ of lowest degree.
+  Let $\delta=(n-1,n-2,\dotsc,1, 0)$.
   Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex of length $n$.
   Then $\lambda\mapsto \lambda+\delta$ is a bijection from the set of integer partitions with at most $n$ onto the set of strictly decreasing multiindices.
 \end{exercise}
@@ -157,7 +156,7 @@ The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$
   \label{exercise:vandermonde-iso}
   Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$.
 \end{exercise}
-The above exercise allows us to give the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
+The above exercise gives the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
 \begin{equation}
   \label{eq:schur}
   s_\lambda(x_1,\dotsc,x_n) = a_{\lambda+\delta}/a_\delta,
@@ -165,7 +164,6 @@ The above exercise allows us to give the historically oldest definition of Schur
 for any partition $\lambda$ with at most $n$ parts.
 If $\lambda$ has more than $n$ parts, set $s_\lambda(x_1,\dotsc,x_n) =0$.
 This is clearly a symmetric function of degree $|\lambda|$.
-When $\lambda$ has more than $n$ parts, we shall write $s_\lambda(x_1,\dotsc,x_n)=0$
 \begin{theorem}
   As $\lambda$ runs over all integer partitions of $d$ with at most $n$ parts, the Schur functions $s_\lambda(x_1,\dotsc,x_n)$ form a basis of the space of all homogeneous symmetric functions in $x_1,\dotsc,x_n$ of degree $d$.
 \end{theorem}
