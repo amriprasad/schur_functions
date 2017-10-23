@@ -14,6 +14,7 @@
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \newcommand{\ins}{\textup{INSERT}}
 \newcommand{\del}{\textup{DELETE}}
+\newcommand{\pl}{\textup{Pl}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
@@ -466,25 +467,49 @@ Since the first entry of each row is strictly smaller than the last entry of the
   \end{displaymath}
   The tableau $t$ is recovered by marking off the descents $w = 333|223|1111223$, and then rearranging the segments into a tableau.
 \end{example}
-
+Let $A_n^*$ denote the set of all words in the alphabet $\{1,\dotsc, n\}$.
+We shall call the word $w=a_1\dotsb a_k$ a \emph{row} if $a_1\leq \dotsb \leq a_k$.
+We call it a \emph{column} if $a_1>\dotsb>a_k$.
+We write $x^w$ for the monomial $x_{a_1}x_{a_2}\dotsb x_{a_k}$.
+Not every word comes from a tableau; for example the word $132$, when broken up at descents gives rise to $\ytableaushort{2,13}$.
+We shall say that a word is a tableau if it is the reading word of a semistandard tableau.
+\begin{exercise}
+  Show that, for every positive integer $i$,
+  \begin{displaymath}
+    h_i(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a row}}x^w,
+  \end{displaymath}
+  and 
+  \begin{displaymath}
+    e_i(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a column}}x^w.
+  \end{displaymath}
+\end{exercise}
+The set of words $A_n^*$ comes endowed with an additional structure---that of a monoid---which can be lifted to the algebra of polynomials.
+If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
+\begin{displaymath}
+  x^{w_1}x^{w_2} = x^{w_1w_2}.
+\end{displaymath}
+This gives rise to an algebra homomorphism $\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n]$.
+Obviously, this homomorphism has a large kernel; the algebra on the left is the free algebra, whereas the algebra on the right is commutative.
+The algebra on the right contains our primamry object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the natural homomorphism $\mathbf Z[\pl_n]\to \mathbf Z[x_1,\dotsc,x_n]^{S_n}$ is an algebra homomorphism.
 \subsection{Schensted's insertion algorithm}
 \label{sec:schenst-insert-algor}
 Let $t$ be a semistandard tableau, and $x$ be a positive integer.
-Schensted's insertion algorithm is a method of inserting a box with the number $x$ into $t$, resulting in a new tableau $t\leftarrow x$, which has remarkable combinatorial properties, which will be discussed in the upcoming sections.
+Schensted's insertion algorithm is a method of inserting a box with the number $x$ into $t$, resulting in a new tableau $t\leftarrow x$.
+Applied repeatedly, it gives a way to convert any word into a tableau.
+This tableau succinctly expresses some combinatorial properties of the original word.
 
-We first consider the case where $t$ has a single row $\ytableaushort{{a_1}{a_2}{\dotsb}{a_k}}$.
-For typographical convenience, we do away with the boxes in the tableau.
+We shall identify tableaux with their reading words, as explained in Section~\ref{sec:tableau-as-words}.
+We first consider the case where $t$ has a single row, so its reading word $t=a_1\dotsb a_k$ is a row in the sense of Section~\ref{sec:tableau-as-words}.
 \begin{displaymath}
-  {a_1}{a_2}{\dotsb}{a_k} \leftarrow x =
+  a_1a_2\dotsb a_k \leftarrow x =
   \begin{cases}
-    \setlength\arraycolsep{0pt}
-    \begin{matrix}a_1&a_2&\dotsb&a_k&x\end{matrix} & \text{ if } x\geq a_k,\\
-    \\
-    \setlength\arraycolsep{0pt}
-    \renewcommand{\arraystretch}{0}
-    \begin{matrix}{a_j}\\{a_1}&{\dotsb}&{a_{j-1}}&{x}&{a_{j+1}}&{\dotsb}&{a_k}\end{matrix} & \text{ if } j = \min\{k \mid a_k > x\}.
+    a_1\dotsb a_k x & \text{if $x\geq a_k$},\\
+    a_j\; a_1\dotsb a_{j-1} x a_j \dotsb a_k & \text{ if } j = \min\{k \mid a_k > x\}.
   \end{cases}
 \end{displaymath}
+In the second case, the resulting word is a tableau with two rows, the second row $a_j$ has length one.
+We shall describe the situation by saying that \emph{$x$ has been inserted into $a_1\dotsb a_k$, obtaining $a_1\dotsb a_{j-1} x a_j \dotsb a_k$, and \textbf{bumping out} $a_j$}.
 \subsection{The Plactic Monoid}
 \subsection{Tableaux Correspondences}
 \subsection{Monomials in the Schur function}
