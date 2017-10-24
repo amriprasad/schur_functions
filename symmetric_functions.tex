@@ -16,6 +16,11 @@
 \newcommand{\ins}{\textup{INSERT}}
 \newcommand{\del}{\textup{DELETE}}
 \newcommand{\pl}{\textup{Pl}}
+\newcommand{\supp}{\textup{supp}}
+\newcommand{\wt}{\textup{wt}}
+\newcommand{\shape}{\textup{shape}}
+\newcommand{\abc}{\textup{Abc}}
+\renewcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
@@ -145,6 +150,41 @@ Moreover, the polynomial is completely determined by the coefficients $c_\alpha$
   \end{displaymath}
   the sum being over all weakly decreasing multiindices.
 \end{exercise}
+\subsection{Interpretation of Alternants with Labeled Abaci}
+\label{sec:abaci}
+A labeled abacus with $n$ beads is a word $w=(w_k; k\geq 0)$ such that the subword of non-zero letters is a permutation of $1,2,\dotsc,n$.
+The sign $\epsilon(w)$ of the abacus is the sign of this permutation, the support is the set $\supp(w)=\{k\mid w_k>0\}$, and the weight is defined as:
+\begin{displaymath}
+  \wt(w) = \prod_k x_{w_k}^k.
+\end{displaymath}
+The shape of the abacus, $\shape(w)$ is the unique partition $\lambda$ such that the components of $\lambda+\delta$ form the support of $w$.
+\begin{example}
+  Consider the labeled abacus $w=510032046000\dotsb$.
+  Its underlying permutation is $513246$, which has sign $-1$, so $\epsilon(w)=-1$.
+  Also, $\supp(w)=\{0,1,4,5,7,8\}$, $\shape(w)=(3,3,2,2)$ (indeed, $(3,3,2,2,0,0)+(5,4,3,2,1,0)=(8,7,5,4,1,0)$) and $\wt(w)=x_5^0x_1^1x_3^4x_2^5x_4^7x_6^8$.
+  We visualize the abacus $w$ as a condifuration of beads on a single runner, with possible positions of beads numbered $1, 2, 3, \dotsc$.
+  If $w_k=i$ where $i>0$, then a bead labeled $i$ is placed in position $k$ on the runner.
+  If $w_k=0$, then the position $k$ is unoccupied.
+  In the running example the visualization is:
+  \begin{displaymath}
+    \begin{tabular}{*{10}{p{0.7cm}}}
+      0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\
+      \circled{5} & \circled{1} & $\bullet$ & $\bullet$ & \circled{3} & \circled{2} & $\bullet$ & \circled{4} & \circled{6} & $\bullet$
+    \end{tabular}
+  \end{displaymath}
+  The first row shows the positions $k=0,1,\dotsc$ on the runner and the decond row shows the beads.
+\end{example}
+\begin{theorem}
+  \label{theorem:abacus-alt}
+  For every partition $\lambda$ the alternant in $n$  variables,
+  \begin{displaymath}
+    a_{\lambda+\delta} = (-1)^{\lfloor n/2\rfloor} \sum_w \epsilon(w)\wt(w),
+  \end{displaymath}
+  the sum being over all labeled abaci with $n$ beads and shape $\lambda$.
+\end{theorem}
+\begin{proof}
+  The theorem follows from the expansion of the determinant.
+\end{proof}
 \subsection{Cauchy's Bialternant Form of a Schur Function}
 \label{sec:cauchys-bialt-form}
 The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
@@ -197,7 +237,6 @@ By abuse of notation, we will also use $\lambda$ to denote the Young diagram of 
 By a skew-shape, we mean a difference of Young diagrams $\lambda \setminus \mu$, where $\lambda \supset \mu$.
 We write $\lambda/\mu$ for this skew-shape.
 A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical strip}) if it has at most one element in each vertical column (respectively, horizontal row).
-
 \begin{theorem}
   For every partition $\lambda$, and every positive integer $k$,
   \begin{displaymath}
@@ -211,22 +250,60 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
   where the sum runs over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a vertical strip of size $k$.
 \end{theorem}
 \begin{proof}
+  We reproduce the proof from Loehr \cite{loehr}. 
+  Let $\abc(\lambda)$ denote the set of all $n$-bead labeled abaci (see Section~\ref{sec:abaci}) of shape $\lambda$.
+  Let $M(n,k)$ denote the set of all vectors $\alpha=(\alpha_1,\dots,\alpha_n)$ with non-negative integer coordinates and sum $k$.
+  Set $\wt(\alpha)=x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
   The first identity is equivalent to showing that:
   \begin{displaymath}
-    a_{\lambda+\delta} \sum_{\alpha_1+\dotsb+\alpha_n=k} x_1^{\alpha_1}\dotsb x_n^{\alpha_n} = \sum_\mu a_{\mu+\delta},
+    \sum_{w\in \abc(\lambda)} \epsilon(w)\sum_{\alpha\in M(n,k)} \wt(\alpha) = \sum_\mu \sum_{w\in \abc(\mu)} \epsilon(w) \wt(w),
   \end{displaymath}
   the sum on the right being over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a horizontal strip.
+  We will define an involution $I$ on the $\abc(\lambda)\times M(n,k)$ whose fixed points correspond to elements of $\coprod_{\mu/\lambda \text{ is a horiz. strip of size $k$}}\abc(\mu)\times M(n,k)$ under a bijection that preserves weights and signs, and such that if $I(w, \alpha)=(w', \alpha')$ then $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$ and $\epsilon(w') = -\epsilon(w)$.
+  Then all terms on the left hand side, except for those which do not correspond to fixed points, will cancel, and the surviving terms will give the right hand side.
 
-  Writing $\alpha=(\alpha_1,\dotsc,\alpha_n)$, the sum on the left hand side can be regarded as a sum of determinants:
-  \begin{equation}
-    \label{eq:pieri-canc}
-    a_{\lambda+\delta} \sum_{|\alpha|=k} x_1^{\alpha_1}\dotsb x_n^{\alpha_n} = \sum_{|\alpha|=k} a_{\lambda + \alpha + \delta}.
-  \end{equation}
-  Suppose there exists an integer $\alpha_i$ such that $\alpha_i>\lambda_i-\lambda_{i+1}$ (in other words, $(\lambda + \alpha)/\lambda$ is not a horizontal strip), then define $\beta=(\beta_1,\dotsc,\beta_n)$ by $\beta_i = \alpha_{i+1} - (\lambda_i - \lambda_{i+1} + 1)$, $\beta_{i+1} = \alpha_i + (\lambda_i - \lambda_{i+1} +1)$, and $\beta_j=\alpha_j$ for all $j\notin \{i, i+1\}$.
-  Then $a_{\lambda+\alpha+\delta} = -a_{\lambda+\beta+\delta}$.
-  So the only terms that survive on the right hand side of (\ref{eq:pieri-canc}) are of the form $a_{\mu+\delta}$, where $\mu/\lambda$ is a horizontal strip.
+  To construct $I$, scan the abacus from left to right.
+  Upon encountering a bead numbered $j$, move the bead $\alpha_j$ steps to the right, one step at a time.
+  If this process completes without this bead colliding with another bead, $(w,\alpha)$ is a fixed point of $I$.
+  The new abacus $w^*$ has $\epsilon(w^*)=\epsilon(w)$ (the underlying permutation remains unchanged), and $\shape(w^*)/shape(w)$ is a horizontal strip of size $k$.
 
-  The proof of the second identity in the theorem is similar (in fact, a little simpler) and is left to the reader as an exercise.
+  However, suppose a collision does occur, say the first collision is when bead $j$ hits bead $k$ that is located $p\leq \alpha_j$ position to the right of its initial position.
+  Define $I(w,\alpha) = (w',\alpha')$, where $w'$ is $w$ with the beads $i$ and $j$ interchanged, $\alpha'_j=\alpha_j-p$, $\alpha'_k=\alpha_k+p$ and all other coordinates of $\alpha$ and $\alpha'$ are equal.
+  Clearly $w'$ has the opposite sign from $w$, and $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$.
+  One checks that $I(w',\alpha')=(w,\alpha)$.
+  \begin{example}
+    \label{example:bead-h}
+    Let $n=6$, $\lambda=(3,3,2,2,0,0)$, $k=3$, and
+    \begin{displaymath}
+      (w, \alpha) = (51003204600\dotsb, (2, 1, 0, 0, 0, 0)). 
+    \end{displaymath}
+    Reading the abacus from left to right, the first bead encountered is numbered $1$, which can be moved $2$ places to the right without any collisions.
+    After that the bead numbered $2$ can be moved $1$ place to the right, again without collisions.
+    So $(w,\alpha)$ is a fixed point for $I$.
+    The new abacus $50013024600\dotsb$ has shape $(3,3,3,2,2,0)$ obtained by adding a horizontal $3$-strip to $(3, 3, 2, 2, 0, 0)$.
+
+    On the other hand, if $\alpha=(1, 1, 1, 0, 0, 0)$, then the first collision is of the bead numbered $3$ with the bead numbered $2$ in the very first step.
+    We have $I(w,\alpha) = (51002304600\dotsb, (1,2,0,0,0,0))$.
+  \end{example}
+
+  Let $N(n,k)$ denote the set of vectors $\alpha=(\alpha_1,\dotsc,\alpha_n)$ such that $\alpha_i\in \{0,1\}$ for each $i$, and $\alpha_1+\dotsb+\alpha_n=k$.
+  For elementary symmetric functions, we wish to prove:
+  \begin{displaymath}
+    \sum_{w\in \abc(\lambda)} \epsilon(w)\sum_{\alpha\in N(n,k)} \wt(\alpha) = \sum_\mu \sum_{w\in \abc(\mu)} \epsilon(w) \wt(w),
+  \end{displaymath}
+  where $\mu$ runs over all partition such that $\mu/\lambda$ is a vertical strip of size $k$.
+  
+  We construct an involution $I$ on $\abc(\lambda)\times N(n,k)$ as follows: scan the abacus from \emph{right to left}.
+  Upon encountering a bead numbered $j$, if $\alpha_j=1$, try to move the bead one step to the right.
+  If this process completes without collisions, then $(w,\alpha)$ is a fixed point of $I$.
+  Otherwise, if the first collision occurs with bead numbered $j$ colliding with bead numbered $k$, then define $w'$ to be $w$ with beads $j$ and $k$ interchanged.
+  Also, since the $k$th bead was adjacent to the $j$th bead, it could not have been moved in its turn.
+  So $\alpha_k=0$.
+  Let $\alpha'$ be obtained from $\alpha$ by interchanging $\alpha_k$ and $\alpha_j$.
+  \begin{example}
+  The pair $(51003204600\dotsb,(1,1,1,0,0,0))$ is a fixed point for $I$, and the shifted abacus is $(50100324600\dotsb)$ of shape $(3,3,3,3,1,0)$.
+  On the other hand $I(51003204600\dotsb,(0,0,1,0,1,1))=(51002304600\dotsb, (0,1,0,0,1,1))$.
+  \end{example}
 \end{proof}
 The following is a special case of Pieri's rule:
 \begin{corollary}
@@ -691,5 +768,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t.
   \end{displaymath}
 \end{proof}
+\bibliographystyle{abbrv}
+\bibliography{refs}
 \end{document}
 
