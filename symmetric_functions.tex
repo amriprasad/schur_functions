@@ -6,21 +6,24 @@
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{example}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
 \renewcommand{\thesubsection}{\arabic{subsection}}
-\newcommand{\rins}{\textup{ROWINS}}
+\newcommand{\ev}{\textup{ev}}
+\newcommand{\rins}{\iota}
 \newcommand{\ins}{\textup{INSERT}}
 \newcommand{\del}{\textup{DELETE}}
-\newcommand{\rdel}{\textup{ROWDEL}}
+\newcommand{\rdel}{\delta}
 \newcommand{\pl}{\textup{Pl}}
 \newcommand{\supp}{\textup{supp}}
 \newcommand{\wt}{\textup{wt}}
 \newcommand{\shape}{\textup{shape}}
 \newcommand{\abc}{\textup{Abc}}
+\newcommand{\Tab}{\textup{Tab}}
 \renewcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
@@ -604,13 +607,13 @@ The preceding discussion shows:
 \begin{exercise}
   Verify Theorem~\ref{theorem:del-ins} for the insertions in Example~\ref{example:insertion}.
 \end{exercise}
-\subsection{The Tableau Associated to a Word}
+\subsection{Tableaux and Words}
 \label{sec:tabl-assoc-word}
 Let $A^*_n$ denote the concatenation monoid of all words in the alphabet $\{1,\dotsc,n\}$.
 For any $w=a_1\dotsb a_k\in A^*_n$, Schensted's insertion algorithm allows us to associate a unique semistandard tableau $P(w)$ as follows:
 \begin{itemize}
 \item If $w=a$ has only one letter, then $P(a)$ is the single-cell tableau with entry $a$.
-\item If $w=ua$, where $u\in A_n^*$ and $a\in \{1,\dotsc,n\}$, then $P(w)=\ins(P(u), a)$.
+\item If $w=ua$, where $u\in A_n^*$ and $a\in \{1,\dotsc,n\}$, then \linebreak $P(w)=\ins(P(u), a)$.
 \end{itemize}
 \begin{example}
   If $w=1374433254$, then $P(w)$ is the tableau:
@@ -618,7 +621,6 @@ For any $w=a_1\dotsb a_k\in A^*_n$, Schensted's insertion algorithm allows us to
     \ytableaushort{12334,345,4,7}
   \end{displaymath}
 \end{example}
-\subsection{Tableau as words}
 \label{sec:tableau-as-words}
 Given a semistandard tableau $t$, its reading word $w$ is defined to be the sequence of numbers obtained from reading its rows from left to right, starting with the bottom row, and moving up sequentially to the top row.
 Since the first entry of each row is strictly smaller than the last entry of the row below it, the tableau $t$ can be recovered from $w$ by chopping it up into segments with a cut after each $a_i$ with $a_{i+1}<a_i$ (we say that $w$ has a descent at $i$). The resulting segments, taken from right to left, form the rows of $t$.
@@ -629,42 +631,127 @@ Since the first entry of each row is strictly smaller than the last entry of the
   \end{displaymath}
   The tableau $t$ is recovered by marking off the descents $w = 333|223|1111223$, and then rearranging the segments into a tableau.
 \end{example}
-Let $A_n^*$ denote the set of all words in the alphabet $\{1,\dotsc, n\}$.
-We shall call the word $w=a_1\dotsb a_k$ a \emph{row} if $a_1\leq \dotsb \leq a_k$.
-We call it a \emph{column} if $a_1>\dotsb>a_k$.
-We write $x^w$ for the monomial $x_{a_1}x_{a_2}\dotsb x_{a_k}$.
+\begin{exercise}
+  \label{exercise:tableau-word}
+  Let $w$ denote the reading word of a tableau $t$.
+  Show that $P(w)=t$.
+\end{exercise}
 Not every word comes from a tableau; for example the word $132$, when broken up at descents gives rise to $\ytableaushort{2,13}$.
 We shall say that a word is a tableau if it is the reading word of a semistandard tableau.
+
+Call the word $w=a_1\dotsb a_k$ a \emph{row} if $a_1\leq \dotsb \leq a_k$.
+Call it a \emph{column} if $a_1>\dotsb>a_k$.
+Write $x^w$ for the monomial $x_{a_1}x_{a_2}\dotsb x_{a_k}$.
 \begin{exercise}
+  \label{exercise:row-col}
   Show that, for every positive integer $i$,
   \begin{displaymath}
-    h_i(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a row}}x^w,
+    h_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a row of length $k$}}x^w,
   \end{displaymath}
   and 
   \begin{displaymath}
-    e_i(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a column}}x^w.
+    e_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a column of length $k$}}x^w.
   \end{displaymath}
 \end{exercise}
-The set of words $A_n^*$ comes endowed with an additional structure---that of a monoid---which can be lifted to the algebra of polynomials.
 If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
 \begin{displaymath}
   x^{w_1}x^{w_2} = x^{w_1w_2}.
 \end{displaymath}
-This gives rise to an algebra homomorphism $\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n]$.
-Obviously, this homomorphism has a large kernel; the algebra on the left is the free algebra, whereas the algebra on the right is commutative.
-The algebra on the right contains our primamry object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
-In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl_n]$ generated by the elements
+This gives rise to an algebra homomorphism $\ev:\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n]$ called the \emph{evaluation map}.
 \begin{displaymath}
-  \mathbf S_{(n)} := \sum_{\text{$w\in A_n^*$ is a row}} w
+  \mathbf H_k := \sum_{\text{$w\in A_n^*$ is a row of length $k$}} w
 \end{displaymath}
 or the elements
 \begin{displaymath}
-  \mathbf S_{(1^n)} = \sum_{\text{$w\in A_n*$ is a column}} w
+  \mathbf E_k = \sum_{\text{$w\in A_n*$ is a column of length $k$}} w
 \end{displaymath}
+Then Exercise~\ref{exercise:row-col} can be restated as the identities:
+\begin{displaymath}
+  e_k = \ev(\mathbf E_k) \text{ and } h_k = \ev(\mathbf H_k).
+\end{displaymath}
+
+Obviously, $\ev$ has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
+The algebra on the right contains our primamry object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl_n]$ generated by the elements
  is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
 \subsection{The Plactic Monoid}
-\subsection{Tableaux Correspondences}
-\subsection{Monomials in the Schur function}
+\label{sec:plactic-monoid}
+The plactic monoid $\pl(A_n)$ is the quotient of $A^*_n$ by the equivalence relation generated by the Knuth relations:
+\begin{gather}
+  \tag{$K1$}\label{eq:k1}
+  xzy \equiv zxy \text{ if } x\leq y < z,
+  \\
+  \tag{$K2$}\label{eq:k2}
+  yxz \equiv yzx \text{ if } x < y \leq z.
+\end{gather}
+Two words are said to be in the same plactic class if each can be obtained from the other by a sequence of moves of the form (\ref{eq:k1}) and (\ref{eq:k2}).
+Since both sides of the Knuth relations have the same evaluation, it follows that the evaluation map $\ev:\mathbf Z[A^*_n]\to \mathbf Z[x_1,\dotsc,x_n]$ factors through the plactic monoid algebra $\mathbf Z[\pl(A_n)]$.
+Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\mathbf H_k$ in $\mathbf Z[\pl(A_n)]$.
+\begin{exercise}
+  Take $n=2$.
+  Show that $E_1$ and $E_2$ commute in $\mathbf Z[\pl(A_2)]$.
+  Show that they commute in $\mathbf Z[\pl(A_3)]$.
+\end{exercise}
+\begin{exercise}
+  \label{exercise:forgotten}
+  Define Sch\"utzenberger's forgotten relations by:
+  \begin{gather}
+    \tag{$F1$}\label{eq:f1}
+    xzy \cong yzx \text{ if } x < y < z,
+    \\
+    \tag{$F2$}\label{eq:f2}
+    zxy \cong yzx \text{ if } x \leq y \leq z.
+  \end{gather}
+  Let $F(A_n)$ denote the monoid $A_n^*/\cong$.
+  Show that the images of $\mathbf E_1$ and $\mathbf E_2$ commute in $F(A_3)$.
+\end{exercise}
+\begin{exercise}
+  Show that any evaluation-preserving equivalence on $A_3^*$ under which the images of $\mathbf E_1$ and $\mathbf E_2$ commute must include either the Knuth equivalences or Sch\"utzenberger's forgotten equivalences.
+\end{exercise}
+\subsection{The plactic Pieri rules}
+Observe that, if for any tableau $t$ and $x\in A_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
+\begin{lemma}
+  \label{lemma:two-step}
+  Let $t$ be the (the reading word of) a semistandard tableau in $A_n^*$ and $x,y$ be letters in $A_n$.
+  Let $t'=\ins(t,x)$ and $t''=\ins(t',y)$.
+  Let $a$ be the box added to $\shape(t')$ to obtain $\shape(t'')$, and $b$ be the box added to $\shape(t)$ to obtain $\shape(t')$.
+  If $x\leq y$, then $b$ lies in a column strictly to the right of the column of $a$.
+  If $x>y$, then $b$ lies in a row strictly below the row of $a$.
+\end{lemma}
+\begin{proof}
+  Let $a_1\dotsb a_k$ be the first row of $t$.
+  Consider first the case where $a\leq y$.
+  If $a_k\leq x\leq y$, then the result is obvious.
+  If $x<a_k$ and $y\geq a_k$, then $b$ lies in the $(k+1)$st column, whereas $x$ bumps some letter $x'\leq y$ to a lower row.
+  This letter cannot come to rest in the $(k+1)$st column because that would violate the fact that columns increase strictly in a semistandard tableau.
+  If $y<a_k$ as well, then $x$ bumps out $x'$ and $y$ bumps out $y'$ with $x'\leq y'$.
+  The problem is now reduced to the tableau obtained by removing the top row of $t$, allowing for the application of induction.
+  In the base case (where the original tableau $t$ is a row), $a$ and $b$ are the first and second boxes in the second row of $t''$.
+
+  Now suppose $x>y$.
+  If $x\geq a_k$, then $x$ first comes to rest at the end of the first row in $t'$, but then $y$ bumps some element of the first row of $t'$ up to a lower row in $t''$.
+  So $a$ lies in the first row and $b$ in a lower row.
+  If $x\leq a_k$, then the elements $x'$ and $y'$ bumped out from the first row by $x$ and $y$ respectively again satisfy $x'>y'$, allowing for an inductive argument.
+\end{proof}
+\begin{theorem}
+  [Plactic Pieri rules]
+  \label{theorem:plactic-pieri}
+  Let $\Tab_n(\lambda)$ denote the set of all semistandard tableaux of shape $\lambda$ and entries in $A_n$.
+  Let $R_k(A_n)$ denote the set of rows of length $k$ in $A_n^*$.
+  Then the map $(t,r)\mapsto P(tr)$ defines a bijection:
+  \begin{displaymath}
+    \Tab_n(\lambda)\times R_k(A_n) \to \coprod_{\mu/\lambda \text{ is a horizontal strip of size $k$}} \Tab_n(\mu).
+  \end{displaymath}
+  Let $C_k(A_n)$ denote the set of columns of length $k$ in $A_n^*$.
+  Then the map $(t,c)\mapsto P(tc)$ defines a bijection:
+  \begin{displaymath}
+    \Tab_n(\lambda)\times R_k(A_n) \to \coprod_{\mu/\lambda \text{ is a vertical strip of size $k$}} \Tab_n(\mu).
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  Lemma~\ref{lemma:two-step} implies that $\shape(P(wr))$ is obtained from $\shape(P(w))$ by adding a horizontal strip, and that $\shape(P(wc))$ is obtained from $\shape(P(w))$ by adding a vertical strip.
+  The bijectivity can be shown by repeated used of the $\del$ algorithm (because we know which box from $\mu$ have to be removed at each step).
+\end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
