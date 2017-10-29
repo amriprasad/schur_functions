@@ -937,8 +937,63 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=()$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
   Thus, it follows from the Lindstr\"om-Gessel-Viennot lemma that
   \begin{displaymath}
-    \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t.
+    \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t,
   \end{displaymath}
+  proving the second Jacobi-Trudi identity.
+\end{proof}
+\subsection{Giambelli's identity}
+\label{sec:giambelli}
+\begin{definition}
+  [Frobenius coordinates]
+  Let $\lambda=(\lambda_1,\dotsc,\lambda_l)$ be a partition.
+  Its \emph{Drufee rank} $d$ is defined to be the largest integer $i$ such that $(i,i)$ lies in the Young diagram of $\lambda$.
+  Let $\alpha_i$ denote the number of cells in the $i$th row that lie strictly to the right of $(i,i)$ in the Young diagram of $\lambda$.
+  Similarly let $\beta_i$ denote the number of cells in the $i$th column that lie strictly below $(i,i)$.
+  Clearly $\alpha_1>\dotsb>\alpha_d$, $\beta_1>\dotsb>\beta_d)$, and the Young diagram of $\lambda$ can be recovered from the data $(\alpha|\beta)=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$, which are called the \emph{Frobenius coordinates} of $\lambda$\footnote{While constructing the character tables of symmetric groups, Frobenius used these coordinates to index the irreducible representation, while he used the ordinary coordinates to index the congugacy classes.}.
+\end{definition}
+\begin{example}
+  The hook partition $(a+1,1^b)$ has Frobenius coordinates $(a|b)$.
+  Hook partitions are precisely those partitions which have Durfee rank $1$.
+  The partition with frobenius coordinates $(5,2,1|4,3,0)$ is $(6,4,4,2,2)$.
+  If $\lambda$ has Frobenius coordinates $(\alpha|\beta)$, then its conjugate $\lambda'$ has Frobenius coordinates $(\beta|\alpha)$.
+  The size of a partition with Durfee rank $d$ and Frobenius cooedinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
+\end{example}
+Schur functions of hook partitions can be calculated using Exercise~\ref{exercise:hook-schur}, which, when written is terms of Frobenius coordinates, becomes:
+\begin{equation}
+  \label{eq:hook-schur-frob}
+  s_{(a|b)} = \sum_{l=0}^b (-1)^l h_{a+l+1}e_{b-l}
+\end{equation}
+\begin{theorem}
+  [Giambelli's formula]
+  For a partition $(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$  in Frobenius coordinates,
+  \begin{equation}
+    \label{eq:giambelli}
+    s_{(\alpha|\beta)} = \det(s_{(\alpha_i|\beta_j)})_{d\times d}.
+  \end{equation}
+  Note that the determinant on the right consists of hook-partition Schur functions, which are given by \textup{(\ref{eq:hook-schur-frob})}.
+\end{theorem}
+\begin{example}
+  The Schur function for $\lambda=(6,4,4,2,2)$ can be computed as:
+  \begin{displaymath}
+    s_{(5,2,1|4,3,0)} = \det
+    \begin{pmatrix}
+      s_{(5|4)} & s_{(5|3)} & s_{(5|0)}\\
+      s_{(2|4)} & s_{(2|3)} & s_{(2|0)}\\
+      s_{(1|4)} & s_{(1|3)} & s_{(1|0)}\\
+    \end{pmatrix}
+  \end{displaymath}
+\end{example}
+\begin{proof}
+  The determinant on the right hand side of (\ref{eq:giambelli}) can be written as:
+  \begin{equation}
+    \label{eq:giambelli-det}
+    \sum_{w\in S_d} \epsilon(w) \prod_{t^i\in \Tab(\alpha_i,\beta_{w(i)})} x^{t_i}.
+  \end{equation}
+  Let $P$ be the set of all $d$-tuples of semistandard hook-shaped tableaux $t^1,\dotsc,t^d$, where $t^i\in \Tab(\alpha_i,\beta_{w(i)})$.
+  Then we can assemble $(t^1,\dotsc,t^d)$ into a tableau $t$ of shape $(\alpha|\beta)$ as follows:
+  The entries in the arm of $t^i$ go into the $i$th arm of $t$.
+  The corner entry of $t^i$ goes into the $(w(i),w(i))$th node of $t$.
+  The entries in the leg of $t_i$ go into the $w(i)$th leg of $t$.
 \end{proof}
 \bibliographystyle{abbrv}
 \bibliography{refs}
