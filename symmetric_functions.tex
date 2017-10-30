@@ -818,6 +818,21 @@ Observe that, if for any tableau $t$ and $x\in A_n$, if $t'=\ins(t,x)$, then $\s
   Lemma~\ref{lemma:two-step} implies that $\shape(P(wr))$ is obtained from $\shape(P(w))$ by adding a horizontal strip, and that $\shape(P(wc))$ is obtained from \linebreak $\shape(P(w))$ by adding a vertical strip.
   The bijectivity can be shown by repeated used of the $\del$ algorithm (because we know which box from $\mu$ has to be removed at each step).
 \end{proof}
+\begin{corollary}
+  [Kostka's definition of Schur functions]
+  \label{corollary:kostka-def-schur}
+  For every partition $\lambda$ and every positive integer $n$, we have:
+  \begin{displaymath}
+    s_\lambda(x_1,\dotsc,x_n) = \sum_{t\in\Tab_n(\lambda)} x^t.
+  \end{displaymath}
+\end{corollary}
+\begin{proof}
+  Define $S_\lambda = \sum_{t\in \Tab_n(\lambda)} x^t$.
+  Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur functions.
+  Moreover, the class of functions $S_\lambda$ satisfy the Pieri rule, just like the Schur function.
+  This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$ (since the proof only uses properties that are common to $s_\lambda$ and $S_\lambda$.
+  By the triangularity properties of of Kostka numbers described in Section~\ref{sec:triang-kostka-numb}, these identities uniquely determine the Schur functions, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
+\end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
@@ -1076,12 +1091,73 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{proof}
 \begin{theorem}
   [Knuth's theorem]
+  \label{theorem:knuth}
   Let $\mathbf M_{\mu\nu}$ denote the set of integer matrices with non-negative entries, row sums $(\mu_1,\dotsc, \mu_m)$, column sums $(\nu_1,\dotsc,\nu_n)$.
   Then $\rsk$ gives rise to a bijection:
   \begin{displaymath}
-    \M_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda,\nu)\times \Tab(\lambda,\mu).
+    \mathbf M_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda,\nu)\times \Tab(\lambda,\mu).
+  \end{displaymath}
+  Similarly let $\mathbf N_{\mu\nu}$ denote the set of zero-one matrices with row sums $(\mu_1,\dotsc, \mu_m)$ and column sums $(\nu_1,\dotsc,\nu_n)$.
+  Then $\rsk^*$ gives rise to a bijection:
+  \begin{displaymath}
+    \mathbf N_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda',\nu)\times \Tab(\lambda,\mu).
   \end{displaymath}
 \end{theorem}
+
+\subsection{The Littlewood-Richardson Rule}
+\label{sec:littlewood-richardson}
+\begin{lemma}
+  \label{lemma:section}
+  Given a partition $\lambda$ of $n$, let $t_\lambda$ denote \emph{any} semistandard tableau of shape $\lambda$.
+  Then
+  \begin{displaymath}
+    \sum_{\{A\mid P(v_A) = t_\lambda\}} x^{u_A} = s_\lambda(x_1,\dotsc,x_n).
+  \end{displaymath}
+\end{lemma}
+\begin{proof}
+  If $P(v_A) = t_\lambda$, a tableau of shape $\lambda$, $P(u_A)$ is also a semistandard tableau of shape $\lambda$.
+  Moreover, for every semistandard tableau $t\in \Tab_n(\lambda)$,  by Knuth's theorem (Theorem~\ref{theorem:knuth}), there exists a unique $l\times n$ matrix $A$ such that $\rsk(A) = (t, t_\lambda)$.
+  In other words, among matrices with $P(v_A)=t_\lambda$, there exists a unique matrix such that $u_A\equiv t$.
+  The lemma now follows from Kostka's definition of Schur functions (Corollary~\ref{corollary:kostka-def-schur}).
+\end{proof}
+Given a partition $\lambda$, let $t^0_\lambda$ denote the unique semistandard tableau of shape $\lambda$ and type $\lambda$.
+All the boxes in the $i$th row of this tableau are filled with the integer $i$.
+\begin{theorem}
+  [Littlewood-Richardson Rule]
+  Let $\alpha$, $\beta$ and $\lambda$ be partitions.
+  Let $c^\lambda_{\alpha\beta}$ denote the number of semistandard skew-tableaux of shape $\lambda/\alpha$ whose reading word is Knuth-equivalent to $t^0_\beta$, the unique tableau of shape and type $\beta$.
+  Then
+  \begin{displaymath}
+    s_\alpha s_\beta = \sum_\lambda c^\lambda_{\alpha\beta} s_\lambda.
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  By Lemma~\ref{lemma:section}, we have:
+  \begin{align*}
+    s_\alpha s_\beta & = \sum_{\{A'\mid P(v_{A'}) = t^0_\alpha\}} x^{u_{A'}} \sum_{A''\in \mathbf M_{\beta}} x^{u_{A''}}\\
+    & = \sum_A x^A,
+  \end{align*}
+  where $A$ runs over all block matrices of the form $\binom{A'}{A''}$, with $A'\in \mathbf M(\alpha)$ and $A''\in \mathbf M(\beta)$.
+  Given a word $w\in A_n^*$, and a subset $S\subset A_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
+  \begin{lemma}
+    Let 
+    \begin{displaymath}
+      C(\alpha,\beta) = \{t\in \Tab(A_{a+b}) \mid t^{[0, a]} = t^0_\alpha,\;t^{[a+1, a+b]} \equiv t^0_\beta\}.
+    \end{displaymath}
+    Taking $A = \binom{A'}{A''}$ to $(A', A'')$ gives rise a bijection:
+    \begin{displaymath}
+      \{A\mid P(v_A) \in C(\alpha,\beta)\} \tilde\to \{(A', A'')\mid P(v_{A'}) = t^0_\alpha,\; P(v_{A''}) = t^0_\beta\}.
+    \end{displaymath}
+  \end{lemma}
+  Thus, as $A'$ and $A''$ run over all matrices with $P(v_{A'})=t^0_\alpha$ and $P(v_{A''})=t^0_\beta$, $A=\binom{A'}{A''}$ runs over all matrices with $P(v_A)\in C(\alpha,\beta)$.
+  It follows that
+  \begin{displaymath}
+    s_\alpha s_\beta = \#\{t\in \Tab(A_{a+b})\mid t^{[0,a]} = t^0_\alpha,\; t^{[a+1,b]}\equiv t^0_\beta\}.
+  \end{displaymath}
+  Ignoring the entries of the boxes of $t$ which lie in $\alpha$ (since they are fixed) we get a semistandard tableau $s$ of shape $\lambda/\alpha$.
+  The condition that $t^{[a+1,b]}\equiv t^0_\beta$ is equivalent to saying that the reading word of $s$ lies in the plactic class of $t^0_\beta$.
+\end{proof}
+The tableau $s$ is of type $\beta$, and its reading word is a Yamanouchi word (why?)
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
