@@ -708,7 +708,7 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
   Define Sch\"utzenberger's forgotten relations by:
   \begin{gather}
     \tag{$F1$}\label{eq:f1}
-    xzy \cong yzx \text{ if } x < y < z,
+    xzy \cong yxz \text{ if } x < y < z,
     \\
     \tag{$F2$}\label{eq:f2}
     zxy \cong yzx \text{ if } x \leq y \leq z.
@@ -877,13 +877,13 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     \label{fig:jacobi-trudi}
   \end{figure}
   So the left-hand-side of the first Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
-  The right hand side of the Linstr\'om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  The right hand side of the Linstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
   Reading the row numbers of the horizontal steps in $\omega_i$ gives a weakly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda_i}\leq n$.
   Enter these numbers into the $i$th row of the Young diagram of $\lambda$ for $i=1,\dotsc,n$.
   Since the paths are non-crossing, the $j$th rightward step of $\omega_i$ must be strictly higher than the $j$th rightward step of $\omega_{i+1}$.
   This means that the columns of the resulting numbering are strictly increasing, resulting in a semistandard tableau of shape $\lambda$.
 
-  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=()$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(3,2,2,1)$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
   Thus, it follows from the Lindstr\"om-Gessel-Viennot lemma that
   \begin{displaymath}
     \det(h_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda)} x^t.
@@ -923,7 +923,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   \end{displaymath}
   So the left-hand-side of the second Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
 
-  The right hand side of the Linstr\'om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  The right hand side of the Linstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
   Reading the row numbers where the upper-rightward steps in $\omega_i$ originate gives a strictly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda'_i}\leq n$.
   Enter these numbers into the $i$th column of the Young diagram of $\lambda$.
   Since the paths are non-crossing, the $j$th upper-rightward step of $\omega_i$ must be no lower than the $j$th upper-rightward step of $\omega_{i+1}$.
@@ -934,7 +934,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
     \caption{Non-crossing paths corresponding to the tableau \small{$\ytableaushort{113,24,35,5}$}.}
     \label{fig:jte}
   \end{figure}
-  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=()$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(3,2,2,1)$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
   Thus, it follows from the Lindstr\"om-Gessel-Viennot lemma that
   \begin{displaymath}
     \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t,
