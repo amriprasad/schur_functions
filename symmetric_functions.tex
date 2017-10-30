@@ -24,6 +24,7 @@
 \newcommand{\shape}{\textup{shape}}
 \newcommand{\abc}{\textup{Abc}}
 \newcommand{\Tab}{\textup{Tab}}
+\newcommand{\rsk}{\textup{RSK}}
 \renewcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
@@ -552,6 +553,60 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
+\subsection{The hook-length formula}
+\label{sec:hook-length-fmla}
+Let $\lambda$ be a partition of $n$.
+The $f$-number $f_\lambda = K_{\lambda,(1^n)}$ is given by the hook-length formula:
+\begin{equation}
+  \label{eq:1hook-length-fmla}
+  f_\lambda = \frac{n!}{\prod_{(i,j)\in \lambda} h_{ij}}.
+\end{equation}
+Here $h_{ij}$ denotes the number of cells in the Young diagram of $\lambda$ that lie either to the right of $(i,j)$ in the $i$th row, or below $(i,j)$ in the $j$th column, including the cell $(i,j)$ itself.
+For example, the Young diagram of $\lambda=(6,5,3,3)$ with the hook lengths are entered into the cells is:
+\begin{displaymath}
+  \ytableaushort{987431,76521,432,321}.
+\end{displaymath}
+\begin{theorem}
+  [Frobenius dimension formula]
+  For every partition $\lambda$ of $n$,
+  \begin{displaymath}
+    f_\lambda = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}a_\delta(\lambda_1+n-1,\lambda_2+n-2,\dotsc,\lambda_n).
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  Work with symmetric polynomials in $n$ variables.
+  The starting point of the proof of the Frobenius dimension formula is that $f_\lambda$ is the coefficient of $s_\lambda$ in the elementary symmetric function $e_{(1^n)} = (x_1+\dotsb+x_n)^n$ (by Theorem~\ref{theorem:schur-to-eh}).
+  In terms of alternating functions, we have that $f_\lambda$ is the coefficient of $a_{\lambda+\delta}$ in $(x_1+\dotsb+x_n)^na_\delta$.
+  This is the same as the coefficients of the strictly decreasing monomial $x^{\lambda+\delta}$ in $(x_1+\dotsb+x_n)^na_\delta$.
+  Expanding out the latter sing the multinomial theorem give:
+  \begin{displaymath}
+    \sum_{\alpha_1+\dotsb+\alpha_n=n} \sum_{w\in S_n} \frac{n!}{\alpha_1!\dotsb \alpha_n!} \epsilon(w) x_1^{\alpha_1+\delta_{w(1)}} x_2^{\alpha_2+\delta_{w(2)}} \dotsb x_n^{\alpha_n+\delta_{w(n)}}.
+  \end{displaymath}
+  The coefficient of $x^{\lambda+\delta}$ in the above sum is:
+  \begin{displaymath}
+    \sum_{\alpha, w} \frac{n!}{\alpha_1!\dotsb \alpha_n!}\epsilon(w),
+  \end{displaymath}
+  the sum being over all vectors $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with non-negative integer coordinates summing to $n$ such that:
+  \begin{equation}
+    \label{eq:alpha-la}
+    \alpha_i + \delta_{w(i)} = \lambda_i + \delta_i.
+  \end{equation}
+  
+  Mutliplying and dividing by the desired denominator of the Frobenius dimension formula gives:
+  \begin{align*}
+    f_\lambda & = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}\sum_{\alpha,w} \epsilon(w) \prod_{i=1}^n \frac{(\lambda_i + \delta_i)!}{\alpha_i!}\\
+    & = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}\sum_{w\in S_n} \epsilon(w)\prod_{i=1}^n (\lambda_i+\delta_i)(\lambda_i+\delta-1)\dotsb (\lambda_i+\delta_i-\delta_{w(i)} + 1),
+  \end{align*}
+  where the second step uses the identity (\ref{eq:alpha-la}) relation $\lambda$ and $\alpha$.
+  The condition that $\alpha\geq 0$ for each $i$ is now automatically taken care of, since one of the factors in the product
+  \begin{displaymath}
+    (\lambda_i+\delta_i)(\lambda_i+\delta-1)\dotsb (\lambda_i+\delta_i-\delta_{w(i)} + 1)
+  \end{displaymath}
+  will be zero if $\alpha_i=\lambda_i+\delta_i-\delta_{w(i)}<0$.
+
+  Setting $f_j(x) = x(x-1)\prod (x-j+1)$, the above expression for $f_\lambda$ becomes the determinant:
+
+\end{proof}
 \subsection{Schensted's insertion algorithm}
 \label{sec:schenst-insert-algor}
 Let $t$ be a semistandard tableau, and $x$ be a positive integer.
@@ -995,6 +1050,38 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
   The corner entry of $t^i$ goes into the $(w(i),w(i))$th node of $t$.
   The entries in the leg of $t_i$ go into the $w(i)$th leg of $t$.
 \end{proof}
+\subsection{The Robinson-Schensted-Knuth Correspondences}
+\label{sec:rsk}
+For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ and their duals $\bar u_A$ and $\bar v_A$ are defined as follows:
+\begin{align*}
+  u_A &= 1^{a_{11}}2^{a_{12}}\dotsb n^{a_{1n}} \; 1^{a_{21}} 2^{a_{22}} \dotsb n^{a_{2n}} \; \dotsb \; 1^{a_{m1}} 2^{a_{m2}} \dotsb n^{a_{mn}}\\
+  v_A &= 1^{a_{11}}2^{a_{21}}\dotsb m^{a_{m1}} \; 1^{a_{12}} 2^{a_{22}} \dotsb m^{a_{m2}} \; \dotsb \; 1^{a_{1n}} 2^{a_{2n}} \dotsb m^{a_{mn}}\\
+  \bar u_A &= n^{a_{1n}} \dotsb 2^{a_{12}}1^{a_{11}}\; n^{a_{2n}}\dotsb 2^{a_{22}}1^{a_{21}} \; n^{a_{mn}} \dotsb 2^{a_{m2}} 1^{a_{11}}\\
+  \bar v _A &= m^{a_{m1}}\dotsb 2^{a_{21}}1^{a_{11}} \; m^{a_{m2}}\dotsb 2^{a_{22}} 1^{a_{12}} \; \dotsb \; m^{a_{mn}}\dotsb  2^{a_{2n}} \dotsb 1^{a_{1n}}
+\end{align*}
+\begin{definition}
+  [Robinson-Schensted-Knuth Correspondences]
+  Define functions from integer matrices onto pairs of semistandard tableaux by:
+  \begin{align*}
+    \rsk(A) & = (P(u_A), P(v_A)),\\
+    \rsk^*(A) & = (P^*(u_A), P(\bar v_A)).
+  \end{align*}
+\end{definition}
+\begin{lemma}
+  For every integer matrix $A$ with non-negative entries, the tableaux $P(u_A)$ and $P(v_A)$ have the same shape.
+  For every zero-one matrix $A$, the tableaux $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
+\end{lemma}
+\begin{proof}
+  This follows from Greene's theorem.
+\end{proof}
+\begin{theorem}
+  [Knuth's theorem]
+  Let $\mathbf M_{\mu\nu}$ denote the set of integer matrices with non-negative entries, row sums $(\mu_1,\dotsc, \mu_m)$, column sums $(\nu_1,\dotsc,\nu_n)$.
+  Then $\rsk$ gives rise to a bijection:
+  \begin{displaymath}
+    \M_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda,\nu)\times \Tab(\lambda,\mu).
+  \end{displaymath}
+\end{theorem}
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
