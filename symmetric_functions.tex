@@ -1135,7 +1135,7 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
   By Lemma~\ref{lemma:section}, we have:
   \begin{align*}
     s_\alpha s_\beta & = \sum_{\{A'\mid P(v_{A'}) = t^0_\alpha\}} x^{u_{A'}} \sum_{A''\in \mathbf M_{\beta}} x^{u_{A''}}\\
-    & = \sum_A x^A,
+    & = \sum_A x^{u_A},
   \end{align*}
   where $A$ runs over all block matrices of the form $\binom{A'}{A''}$, with $A'\in \mathbf M(\alpha)$ and $A''\in \mathbf M(\beta)$.
   Given a word $w\in A_n^*$, and a subset $S\subset A_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
@@ -1157,7 +1157,22 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
   Ignoring the entries of the boxes of $t$ which lie in $\alpha$ (since they are fixed) we get a semistandard tableau $s$ of shape $\lambda/\alpha$.
   The condition that $t^{[a+1,b]}\equiv t^0_\beta$ is equivalent to saying that the reading word of $s$ lies in the plactic class of $t^0_\beta$.
 \end{proof}
-The tableau $s$ is of type $\beta$, and its reading word is a Yamanouchi word (why?)
+\begin{definition}
+  [Yamanouchi Word]
+  A word $w\in A_n^*$ is called a Yamanouchi word if $x^u$ is a monomial with weakly increasing powers for every suffix $u$ of $w$.
+\end{definition}
+\begin{lemma}
+  \label{lemma:yamanouchi}
+  A word $w$ is a Yamanouchi word of type $\lambda$ if and only if its plactic class contains the unique semistandard tableau $t^0_\lambda$ of shape $\lambda$ and type $\lambda$.
+\end{lemma}
+\begin{proof}
+  Check that Knuth relations preserve \emph{Yamanouchiness}.
+  The only Yamanouchi tableau of type $\lambda$ also has shape $\lambda$.
+\end{proof}
+In view of Lemma~\ref{lemma:yamanouchi}, we may restate the Littlewood-Richardson rule as:
+\begin{theorem}
+  For partition $\alpha,\beta,\lambda$, $c^\lambda_{\alpha\beta}$ is the number of semistandard tableau of shape $\lambda/\alpha$ and type $\beta$ whose reading word is a Yamanouchi word.
+\end{theorem}
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
