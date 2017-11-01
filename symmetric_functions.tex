@@ -25,13 +25,14 @@
 \newcommand{\abc}{\textup{Abc}}
 \newcommand{\Tab}{\textup{Tab}}
 \newcommand{\rsk}{\textup{RSK}}
+\newcommand{\bur}{\textup{BUR}}
 \renewcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
-\subsection{Symmetric Functions}
+\subsection{Symmetric Polynomials}
 \label{sec:symmetric-functions}
-Consider polynomials in $n$ variables $x_1,\dotsc,x_n$.
+Consider polynomials in $n$ variables \linebreak $x_1,\dotsc,x_n$.
 Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, let $x^\alpha$ denote the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
 A \emph{symmetric polynomial} is a polynomial of the form
 \begin{displaymath}
@@ -44,7 +45,7 @@ where, for any permutation $w\in S_n$,
 The integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$  is called the \emph{shape} of $\alpha$, denoted $\lambda(\alpha)$.
 The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric function}, defined for each integer partition $\lambda$:
 \begin{displaymath}
-  m_\lambda = \sum_{\lambda(\alpha) = \lambda} c_\alpha x^\alpha.
+  m_\lambda = \sum_{\lambda(\alpha) = \lambda} x^\alpha.
 \end{displaymath}
 Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts of $\lambda$).
 \begin{exercise}
@@ -70,7 +71,7 @@ By convention, $e_i(x_1,\dotsc,x_n)=0$, for $i>n$.
 
 The identity (\ref{eq:elem-id}) can be written more elegantly as:
 \begin{displaymath}
-  (1+t x_1) \dotsb (1+tx_n) = \sum_{i=0}^n e_i(x_1,\dotsb, x_n)t^i.
+  (1+t x_1) \dotsb (1+tx_n) = \sum_{i=0}^\infty e_i(x_1,\dotsb, x_n)t^i.
 \end{displaymath}
 
 Dually\footnote{We will refer to the replacing of $(1+u)$ by $(1-u)^{-1}$ in a formal identity as \emph{dualization}.}, the \emph{complete symmetric polynomials} are defined by the formal identity:
@@ -88,6 +89,10 @@ Dually\footnote{We will refer to the replacing of $(1+u)$ by $(1-u)^{-1}$ in a f
   Show that
   \begin{displaymath}
     h_i(x_1,\dotsb x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+  \end{displaymath}
+  and that
+  \begin{displaymath}
+    e_i(x_1,\dotsb x_n) = \sum_{1\leq j_1< \dotsb < j_i\leq n} x_{j_1}\dotsb x_{j_i}.
   \end{displaymath}
 \end{exercise}
 More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)$, define:
@@ -134,7 +139,7 @@ Equivalently, an alternating polynomial is one whose sign is reversed upon the i
   If $\alpha$ is a multiindex where $\alpha_i=\alpha_j$ for some $i\neq j$, then $c_\alpha = 0$.
 \end{exercise}
 In particular, every monomial in an alternating polynomial must be composed of distinct powers.
-Moreover, the polynomial is completely determined by the coefficients $c_\alpha$ of strictly decreasing multiindices, namely, multiindices of the form $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
+Moreover, the polynomial is completely determined by the coefficients with strictly decreasing multiindices, namely, multiindices of the form $c_\alpha$, where $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
 \begin{exercise}
   Let $\delta=(n-1,n-2,\dotsc,1, 0)$.
   Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex of length $n$.
@@ -153,7 +158,7 @@ Moreover, the polynomial is completely determined by the coefficients $c_\alpha$
   The alternating polynomial of the form \textup{(\ref{eq:alt-form})} is equal to  \begin{displaymath}
     \sum_{\lambda} c_\lambda a_{\lambda+\delta},
   \end{displaymath}
-  the sum being over all weakly decreasing multiindices.
+  the sum being over all weakly decreasing multiindices $\lambda$.
 \end{exercise}
 \subsection{Interpretation of Alternants with Labeled Abaci}
 \label{sec:abaci}
@@ -241,7 +246,7 @@ By abuse of notation, we will also use $\lambda$ to denote the Young diagram of 
 
 By a skew-shape, we mean a difference of Young diagrams $\lambda \setminus \mu$, where $\lambda \supset \mu$.
 We write $\lambda/\mu$ for this skew-shape.
-A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical strip}) if it has at most one element in each vertical column (respectively, horizontal row).
+A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical strip}) if it has at most one box in each vertical column (respectively, horizontal row).
 \begin{theorem}
   For every partition $\lambda$, and every positive integer $k$,
   \begin{displaymath}
@@ -723,23 +728,23 @@ If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
 \begin{displaymath}
   x^{w_1}x^{w_2} = x^{w_1w_2}.
 \end{displaymath}
-This gives rise to an algebra homomorphism $\ev:\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n]$ called the \emph{evaluation map}.
+This gives rise to an algebra homomorphism called the \emph{evaluation map}:
 \begin{displaymath}
-  \mathbf H_k := \sum_{\text{$w\in A_n^*$ is a row of length $k$}} w
+\ev:\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n].
 \end{displaymath}
-or the elements
-\begin{displaymath}
-  \mathbf E_k = \sum_{\text{$w\in A_n*$ is a column of length $k$}} w
-\end{displaymath}
+In the algebra $\mathbf Z[A_n^*]$, define elements
+\begin{align*}
+  \mathbf H_k & = \sum_{\text{$w\in A_n^*$ is a row of length $k$}} w\\
+  \mathbf E_k & = \sum_{\text{$w\in A_n*$ is a column of length $k$}} w
+\end{align*}
+for every positive integer $k$.
 Then Exercise~\ref{exercise:row-col} can be restated as the identities:
 \begin{displaymath}
   e_k = \ev(\mathbf E_k) \text{ and } h_k = \ev(\mathbf H_k).
 \end{displaymath}
-
-Obviously, $\ev$ has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
+The evaluation map has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
 The algebra on the right contains our primary object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
-In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl_n]$ generated by the elements
- is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl_n]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
 \subsection{The Plactic Monoid}
 \label{sec:plactic-monoid}
 The plactic monoid $\pl(A_n)$ is the quotient of $A^*_n$ by the equivalence relation generated by the Knuth relations:
@@ -1103,20 +1108,31 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
     \mathbf N_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda',\nu)\times \Tab(\lambda,\mu).
   \end{displaymath}
 \end{theorem}
-
+\begin{exercise}
+  [The Burge Correspondence]
+  Define
+  \begin{displaymath}
+    \bur(A) = (P^*(\bar u_A), P^*(\bar v_A)).
+  \end{displaymath}
+  Show that $\bur$ is a bijection
+  \begin{displaymath}
+    \mathbf M_{\mu\nu}\tilde \to \coprod_\lambda \Tab^*(\lambda,\nu)\times \Tab^*(\lambda,\mu),
+  \end{displaymath}
+  where $\Tab^*(\lambda,\mu)$ denotes the set of tableaux of shape $\lambda$ and type $\mu$ with strictly increasing columns, and weakly increasing rows.
+\end{exercise}
 \subsection{The Littlewood-Richardson Rule}
 \label{sec:littlewood-richardson}
 \begin{lemma}
   \label{lemma:section}
-  Given a partition $\lambda$ of $n$, let $t_\lambda$ denote \emph{any} semistandard tableau of shape $\lambda$.
+  Given a partition $\lambda$, fix any $t_\lambda\in \Tab_m(\lambda)$.
   Then
   \begin{displaymath}
-    \sum_{\{A\mid P(v_A) = t_\lambda\}} x^{u_A} = s_\lambda(x_1,\dotsc,x_n).
+    \sum_{\{A_{m\times n}\mid P(v_A) = t_\lambda\}} x^{u_A} = s_\lambda(x_1,\dotsc,x_n).
   \end{displaymath}
 \end{lemma}
 \begin{proof}
   If $P(v_A) = t_\lambda$, a tableau of shape $\lambda$, $P(u_A)$ is also a semistandard tableau of shape $\lambda$.
-  Moreover, for every semistandard tableau $t\in \Tab_n(\lambda)$,  by Knuth's theorem (Theorem~\ref{theorem:knuth}), there exists a unique $l\times n$ matrix $A$ such that $\rsk(A) = (t, t_\lambda)$.
+  Moreover, for every semistandard tableau $t\in \Tab_n(\lambda)$,  by Knuth's theorem (Theorem~\ref{theorem:knuth}), there exists a unique $m\times n$ integer matrix $A$ such that $\rsk(A) = (t, t_\lambda)$.
   In other words, among matrices with $P(v_A)=t_\lambda$, there exists a unique matrix such that $u_A\equiv t$.
   The lemma now follows from Kostka's definition of Schur functions (Corollary~\ref{corollary:kostka-def-schur}).
 \end{proof}
@@ -1133,11 +1149,18 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
 \end{theorem}
 \begin{proof}
   By Lemma~\ref{lemma:section}, we have:
-  \begin{align*}
-    s_\alpha s_\beta & = \sum_{\{A'\mid P(v_{A'}) = t^0_\alpha\}} x^{u_{A'}} \sum_{A''\in \mathbf M_{\beta}} x^{u_{A''}}\\
-    & = \sum_A x^{u_A},
-  \end{align*}
-  where $A$ runs over all block matrices of the form $\binom{A'}{A''}$, with $A'\in \mathbf M(\alpha)$ and $A''\in \mathbf M(\beta)$.
+  \begin{align}
+    \nonumber s_\alpha s_\beta & = \sum_{\{A_{a\times n}\mid P(v_{A'}) = t_\alpha\}} x^{u_{A'}} \sum_{\{B_{b\times n}\mid P(v_B) = t_\beta} x^{u_{A''}}\\
+    \label{eq:sum-C} & = \sum_C x^{u_C},
+  \end{align}
+  where $C$ runs over all $(a+b)\times n$ block matrices of the form $\binom AB$, with $P(v_A)=t_\alpha$ and $P(v_B)=t_\beta$.
+  \begin{lemma}
+    Given integer matrices $A_{a\times n}$ and $B_{b\times n}$, form the block matrix $C_{(a+b)\times n} = \binom AB$.
+    Given a word in $L_{a+b}$, let $w^a$ denote the subword of $a$ obtained by removing all letters of $w$ that do not lie in $[1, a]$.
+    Let $w^b$ denote the word obtained from $w$ by removing all letters of $w$ that lie in $[1,a]$, and then replacing each of the remaining letters $x$ (which will lie in $[a+1, a+b]$) by $x-a$ (so that they now lie in $[1, b]$).
+    Then $P(v_A) = t_\alpha$ and $P(v_B) = t_\beta$ if and only if $P(v_C)^a = t_\alpha$, and $P(v_C)^b \equiv t_\beta$.
+  \end{lemma}
+  Thus the sum 
   Given a word $w\in A_n^*$, and a subset $S\subset A_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
   \begin{lemma}
     Let 
