@@ -208,7 +208,7 @@ The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$
   \label{exercise:vandermonde-iso}
   Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$.
 \end{exercise}
-The above exercise gives the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
+This motivates the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
 \begin{equation}
   \label{eq:schur}
   s_\lambda(x_1,\dotsc,x_n) = a_{\lambda+\delta}/a_\delta,
@@ -260,7 +260,7 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
   where the sum runs over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a vertical strip of size $k$.
 \end{theorem}
 \begin{proof}
-  We reproduce the proof from Loehr \cite{loehr}. 
+  We reproduce an elegant proof due to Loehr \cite{loehr}. 
   Let $\abc(\lambda)$ denote the set of all $n$-bead labeled abaci (see Section~\ref{sec:abaci}) of shape $\lambda$.
   Let $M(n,k)$ denote the set of all vectors $\alpha=(\alpha_1,\dots,\alpha_n)$ with non-negative integer coordinates and sum $k$.
   Set $\wt(\alpha)=x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
@@ -269,7 +269,11 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
     \sum_{w\in \abc(\lambda)} \epsilon(w)\sum_{\alpha\in M(n,k)} \wt(\alpha) = \sum_\mu \sum_{w\in \abc(\mu)} \epsilon(w) \wt(w),
   \end{displaymath}
   the sum on the right being over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a horizontal strip.
-  We will define an involution $I$ on the $\abc(\lambda)\times M(n,k)$ whose fixed points correspond to elements of $\coprod_{\mu/\lambda \text{ is a horiz. strip of size $k$}}\abc(\mu)\times M(n,k)$ under a bijection that preserves weights and signs, and such that if $I(w, \alpha)=(w', \alpha')$ then $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$ and $\epsilon(w') = -\epsilon(w)$.
+  We will define an involution $I$ on the $\abc(\lambda)\times M(n,k)$ whose fixed points correspond to elements of
+\begin{displaymath}
+  \coprod_{\mu/\lambda \text{ is a horiz. strip of size $k$}}\abc(\mu)\times M(n,k)
+\end{displaymath}
+under a bijection that preserves weights and signs, and such that if $I(w, \alpha)=(w', \alpha')$ then $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$ and $\epsilon(w') = -\epsilon(w)$.
   Then all terms on the left hand side, except for those which do not correspond to fixed points, will cancel, and the surviving terms will give the right hand side.
 
   To construct $I$, scan the abacus from left to right.
@@ -680,11 +684,11 @@ The preceding discussion shows:
 \end{exercise}
 \subsection{Tableaux and Words}
 \label{sec:tabl-assoc-word}
-Let $A^*_n$ denote the concatenation monoid of all words in the alphabet $\{1,\dotsc,n\}$.
-For any $w=a_1\dotsb a_k\in A^*_n$, Schensted's insertion algorithm allows us to associate a unique semistandard tableau $P(w)$ as follows:
+Let $L^*_n$ denote the concatenation monoid of all words in the alphabet $\{1,\dotsc,n\}$.
+For any $w=a_1\dotsb a_k\in L^*_n$, Schensted's insertion algorithm allows us to associate a unique semistandard tableau $P(w)$ as follows:
 \begin{itemize}
 \item If $w=a$ has only one letter, then $P(a)$ is the single-cell tableau with entry $a$.
-\item If $w=ua$, where $u\in A_n^*$ and $a\in \{1,\dotsc,n\}$, then \linebreak $P(w)=\ins(P(u), a)$.
+\item If $w=ua$, where $u\in L_n^*$ and $a\in \{1,\dotsc,n\}$, then \linebreak $P(w)=\ins(P(u), a)$.
 \end{itemize}
 \begin{example}
   If $w=1374433254$, then $P(w)$ is the tableau:
@@ -717,11 +721,11 @@ Write $x^w$ for the monomial $x_{a_1}x_{a_2}\dotsb x_{a_k}$.
   \label{exercise:row-col}
   Show that, for every positive integer $i$,
   \begin{displaymath}
-    h_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a row of length $k$}}x^w,
+    h_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in L_n^*$ is a row of length $k$}}x^w,
   \end{displaymath}
   and 
   \begin{displaymath}
-    e_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in A_n^*$ is a column of length $k$}}x^w.
+    e_k(x_1,\dotsc, x_n) = \sum_{\text{$w\in L_n^*$ is a column of length $k$}}x^w.
   \end{displaymath}
 \end{exercise}
 If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
@@ -730,12 +734,12 @@ If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
 \end{displaymath}
 This gives rise to an algebra homomorphism called the \emph{evaluation map}:
 \begin{displaymath}
-\ev:\mathbf Z[A_n^*]\to \mathbf Z[x_1,\dotsc, x_n].
+\ev:\mathbf Z[L_n^*]\to \mathbf Z[x_1,\dotsc, x_n].
 \end{displaymath}
-In the algebra $\mathbf Z[A_n^*]$, define elements
+In the algebra $\mathbf Z[L_n^*]$, define elements
 \begin{align*}
-  \mathbf H_k & = \sum_{\text{$w\in A_n^*$ is a row of length $k$}} w\\
-  \mathbf E_k & = \sum_{\text{$w\in A_n*$ is a column of length $k$}} w
+  \mathbf H_k & = \sum_{\text{$w\in L_n^*$ is a row of length $k$}} w\\
+  \mathbf E_k & = \sum_{\text{$w\in L_n*$ is a column of length $k$}} w
 \end{align*}
 for every positive integer $k$.
 Then Exercise~\ref{exercise:row-col} can be restated as the identities:
@@ -744,10 +748,10 @@ Then Exercise~\ref{exercise:row-col} can be restated as the identities:
 \end{displaymath}
 The evaluation map has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
 The algebra on the right contains our primary object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
-In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $A_n^*$ such that the resulting quotient monoid $\pl_n:=A_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl_n]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $L_n^*$ such that the resulting quotient monoid $\pl(L_n):=L_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl(L_n)]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
 \subsection{The Plactic Monoid}
 \label{sec:plactic-monoid}
-The plactic monoid $\pl(A_n)$ is the quotient of $A^*_n$ by the equivalence relation generated by the Knuth relations:
+The plactic monoid $\pl(L_n)$ is the quotient of $L^*_n$ by the equivalence relation generated by the Knuth relations:
 \begin{gather}
   \tag{$K1$}\label{eq:k1}
   xzy \equiv zxy \text{ if } x\leq y < z,
@@ -756,12 +760,12 @@ The plactic monoid $\pl(A_n)$ is the quotient of $A^*_n$ by the equivalence rela
   yxz \equiv yzx \text{ if } x < y \leq z.
 \end{gather}
 Two words are said to be in the same plactic class if each can be obtained from the other by a sequence of moves of the form (\ref{eq:k1}) and (\ref{eq:k2}).
-Since both sides of the Knuth relations have the same evaluation, it follows that the evaluation map $\ev:\mathbf Z[A^*_n]\to \mathbf Z[x_1,\dotsc,x_n]$ factors through the plactic monoid algebra $\mathbf Z[\pl(A_n)]$.
-Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\mathbf H_k$ in $\mathbf Z[\pl(A_n)]$.
+Since both sides of the Knuth relations have the same evaluation, it follows that the evaluation map $\ev:\mathbf Z[L^*_n]\to \mathbf Z[x_1,\dotsc,x_n]$ factors through the plactic monoid algebra $\mathbf Z[\pl(L_n)]$.
+Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\mathbf H_k$ in $\mathbf Z[\pl(L_n)]$.
 \begin{exercise}
   Take $n=2$.
-  Show that $E_1$ and $E_2$ commute in $\mathbf Z[\pl(A_2)]$.
-  Show that they commute in $\mathbf Z[\pl(A_3)]$.
+  Show that $E_1$ and $E_2$ commute in $\mathbf Z[\pl(L_2)]$.
+  Show that they commute in $\mathbf Z[\pl(L_3)]$.
 \end{exercise}
 \begin{exercise}
   \label{exercise:forgotten}
@@ -773,17 +777,17 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
     \tag{$F2$}\label{eq:f2}
     zxy \cong yzx \text{ if } x \leq y \leq z.
   \end{gather}
-  Let $F(A_n)$ denote the monoid $A_n^*/\cong$.
-  Show that the images of $\mathbf E_1$ and $\mathbf E_2$ commute in $F(A_3)$.
+  Let $F(L_n)$ denote the monoid $L_n^*/\cong$.
+  Show that the images of $\mathbf E_1$ and $\mathbf E_2$ commute in $F(L_3)$.
 \end{exercise}
 \begin{exercise}
-  Show that any evaluation-preserving equivalence on $A_3^*$ under which the images of $\mathbf E_1$ and $\mathbf E_2$ commute must include either the Knuth equivalences or Sch\"utzenberger's forgotten equivalences.
+  Show that any evaluation-preserving equivalence on $L_3^*$ under which the images of $\mathbf E_1$ and $\mathbf E_2$ commute must include either the Knuth equivalences or Sch\"utzenberger's forgotten equivalences.
 \end{exercise}
 \subsection{The plactic Pieri rules}
-Observe that, if for any tableau $t$ and $x\in A_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
+Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
 \begin{lemma}
   \label{lemma:two-step}
-  Let $t$ be the (the reading word of) a semistandard tableau in $A_n^*$ and $x,y$ be letters in $A_n$.
+  Let $t$ be the (the reading word of) a semistandard tableau in $L_n^*$ and $x,y$ be letters in $L_n$.
   Let $t'=\ins(t,x)$ and $t''=\ins(t',y)$.
   Let $a$ be the box added to $\shape(t')$ to obtain $\shape(t'')$, and $b$ be the box added to $\shape(t)$ to obtain $\shape(t')$.
   If $x\leq y$, then $b$ lies in a column strictly to the right of the column of $a$.
@@ -807,16 +811,16 @@ Observe that, if for any tableau $t$ and $x\in A_n$, if $t'=\ins(t,x)$, then $\s
 \begin{theorem}
   [Plactic Pieri rules]
   \label{theorem:plactic-pieri}
-  Let $\Tab_n(\lambda)$ denote the set of all semistandard tableaux of shape $\lambda$ and entries in $A_n$.
-  Let $R_k(A_n)$ denote the set of rows of length $k$ in $A_n^*$.
+  Let $\Tab_n(\lambda)$ denote the set of all semistandard tableaux of shape $\lambda$ and entries in $L_n$.
+  Let $R_k(L_n)$ denote the set of rows of length $k$ in $L_n^*$.
   Then the map $(t,r)\mapsto P(tr)$ defines a bijection:
   \begin{displaymath}
-    \Tab_n(\lambda)\times R_k(A_n) \to \coprod_{\mu/\lambda \text{ is a horizontal strip of size $k$}} \Tab_n(\mu).
+    \Tab_n(\lambda)\times R_k(L_n) \to \coprod_{\mu/\lambda \text{ is a horizontal strip of size $k$}} \Tab_n(\mu).
   \end{displaymath}
-  Let $C_k(A_n)$ denote the set of columns of length $k$ in $A_n^*$.
+  Let $C_k(L_n)$ denote the set of columns of length $k$ in $L_n^*$.
   Then the map $(t,c)\mapsto P(tc)$ defines a bijection:
   \begin{displaymath}
-    \Tab_n(\lambda)\times R_k(A_n) \to \coprod_{\mu/\lambda \text{ is a vertical strip of size $k$}} \Tab_n(\mu).
+    \Tab_n(\lambda)\times R_k(L_n) \to \coprod_{\mu/\lambda \text{ is a vertical strip of size $k$}} \Tab_n(\mu).
   \end{displaymath}
 \end{theorem}
 \begin{proof}
@@ -837,6 +841,58 @@ Observe that, if for any tableau $t$ and $x\in A_n$, if $t'=\ins(t,x)$, then $\s
   Moreover, the class of functions $S_\lambda$ satisfy the Pieri rule, just like the Schur function.
   This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$ (since the proof only uses properties that are common to $s_\lambda$ and $S_\lambda$.
   By the triangularity properties of of Kostka numbers described in Section~\ref{sec:triang-kostka-numb}, these identities uniquely determine the Schur functions, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
+\end{proof}
+\subsection{Greene's Theorem}
+\label{sec:greenes-theorem}
+Given a word $w = (a_1,\dotsc,a_k)\in L_n^*$, a subword is a word of the form $w' = a_{i_1}\dotsb a_{i_r}$, where $1\leq i_1<\dotsb < i_r\leq k$.
+This section is concerned with the enumeration of subwords which are rows or columns.
+For the purposes of such enumeration, given $1 \leq j_1<\dotsb <j_r\leq k$, $w'' = a_{j_1}\dotsb a_{j_r}$ will be considered to be a different subword from $w'$ \emph{even if} $w'=w''$ as words, unless the indices $j_1,\dotsc, j_r$ coincide with the indices $i_1,\dotsc,i_r$.
+Two subwords of will be said to be disjoint, if their indexing sets are disjoint.
+\begin{example}
+  The word $w=111$ has three subwords of length two, all of them equal to $11$.
+  No two of these subwords are disjoint.
+  However, each of them is disjoint from a subword of $w$ of length $1$.
+\end{example}
+\begin{definition}
+  [Greene invariants]
+  \label{definition:Greene-invars}
+  Given $w \in L_n^*$, for each integer $k\geq 0$, let $l_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint weakly increasing subwords of $w$.
+  Let $l'_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint strictly decreasing subwords of $w$.
+\end{definition}
+\begin{example}
+  If $w=2133$, then $l_1(3)=2$, $l_k(w)=4$ for all $k\geq 2$.
+  Also, $l'_1(w) = 2$, $l'_2(w)=3$, and $l'_k(w)=4$ for all $k\geq 3$.
+\end{example}
+\begin{theorem}
+  [Greene's Theorem]
+  \label{theorem:Greene}
+  Given a word $w$, define a partition $\lambda=(\lambda_1,\lambda_2,\dotsc)$ by $\lambda_k=l_k(w)-l_{k-1}(w)$ for each $k\geq 1$.
+  Then $\lambda$ is the shape of $P(w)$.
+  Moreover, if $\lambda'_k=l'_k(w)-l'_{k-1}(w)$ for each $k\geq 1$, then $\lambda'=(\lambda'_1,\lambda'_2,\dotsc)$ is the partition conjugate to $\lambda$.
+\end{theorem}
+\begin{proof}
+  Greene's theorem follows by putting together two relatively simple observations---the first is that the Greene invariants $l_k(w)$ and $l'_k(w)$ remain unchanged when either of the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}) is applied to $w$.
+  The second is that when $w$ is the reading word of a semistandard tableau, then Greene's theorem holds.
+
+  To see the first, suppose that $w$ is of the form $u_1xzyu_2$, with $x\leq y < z$, and arbitrary $u_1,u_2\in L_n^*$.
+  Applying a Knuth transformation of the form (\ref{eq:k1}), $w$ transforms to $w'=u_1zxyu_2$.
+  Any weakly increasing subword of $w'$ is also a weakly increasing subword of $w$, so $l_k(w')\leq l_k(w)$.
+  On the other hand, if $v$ is a weakly increasing subword of $w$ of the form $v_1xzv_2$ (where $v_i$ is a subword of $u_i$ for $i=1,2$) it will not necessarily remain a weakly increasing subword of $w'$.
+  However, $v_1xyv_2$ \emph{is} a weakly increasing subword of $w$.
+  If a collection of $k$ weakly increasing subwords of $w$ contains $v_1xzv_2$ and another weakly increasing subword $v_1'yv_2'$, replacing them by $v_1yzv'_2$ and  $v_1'xv_2$ gives a collection of $k$ weakly increasing subwords of $w'$ of the same cardinality.
+  It follows that $l_k(w')\geq l_k(w)$ also holds.
+  Thus the Knuth transformation (\ref{eq:k1}) preserves the Greene invariants $l_k(w)$.
+  Similar arguments can be used to show that both (\ref{eq:k1}) and (\ref{eq:k2}) preserve all the Greene invariants $l_k(w)$ and $l'_k(w)$.
+
+  Now suppose $w$ is the reading word of a tableau of shape $\lambda$.
+  Then the top $k$ rows of $w$ form a union of $k$ pairwise disjoint weakly increasing subwords of total size $\lambda_1+\dotsb+\lambda_k$.
+  Also, if $v$ is a weakly increasing subword of $w$, then the fact that the columns of $t$ are strictly increasing (and that the rows are read from \emph{bottom to top}) implies that $v$ cannot contain more than one element from each column of $w$.
+  Therefore, any collection of $k$ pairwise disjoint weakly increasing subwords of $w$ can have at most $k$ entries in each column of $w$.
+  Thus no union of $k$ pairwise disjoint weakly incresing subwords of $w$ can have cardinality more than $\lambda_1+\dotsb+\lambda_k$
+  Therefore, $l_k(w)=\lambda_1+\dotsb+\lambda_k$.
+
+  Similarly, the leftmost $k$ columns of $w$ (read bottom to top) form a union of $k$ pairwise disjoint strictly decreasing subwords of $w$, and any such union can only contain $k$ elements from each row.
+  It follows that if $\lambda'$ is the partition conjugate to $\lambda$, then $l'_k(w)=\lambda'_1+\dotsb + \lambda'_k$.
 \end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
@@ -889,14 +945,14 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
     \label{eq:det-expansion}
     \sum_{\bar\omega\in P} \epsilon(\bar\omega)v(\bar\omega).
   \end{equation}
-  Define an involution $I:P\to P$ as follows: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
+  The cancelling involution $I:P\to P$ is defined by \emph{uncrossing the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
   In this case the crossing condition implies that $w$ is the identity permutation.
   Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path $\omega_j=(t_0,\dotsc,t_l)$.
-  Let $j$ be the smallest number such that a point $s_j$ of $\omega_i$ lies in the path $\omega_j$, say $s_j=t_r$.
+  Let $m$ be the smallest number such that a point $s_m$ of $\omega_i$ lies in the path $\omega_j$, say $s_m=t_r$.
   Let $I(\bar\omega)$ be the family of paths obtained from $\bar\omega$ by modifying $\omega_i$ and $\omega_j$ to $\omega'_i$ and $\omega'_j$ as follows:
   \begin{align*}
-    \omega'_i & = (s_0,\dotsc, s_j, t_{r+1}, \dotsc, t_l),\\
-    \omega'_j & = (t_0,\dotsc, t_r, s_{j+1}, \dotsc, s_k).
+    \omega'_i & = (s_0,\dotsc, s_m, t_{r+1}, \dotsc, t_l),\\
+    \omega'_j & = (t_0,\dotsc, t_r, s_{m+1}, \dotsc, s_k).
   \end{align*}
   Clearly, $v(I(\bar\omega)) = v(\bar\omega)$ and $\epsilon(I(\bar\omega)) = - \epsilon(\bar\omega)$.
   This involution cancels out all the terms in (\ref{eq:det-expansion}) except those that occur on the right hand side of (\ref{eq:lgv}).
@@ -1029,9 +1085,9 @@ The reverse operation---that of expressing Schur functions in terms of complete 
 \begin{example}
   The hook partition $(a+1,1^b)$ has Frobenius coordinates $(a|b)$.
   Hook partitions are precisely those partitions which have Durfee rank $1$.
-  The partition with frobenius coordinates $(5,2,1|4,3,0)$ is $(6,4,4,2,2)$.
+  The partition with Frobenius coordinates $(5,2,1|4,3,0)$ is $(6,4,4,2,2)$.
   If $\lambda$ has Frobenius coordinates $(\alpha|\beta)$, then its conjugate $\lambda'$ has Frobenius coordinates $(\beta|\alpha)$.
-  The size of a partition with Durfee rank $d$ and Frobenius cooedinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
+  The size of a partition with Durfee rank $d$ and Frobenius coordinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
 \end{example}
 Schur functions of hook partitions can be calculated using Exercise~\ref{exercise:hook-schur}, which, when written is terms of Frobenius coordinates, becomes:
 \begin{equation}
@@ -1092,7 +1148,23 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   For every zero-one matrix $A$, the tableaux $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
 \end{lemma}
 \begin{proof}
-  This follows from Greene's theorem.
+  The proof is an application of Greene's theorem (Theorem~\ref{theorem:Greene}).
+  Any weakly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with repititions of up to $a_{i_1j_1},\dotsc, a_{i_rj_r}$ respectively, with $i_1\leq \dotsb \leq i_r$ and $j_1\leq \dotsc\leq j_r)$.
+  If $A$ is an $m\times n$ matrix, its entries are indexed by the rectangular lattice $P_{mn} = \{(i,j)\mid 1\leq i\leq m,\;1\leq j\leq n\}$ which may be regarded as a poset under $(i,j)\leq (i',j')$ if $i\leq i'$ and $j\leq j'$.
+  It follows that
+  \begin{displaymath}
+    l_k(u_A) = \max_{C_k} \Big\{\sum_{(i,j)\in C_k} a_{ij}\Big\}
+  \end{displaymath}
+  where the maximum is taken over all subsets $C_k$ of $P_{mn}$ which can be written as a union of $k$ chains in the partially ordered set $P_{mn}$.
+  This description of the shape of $P(u_A)$ is invariant under interchanging the rows and columns of $A$, and therefore also the shape of $P(v_A)$.
+
+  For the dual RSK correspondence, if $A$ is a $0$-$1$ matrix, note that a strictly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with entries equal to $1$, and with $i_1\leq \dotsb \leq i_r$ and $j_1<\dotsc<j_r)$.
+  Define a new partial order on the set $P_{m,n}$ by $(i,j)<(i',j')$ if $i\leq i'$ and $j<j'$.
+  It follows that
+  \begin{displaymath}
+    l_k^*(u_A) = \max_{C_k} \Big\{\sum_{(i,j)\in C_k} a_{ij}\Big\}
+  \end{displaymath}
+  where the maximum is 
 \end{proof}
 \begin{theorem}
   [Knuth's theorem]
@@ -1108,6 +1180,9 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
     \mathbf N_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda',\nu)\times \Tab(\lambda,\mu).
   \end{displaymath}
 \end{theorem}
+\begin{proof}
+  
+\end{proof}
 \begin{exercise}
   [The Burge Correspondence]
   Define
@@ -1161,11 +1236,11 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
     Then $P(v_A) = t_\alpha$ and $P(v_B) = t_\beta$ if and only if $P(v_C)^a = t_\alpha$, and $P(v_C)^b \equiv t_\beta$.
   \end{lemma}
   Thus the sum 
-  Given a word $w\in A_n^*$, and a subset $S\subset A_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
+  Given a word $w\in L_n^*$, and a subset $S\subset L_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
   \begin{lemma}
     Let 
     \begin{displaymath}
-      C(\alpha,\beta) = \{t\in \Tab(A_{a+b}) \mid t^{[0, a]} = t^0_\alpha,\;t^{[a+1, a+b]} \equiv t^0_\beta\}.
+      C(\alpha,\beta) = \{t\in \Tab(L_{a+b}) \mid t^{[0, a]} = t^0_\alpha,\;t^{[a+1, a+b]} \equiv t^0_\beta\}.
     \end{displaymath}
     Taking $A = \binom{A'}{A''}$ to $(A', A'')$ gives rise a bijection:
     \begin{displaymath}
@@ -1175,14 +1250,14 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
   Thus, as $A'$ and $A''$ run over all matrices with $P(v_{A'})=t^0_\alpha$ and $P(v_{A''})=t^0_\beta$, $A=\binom{A'}{A''}$ runs over all matrices with $P(v_A)\in C(\alpha,\beta)$.
   It follows that
   \begin{displaymath}
-    s_\alpha s_\beta = \#\{t\in \Tab(A_{a+b})\mid t^{[0,a]} = t^0_\alpha,\; t^{[a+1,b]}\equiv t^0_\beta\}.
+    s_\alpha s_\beta = \#\{t\in \Tab(L_{a+b})\mid t^{[0,a]} = t^0_\alpha,\; t^{[a+1,b]}\equiv t^0_\beta\}.
   \end{displaymath}
   Ignoring the entries of the boxes of $t$ which lie in $\alpha$ (since they are fixed) we get a semistandard tableau $s$ of shape $\lambda/\alpha$.
   The condition that $t^{[a+1,b]}\equiv t^0_\beta$ is equivalent to saying that the reading word of $s$ lies in the plactic class of $t^0_\beta$.
 \end{proof}
 \begin{definition}
   [Yamanouchi Word]
-  A word $w\in A_n^*$ is called a Yamanouchi word if $x^u$ is a monomial with weakly increasing powers for every suffix $u$ of $w$.
+  A word $w\in L_n^*$ is called a Yamanouchi word if $x^u$ is a monomial with weakly increasing powers for every suffix $u$ of $w$.
 \end{definition}
 \begin{lemma}
   \label{lemma:yamanouchi}
