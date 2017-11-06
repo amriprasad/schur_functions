@@ -1099,41 +1099,53 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
   For a partition $(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$  in Frobenius coordinates,
   \begin{equation}
     \label{eq:giambelli}
-    s_{(\alpha|\beta)} = \det(s_{(\alpha_i|\beta_j)})_{d\times d}.
+    s_{(\alpha|\beta)} = \det(s_{(\alpha_j|\beta_i)})_{d\times d}.
   \end{equation}
   Note that the determinant on the right consists of hook-partition Schur functions, which are given by \textup{(\ref{eq:hook-schur-frob})}.
 \end{theorem}
 \begin{example}
   The Schur function for $\lambda=(6,4,4,2,2)$ can be computed as:
   \begin{displaymath}
-    s_{(5,2,1|4,3,0)} = \det
+    s_{(3,2,1|3,1,0)} = \det
     \begin{pmatrix}
-      s_{(5|4)} & s_{(5|3)} & s_{(5|0)}\\
-      s_{(2|4)} & s_{(2|3)} & s_{(2|0)}\\
-      s_{(1|4)} & s_{(1|3)} & s_{(1|0)}\\
+      s_{(3|3)} & s_{(2|3)} & s_{(1|3)}\\
+      s_{(3|1)} & s_{(2|1)} & s_{(1|1)}\\
+      s_{(3|0)} & s_{(2|0)} & s_{(1|0)}\\
     \end{pmatrix}
   \end{displaymath}
 \end{example}
 \begin{proof}
-  The determinant on the right hand side of (\ref{eq:giambelli}) can be written as:
+  Giambelli's identity can be proved using the Lindstr\"om-Gessel-Viennot Lemma (Theorem~\ref{lemma:lgv}).
+  Let $\lambda=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$ be given.
+  Working with $n$ variables, set
+  \begin{displaymath}
+    S = \{(i,j)\mid 1\leq j \leq n\; i\geq 0\} \cup \{(-i,j)\mid 1\leq j\leq n+1\; i>0\}.
+  \end{displaymath}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{giambelli.png}
+    \caption{Non-crossing path configuration for \tiny{$\ytableaushort{1113,2334,444,5}$}}
+    \label{fig:giambelli}
+  \end{figure}
+  Define a weight function as follows (see Fig.~\ref{fig:giambelli}):
+  \begin{align*}
+    v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 0 \leq j \leq n,\\
+    v((-i,j+1), v(-(i-1),j)) & = x_j \text{ for all } i>0, j\geq 1,\\
+    v((i,j), (i+1,j)) & = x_j \text{ for all } i\geq 0, 1\leq j\leq n,\\
+    v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j \leq n.
+  \end{align*}
+  All other weights are set to zero.
+  A path from $(-(b-1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandaed tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
+  For instance, the path in Fig.~\ref{fig:giambelli} from $(-4,6)$ to $(3,5)$ corresponds to the tableau $\ytableaushort{1113,2,4,5}$.
+
+  Thus, setting $A_i=(-(\beta_i-1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
+  the $(i,j)$th entry of the determinant on the right hand side of (\ref{eq:giambelli}) can be written as:
   \begin{equation}
     \label{eq:giambelli-det}
-    \sum_{w\in S_d} \epsilon(w) \prod_{t^i\in \Tab(\alpha_i,\beta_{w(i)})} x^{t_i}.
+    \sum_{\omega:A_i\to B_j} v(\omega).
   \end{equation}
-  Let $P$ be the set of all $d$-tuples of semistandard hook-shaped tableaux $t^1,\dotsc,t^d$, where $t^i\in \Tab(\alpha_i,\beta_{w(i)})$.
-  Then we can assemble $(t^1,\dotsc,t^d)$ into a tableau $t$ of shape $(\alpha|\beta)$ as follows:
-  The entries in the arm of $t^i$ go into the $i$th arm of $t$.
-  The corner entry of $t^i$ goes into the $(w(i),w(i))$th node of $t$.
-  The entries in the leg of $t_i$ go into the $w(i)$th leg of $t$.
-  Schematically, this method for reconstituting $\lambda$ from hooks in the right hand side of Giambelli's identity is described by the following figure:
-  \begin{displaymath}
-    \ydiagram[*(red)]{5,1,1,1}*[*(green)]{0,1+2,1+1,1+1}*[*(blue)]{0,0,2+1,2+1} = \det
-    \begin{pmatrix}
-      \ydiagram[*(red)]{5,1,1,1} & \ydiagram[*(red)]{1+4}*[*(green)]{1,1,1} &  \ydiagram[*(blue)]{1,1}*[*(red)]{1+4}\\
-      \ydiagram[*(green)]{1+1}*[*(red)]{1,1,1,1} & \ydiagram[*(green)]{2,1,1}& \ydiagram[*(green)]{1+1}*[*(blue)]{1,1}\\
-      \ydiagram[*(red)]{1,1,1,1} & \ydiagram[*(green)]{1,1,1} & \ydiagram[*(blue)]{1,1}
-    \end{pmatrix}
-  \end{displaymath}
+  It is not hard to see that the non-crossing path configurations $\{\omega_i:A_i\to B_i\}$ correspond to semistandard tableau of shape $(\alpha,\beta)$.
+  Fig.~\ref{fig:giambelli}, shows a configuration of non-crossing paths corresponding to the tableau $\ytableaushort{1113,2334,444,5}$.
 \end{proof}
 \subsection{The Robinson-Schensted-Knuth Correspondences}
 \label{sec:rsk}
