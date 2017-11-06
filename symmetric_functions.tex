@@ -820,7 +820,7 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   Let $C_k(L_n)$ denote the set of columns of length $k$ in $L_n^*$.
   Then the map $(t,c)\mapsto P(tc)$ defines a bijection:
   \begin{displaymath}
-    \Tab_n(\lambda)\times R_k(L_n) \to \coprod_{\mu/\lambda \text{ is a vertical strip of size $k$}} \Tab_n(\mu).
+    \Tab_n(\lambda)\times C_k(L_n) \to \coprod_{\mu/\lambda \text{ is a vertical strip of size $k$}} \Tab_n(\mu).
   \end{displaymath}
 \end{theorem}
 \begin{proof}
@@ -1144,6 +1144,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \end{align*}
 \end{definition}
 \begin{lemma}
+  \label{lemma:same_shape}
   For every integer matrix $A$ with non-negative entries, the tableaux $P(u_A)$ and $P(v_A)$ have the same shape.
   For every zero-one matrix $A$, the tableaux $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
 \end{lemma}
@@ -1155,33 +1156,77 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \begin{displaymath}
     l_k(u_A) = \max_{C_k} \Big\{\sum_{(i,j)\in C_k} a_{ij}\Big\}
   \end{displaymath}
-  where the maximum is taken over all subsets $C_k$ of $P_{mn}$ which can be written as a union of $k$ chains in the partially ordered set $P_{mn}$.
+  where the maximum is over all subsets $C_k$ of $P_{mn}$ which can be written as a union of $k$ chains in the partially ordered set $P_{mn}$.
   This description of the shape of $P(u_A)$ is invariant under interchanging the rows and columns of $A$, and therefore also the shape of $P(v_A)$.
 
   For the dual RSK correspondence, if $A$ is a $0$-$1$ matrix, note that a strictly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with entries equal to $1$, and with $i_1\leq \dotsb \leq i_r$ and $j_1<\dotsc<j_r)$.
-  Define a new partial order on the set $P_{m,n}$ by $(i,j)<(i',j')$ if $i\leq i'$ and $j<j'$.
+  Define a new partial order $P_{mn}$ by $(i,j)<(i',j')$ if $i\leq i'$ and $j<j'$.
   It follows that
   \begin{displaymath}
     l_k^*(u_A) = \max_{C_k} \Big\{\sum_{(i,j)\in C_k} a_{ij}\Big\}
   \end{displaymath}
-  where the maximum is 
+  where the maximum is over all subsets $C_k\subset P_{mn}$ which can be written as a union of $k$ chains in the new partial order.
+  On the other hand, the row numbers in the sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ form a weakly increasing subword of $\bar v_A$ if and only if $i_1\leq \dotsb \leq i_r$, and since the entries must come from distinct rows (since $\bar v_A$ reads each row in reverse order and all entries are $0$ or $1$), so $j_1<\dotsb < j_r$.
+  Thus $l_k(\bar v_A)=l_k^*(u_A)$, so $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
 \end{proof}
 \begin{theorem}
   [Knuth's theorem]
   \label{theorem:knuth}
   Let $\mathbf M_{\mu\nu}$ denote the set of integer matrices with non-negative entries, row sums $(\mu_1,\dotsc, \mu_m)$, column sums $(\nu_1,\dotsc,\nu_n)$.
   Then $\rsk$ gives rise to a bijection:
-  \begin{displaymath}
+  \begin{equation}
+    \label{eq:rsk}
     \mathbf M_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda,\nu)\times \Tab(\lambda,\mu).
-  \end{displaymath}
+  \end{equation}
   Similarly let $\mathbf N_{\mu\nu}$ denote the set of zero-one matrices with row sums $(\mu_1,\dotsc, \mu_m)$ and column sums $(\nu_1,\dotsc,\nu_n)$.
   Then $\rsk^*$ gives rise to a bijection:
-  \begin{displaymath}
-    \mathbf N_{\mu\nu}\tilde\to \coprod_\lambda \Tab(\lambda',\nu)\times \Tab(\lambda,\mu).
-  \end{displaymath}
+  \begin{equation}
+    \label{eq:drsk}
+    \mathbf N_{\mu\nu}\tilde\to \coprod_\lambda \Tab^*(\lambda,\nu)\times \Tab(\lambda,\mu).
+  \end{equation}
 \end{theorem}
 \begin{proof}
-  
+  We will show that $\rsk$ is a bijection:
+  \begin{displaymath}
+    \mathbf M_{m\times n} \tilde\to \coprod_\lambda \Tab_n(\lambda)\times \Tab_m(\lambda).
+  \end{displaymath}
+  For the definition it is clear that this bijection will map the left hand side of (\ref{eq:rsk}) onto its right hand side.
+
+  Let $A'$ be the matrix consisting of the first $m-1$ rows of $A$.
+  Let $r=1^{a_{m1}}2^{a_{m2}}\dotsb n^{a_{mn}}$ be the column word of the last row of $A$.
+
+  By inducting on the number of rows of $A$ (the base case of one-row matrices is easy), we have bijections:
+  \begin{equation}
+    \label{eq:bij1}
+    \mathbf M_{m\times n} \leftrightarrow \mathbf M_{(m-1)\times n}\times R(L_n) \leftrightarrow \coprod_\lambda \Tab_n(\lambda)\times \Tab_{m-1}(\lambda)\times R(L_n)
+  \end{equation}
+  given by
+  \begin{displaymath}
+    A \leftrightarrow (A',r) \leftrightarrow (P(u_{A'}), P(v_{A'}), r).
+  \end{displaymath}
+  Here $R(L_n)$ denotes the set of all rows (weakly increasing words) in $L_n^*$.
+
+  Define a function
+  \begin{equation}
+    \label{eq:bij2}
+    \Tab_n(\lambda)\times \Tab_{m-1}(\lambda)\times R(L_n) \to \coprod_\mu \Tab_n(\mu)\times \Tab_m(\mu)
+  \end{equation}
+  by
+  \begin{displaymath}
+    (t_1, t_2, r)\mapsto (P(t_1r), t_2^{\uparrow m}),
+  \end{displaymath}
+  where $t_2^{\uparrow m}$ is the unique tableau with the same shape as $P(t_1r)$ such that if all the boxes containing $m$ are removed from it, then $t_2$ is obtained.
+
+  It turns out that the above function is invertible.
+  Given tableaux $(t'_1, t'_2)\in \Tab_n(\mu)\times \Tab_m(\mu)$.
+  Let $t_2$ be the tableau obtained from $t'_2$ by removing all the boxes containing $m$.
+  Let $\lambda$ be the corresponding shape.
+  Obviously $\mu/\lambda$ is a horizontal strip.
+  Applying the inverse of the first bijection in Theorem~\ref{theorem:plactic-pieri} recovers $t_1$ and $r$.
+
+  Combining the bijections (\ref{eq:bij1}) and (\ref{eq:bij2}) gives rise to thr RSK correspondence, which is therefore also a bijection.
+
+  The proof for the bijectivity of $\rsk^*$ is similar (although with a few twists) and is left as an interesting exercise to the reader.
 \end{proof}
 \begin{exercise}
   [The Burge Correspondence]
@@ -1191,9 +1236,8 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \end{displaymath}
   Show that $\bur$ is a bijection
   \begin{displaymath}
-    \mathbf M_{\mu\nu}\tilde \to \coprod_\lambda \Tab^*(\lambda,\nu)\times \Tab^*(\lambda,\mu),
+    \mathbf M_{\mu\nu}\tilde \to \coprod_\lambda \Tab^*(\lambda,\nu)\times \Tab^*(\lambda,\mu).
   \end{displaymath}
-  where $\Tab^*(\lambda,\mu)$ denotes the set of tableaux of shape $\lambda$ and type $\mu$ with strictly increasing columns, and weakly increasing rows.
 \end{exercise}
 \subsection{The Littlewood-Richardson Rule}
 \label{sec:littlewood-richardson}
@@ -1267,7 +1311,7 @@ All the boxes in the $i$th row of this tableau are filled with the integer $i$.
   Check that Knuth relations preserve \emph{Yamanouchiness}.
   The only Yamanouchi tableau of type $\lambda$ also has shape $\lambda$.
 \end{proof}
-In view of Lemma~\ref{lemma:yamanouchi}, we may restate the Littlewood-Richardson rule as:
+In view of Lemma~\ref{lemma:yamanouchi}, the Littlewood-Richardson rule becomes:
 \begin{theorem}
   For partition $\alpha,\beta,\lambda$, $c^\lambda_{\alpha\beta}$ is the number of semistandard tableau of shape $\lambda/\alpha$ and type $\beta$ whose reading word is a Yamanouchi word.
 \end{theorem}
