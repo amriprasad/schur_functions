@@ -1125,6 +1125,15 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
   The entries in the arm of $t^i$ go into the $i$th arm of $t$.
   The corner entry of $t^i$ goes into the $(w(i),w(i))$th node of $t$.
   The entries in the leg of $t_i$ go into the $w(i)$th leg of $t$.
+  Schematically, this method for reconstituting $\lambda$ from hooks in the right hand side of Giambelli's identity is described by the following figure:
+  \begin{displaymath}
+    \ydiagram[*(red)]{5,1,1,1}*[*(green)]{0,1+2,1+1,1+1}*[*(blue)]{0,0,2+1,2+1} = \det
+    \begin{pmatrix}
+      \ydiagram[*(red)]{5,1,1,1} & \ydiagram[*(red)]{1+4}*[*(green)]{1,1,1} &  \ydiagram[*(blue)]{1,1}*[*(red)]{1+4}\\
+      \ydiagram[*(green)]{1+1}*[*(red)]{1,1,1,1} & \ydiagram[*(green)]{2,1,1}& \ydiagram[*(green)]{1+1}*[*(blue)]{1,1}\\
+      \ydiagram[*(red)]{1,1,1,1} & \ydiagram[*(green)]{1,1,1} & \ydiagram[*(blue)]{1,1}
+    \end{pmatrix}
+  \end{displaymath}
 \end{proof}
 \subsection{The Robinson-Schensted-Knuth Correspondences}
 \label{sec:rsk}
