@@ -70,22 +70,22 @@ def giambelli(n,k):
             G += circle((i, j), 0.05, fill=True, color="lightgrey")
             if i < k-1:
                 G += arrow(tailpoint=(i, j), headpoint=(i+1, j), color="lightgrey")
-                G += text('$x_%s$'%(j), (i+0.5, j+0.2), color="lightgrey", fontsize=14)
+                G += text('$x_%s$'%(j), (i+0.5, j+0.2), color="grey", fontsize=14)
             if j > 1:
                 G += arrow(headpoint=(i, j), tailpoint=(i, j-1), color="lightgrey")
     for i in range(k):
-        G += text("(%s,5)"%(i), (i, 5.2), color="lightgrey") + text("(%s,1)"%(i), (i, 0.8), color="lightgrey")
+        G += text("(%s,5)"%(i), (i, 5.2), color="grey") + text("(%s,1)"%(i), (i, 0.8), color="grey")
 
     for i in range(k):
         for j in range(1,n+2):
             if j>1 and i>0:
                 G += circle((-i,j), 0.05, fill=True, color="lightgrey")
                 G += arrow(tailpoint=(-i,j), headpoint=(-(i-1),j-1), color="lightgrey")
-                G += text('$x_%s$'%(j-1), (-i+0.4, j-1+0.4), color="lightgrey", fontsize=14)
+                G += text('$x_%s$'%(j-1), (-i+0.4, j-1+0.4), color="grey", fontsize=14)
             if j>1:
                 G += arrow(tailpoint=(-i,j), headpoint=(-i,j-1), color="lightgrey")
     for i in range(k):
-        G += text("(%s,6)"%(-i), (-i,6.2), color="lightgrey") + text("(%s,1)"%(-i),(-i,0.8), color="lightgrey")
+        G += text("(%s,6)"%(-i), (-i,6.2), color="grey") + text("(%s,1)"%(-i),(-i,0.8), color="grey")
 
 
     return G
