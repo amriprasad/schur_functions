@@ -956,8 +956,8 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   \end{displaymath}
   \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{jth.png}
-    \caption{Non-crossing paths corresponding to the tableau \small{$\ytableaushort{113,24,35,5}$}}
+    \raisebox{-0.5\height}{\includegraphics[width=0.6\textwidth]{jth.png}}\hspace{1cm}\raisebox{-0.5\height}{\ytableausetup{nosmalltableaux}$\ytableaushort{113,24,35,5}$}
+    \caption{Non-crossing paths and corresponding tableau.}
     \label{fig:jacobi-trudi}
   \end{figure}
   So the left-hand-side of the first Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
@@ -965,9 +965,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   Reading the row numbers of the horizontal steps in $\omega_i$ gives a weakly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda_i}\leq n$.
   Enter these numbers into the $i$th row of the Young diagram of $\lambda$ for $i=1,\dotsc,n$.
   Since the paths are non-crossing, the $j$th rightward step of $\omega_i$ must be strictly higher than the $j$th rightward step of $\omega_{i+1}$.
-  This means that the columns of the resulting numbering are strictly increasing, resulting in a semistandard tableau of shape $\lambda$.
-
-  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(3,2,2,1)$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  This means that the columns of the resulting numbering are strictly increasing, resulting in a semistandard tableau of shape $\lambda$ (for an example, see Figure~\ref{fig:jacobi-trudi}).
   Thus, it follows from the Lindstr\"om-Gessel-Viennot lemma that
   \begin{displaymath}
     \det(h_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda)} x^t.
@@ -1011,14 +1009,14 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   Reading the row numbers where the upper-rightward steps in $\omega_i$ originate gives a strictly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda'_i}\leq n$.
   Enter these numbers into the $i$th column of the Young diagram of $\lambda$.
   Since the paths are non-crossing, the $j$th upper-rightward step of $\omega_i$ must be no lower than the $j$th upper-rightward step of $\omega_{i+1}$.
-  This means that the rows of the resulting numbering are weakly increasing, resulting in a semistandard tableau of shape $\lambda$.
+  This means that the rows of the resulting numbering are weakly increasing, resulting in a semistandard tableau of shape $\lambda$
   \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{jte.png}
-    \caption{Non-crossing paths corresponding to the tableau \small{$\ytableaushort{113,24,35,5}$}.}
+    \raisebox{-0.5\height}{\includegraphics[width=0.7\textwidth]{jte.png}}\hspace{1cm}\raisebox{-0.5\height}{$\ytableaushort{113,24,35,5}$}
+    \caption{Non-crossing paths and corresponding tableau.}
     \label{fig:jte}
   \end{figure}
-  Figure~\ref{fig:jacobi-trudi} shows the non-crossing path configuration corresponding to $n=5$, $\lambda=(3,2,2,1)$ which corresponds to the semistandard tableau \small{$\ytableaushort{113,24,35,5}$}.
+  (for an example, see Figure~\ref{fig:jte}).
   Thus, it follows from the Lindstr\"om-Gessel-Viennot lemma that
   \begin{displaymath}
     \det(e_{\lambda_j+i-j}) = \sum_{t\in \tab(\lambda')} x^t,
@@ -1043,13 +1041,29 @@ The path $\omega_i$ has $\lambda_i-\mu_i$ horizontal steps.
 If these steps occur in rows $1\leq k_1\leq \dotsb \leq k_{lambda_i-\mu_i}\leq n$, then enter the integers $k_1,\dotsc,k_{\lambda_i-\mu_i}$ into the $i$th row of the skew-shape.
 As in the proof of the first Jacobi-Trudi identity, this results in a semistandard tableau of skew-shape $\lambda/\mu$.
 \begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{skew_jth.png}
-  \caption{Non-crossing path configuration corresponding to $\ytableaushort{{}{}3,{}1,{}4,2}$}
+  \centering 
+  \raisebox{-0.5\height}{\includegraphics[width=0.6\textwidth]{skew_jth.png}}  \hspace{1cm}  \raisebox{-0.5\height}{$\ytableaushort{\none\none 3,\none 1,\none 4,2}$}
+  \caption{Non-crossing paths and the corresponding skew-tableau.}
   \label{fig:skew-jth}
 \end{figure}
 For an example, see Figure~\ref{fig:skew-jth}.
 
+Therefore the symmetric polynomial
+\begin{equation}
+  \label{eq:skew-jth}
+  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(h_{\lambda_j-\mu_j+i-j}),
+\end{equation}
+by the Lindstr\"om-Gessel-Viennot, is also given by
+\begin{equation}
+  \label{eq:skew-kostka}
+  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \sum_{t\in \Tab_n(\lambda/\mu)} x^t.
+\end{equation}
+The functions $s_{\lambda/\mu}$ generalize the Schur functions and are called \emph{skew-Schur functions}.
+A modification of the proof of the second Jacobi-Trudi identity gives:
+\begin{equation}
+  \label{eq:skew-jti}
+  s_{\lambda'/\mu'}(x_1,\dotsc,x_n) = \det(e_{\lambda_j-\mu_j+i-j}),
+\end{equation}
 \subsection{Giambelli's Identity}
 \label{sec:giambelli}
 \begin{definition}
@@ -1101,10 +1115,11 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
   \end{displaymath}
   \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{giambelli.png}
-    \caption{Non-crossing path configuration for \tiny{$\ytableaushort{1113,2334,444,5}$}}
+    \raisebox{-0.5\height}{\includegraphics[width=0.7\textwidth]{giambelli.png}}\hspace{1cm}$\ytableaushort{1113,2334,444,5}$
+    \caption{Non-crossing paths and corresponding tableau.}
     \label{fig:giambelli}
   \end{figure}
+  \ytableausetup{smalltableaux}
   Define a weight function as follows (see Fig.~\ref{fig:giambelli}):
   \begin{align*}
     v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 0 \leq j \leq n,\\
@@ -1122,8 +1137,7 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
     \label{eq:giambelli-det}
     \sum_{\omega:A_i\to B_j} v(\omega).
   \end{equation}
-  It is not hard to see that the non-crossing path configurations $\{\omega_i:A_i\to B_i\}$ correspond to semistandard tableau of shape $(\alpha,\beta)$.
-  Fig.~\ref{fig:giambelli}, shows a configuration of non-crossing paths corresponding to the tableau $\ytableaushort{1113,2334,444,5}$.
+  It is not hard to see that the non-crossing path configurations $\{\omega_i:A_i\to B_i\}$ correspond to semistandard tableau of shape $(\alpha|\beta)$ (for an example, see Fig.~\ref{fig:giambelli}).
 \end{proof}
 \subsection{The Robinson-Schensted-Knuth Correspondences}
 \label{sec:rsk}
