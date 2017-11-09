@@ -74,7 +74,7 @@ The identity (\ref{eq:elem-id}) can be written more elegantly as:
   (1+t x_1) \dotsb (1+tx_n) = \sum_{i=0}^\infty e_i(x_1,\dotsb, x_n)t^i.
 \end{displaymath}
 
-Dually\footnote{We will refer to the replacing of $(1+u)$ by $(1-u)^{-1}$ in a formal identity as \emph{dualization}.}, the \emph{complete symmetric polynomials} are defined by the formal identity:
+Dually, the \emph{complete symmetric polynomials} are defined by the formal identity:
 \begin{displaymath}
   \frac 1{(1-x_1t)\dotsb (1-x_nt)} = \sum_{i=0}^\infty h_i(x_1,\dotsb, x_n)t^i.
 \end{displaymath}
@@ -236,16 +236,16 @@ Recall that the Young diagram of the partition $\lambda$ is the set of points
 \{(i, j)\mid 1\leq i\leq l,\; 1\leq j\leq \lambda_i\}.
 \end{displaymath}
 Visually, each node $(i,j)$ of the Young diagram is replaced by a box, and the box corresponding to $(i,j)$ is placed in the $i$th row and $j$th column (matrix notation).
-Thus, the Young diagram of $\lambda=(6, 5, 3, 3)$ is depicted by:
+Thus, the Young diagram of $\lambda=(6, 5, 3, 3)$ is:
 \ytableausetup{smalltableaux}
 \begin{displaymath}
   \ydiagram{6,5,3,3}
 \end{displaymath}
-Note that containment of partitions is nothing but the containment relation on their Young diagrams.
-By abuse of notation, we will also use $\lambda$ to denote the Young diagram of $\lambda$.
+The containment of partitions is nothing but the containment relation on their Young diagrams.
+Henceforth, for a partition $\lambda$, the symbol $\lambda$ will also be used to refer to its Young diagram.
 
-By a skew-shape, we mean a difference of Young diagrams $\lambda \setminus \mu$, where $\lambda \supset \mu$.
-We write $\lambda/\mu$ for this skew-shape.
+A \emph{skew-shape} is a difference of Young diagrams $\lambda \setminus \mu$, where $\lambda \supset \mu$.
+Write $\lambda/\mu$ for this skew-shape.
 A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical strip}) if it has at most one box in each vertical column (respectively, horizontal row).
 \begin{theorem}
   For every partition $\lambda$, and every positive integer $k$,
@@ -264,7 +264,7 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
   Let $\abc(\lambda)$ denote the set of all $n$-bead labeled abaci (see Section~\ref{sec:abaci}) of shape $\lambda$.
   Let $M(n,k)$ denote the set of all vectors $\alpha=(\alpha_1,\dots,\alpha_n)$ with non-negative integer coordinates and sum $k$.
   Set $\wt(\alpha)=x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
-  The first identity is equivalent to showing that:
+  Using the abacus interpretation of alternants (Theorem~\ref{theorem:abacus-alt}), the first identity is equivalent to showing:
   \begin{displaymath}
     \sum_{w\in \abc(\lambda)} \epsilon(w)\sum_{\alpha\in M(n,k)} \wt(\alpha) = \sum_\mu \sum_{w\in \abc(\mu)} \epsilon(w) \wt(w),
   \end{displaymath}
@@ -279,29 +279,30 @@ under a bijection that preserves weights and signs, and such that if $I(w, \alph
   To construct $I$, scan the abacus from left to right.
   Upon encountering a bead numbered $j$, move the bead $\alpha_j$ steps to the right, one step at a time.
   If this process completes without this bead colliding with another bead, $(w,\alpha)$ is a fixed point of $I$.
-  The new abacus $w^*$ has $\epsilon(w^*)=\epsilon(w)$ (the underlying permutation remains unchanged), and $\shape(w^*)/shape(w)$ is a horizontal strip of size $k$.
+  The new abacus $w^*$ has $\epsilon(w^*)=\epsilon(w)$ (the underlying permutation remains unchanged), and $\shape(w^*)/\shape(w)$ is a horizontal strip of size $k$.
 
-  However, suppose a collision does occur, say the first collision is when bead $j$ hits bead $k$ that is located $p\leq \alpha_j$ position to the right of its initial position.
+  However, suppose a collision does occur, say the first collision is when bead $j$ hits bead $k$ that is located $p\leq \alpha_j$ places to the right of its initial position.
   Define $I(w,\alpha) = (w',\alpha')$, where $w'$ is $w$ with the beads $i$ and $j$ interchanged, $\alpha'_j=\alpha_j-p$, $\alpha'_k=\alpha_k+p$ and all other coordinates of $\alpha$ and $\alpha'$ are equal.
   Clearly $w'$ has the opposite sign from $w$, and $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$.
-  One checks that $I(w',\alpha')=(w,\alpha)$.
+  It is not hard to see that $I(w',\alpha')=(w,\alpha)$.
   \begin{example}
     \label{example:bead-h}
     Let $n=6$, $\lambda=(3,3,2,2,0,0)$, $k=3$, and
     \begin{displaymath}
       (w, \alpha) = (51003204600\dotsb, (2, 1, 0, 0, 0, 0)). 
     \end{displaymath}
-    Reading the abacus from left to right, the first bead encountered is numbered $1$, which can be moved $2$ places to the right without any collisions.
+    Scanning the abacus from left to right, the first bead to be moved is numbered $1$.
+    It can be moved $2$ places to the right without any collisions.
     After that the bead numbered $2$ can be moved $1$ place to the right, again without collisions.
     So $(w,\alpha)$ is a fixed point for $I$.
     The new abacus $50013024600\dotsb$ has shape $(3,3,3,2,2,0)$ obtained by adding a horizontal $3$-strip to $(3, 3, 2, 2, 0, 0)$.
 
-    On the other hand, if $\alpha=(1, 1, 1, 0, 0, 0)$, then the first collision is of the bead numbered $3$ with the bead numbered $2$ in the very first step.
-    We have $I(w,\alpha) = (51002304600\dotsb, (1,2,0,0,0,0))$.
+    On the other hand, if $\alpha=(1, 1, 1, 0, 0, 0)$, then the first collision is of the bead numbered $3$ with the bead numbered $2$.
+    Interchanging the beads numbered $2$ and $3$, and modifying the weights as prescribed gives $I(w,\alpha) = (51002304600\dotsb, (1,2,0,0,0,0))$.
   \end{example}
 
   Let $N(n,k)$ denote the set of vectors $\alpha=(\alpha_1,\dotsc,\alpha_n)$ such that $\alpha_i\in \{0,1\}$ for each $i$, and $\alpha_1+\dotsb+\alpha_n=k$.
-  For elementary symmetric functions, we wish to prove:
+  In terms of Abaci, the second Pieri rule becomes:
   \begin{displaymath}
     \sum_{w\in \abc(\lambda)} \epsilon(w)\sum_{\alpha\in N(n,k)} \wt(\alpha) = \sum_\mu \sum_{w\in \abc(\mu)} \epsilon(w) \wt(w),
   \end{displaymath}
@@ -313,7 +314,8 @@ under a bijection that preserves weights and signs, and such that if $I(w, \alph
   Otherwise, if the first collision occurs with bead numbered $j$ colliding with bead numbered $k$, then define $w'$ to be $w$ with beads $j$ and $k$ interchanged.
   Also, since the $k$th bead was adjacent to the $j$th bead, it could not have been moved in its turn.
   So $\alpha_k=0$.
-  Let $\alpha'$ be obtained from $\alpha$ by interchanging $\alpha_k$ and $\alpha_j$.
+  Let $w'$ be the abacus obtained by interchanging beads numbered $k$ and $j$ in $w$, 
+  let $\alpha'$ be obtained by interchanging $\alpha_k$ and $\alpha_j$ in $\alpha$, and set $I(w,\alpha)=(w',\alpha')$.
 \end{proof}
   \begin{example}
   The pair $(51003204600\dotsb,(1,1,1,0,0,0))$ is a fixed point for $I$, and the shifted abacus is $(50100324600\dotsb)$ of shape $(3,3,3,3,1,0)$.
@@ -462,6 +464,7 @@ Semistandard tableaux of shape $\lambda'$ and type $\mu$ correspond to chains of
   \end{displaymath}
   where $\lambda^{(i)}/\lambda^{(i-1)}$ is a \emph{vertical} strip of size $\mu_i$.  
 \end{exercise}
+The method for computing elementary and complete functions from Schur functions illustrated in Examples~\ref{example:expansion-e} and \ref{example:expansion-h} can be expressed as follows:
 \begin{theorem}
   \label{theorem:schur-to-eh}
   The expansion of complete symmetric functions in terms of Schur functions is given by:
@@ -475,10 +478,8 @@ Semistandard tableaux of shape $\lambda'$ and type $\mu$ correspond to chains of
 \end{theorem}
 \subsection{Triangularity of Kostka Numbers}
 \label{sec:triang-kostka-numb}
-In this section we give a necessary and sufficient condition for the positivity of Kostka number.
-As usual, take $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_m)$.
-Suppose $K_{\lambda\mu}>0$.
-Then there exists a semistandard tableau $t$ of shape $\lambda$ and type $\mu$.
+Give partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_m)$, if $K_{\lambda\mu}>0$,
+then there exists a semistandard tableau $t$ of shape $\lambda$ and type $\mu$.
 Since the columns of $t$ are strictly increasing, all the $1$'s in $t$ must occur in its first row, so $\lambda_1\geq \mu_1$.
 Also, all the $2$'s must occur in the first two rows (along with all the $1$'s), so $\lambda_1+\lambda_2\geq \mu_1+\mu_2$.
 More generally, all the numbers $1,\dotsc, i$ for $i=1,\dotsc,m$ should occur in the first $m$ rows of $t$.
@@ -488,8 +489,8 @@ We have:
   \lambda_1+\dotsb + \lambda_i \geq \mu_1+\dotsb \mu_i \text{ for } i=1,\dotsc, m.
 \end{equation}
 \begin{definition}
-  We say that an integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ \emph{dominates} the integer partition $\mu=(\mu_1,\dotsc,\mu_m)$ $|\lambda|=|\mu|$ and if the condition (\ref{eq:dominance}) holds.
-  When this happens we write $\lambda\rhd \mu$.
+  The integer partition $\lambda$ \emph{dominates} the integer partition $\mu$ if $|\lambda|=|\mu|$ and (\ref{eq:dominance}) holds for $i=1,\dotsc,m$.
+  When this happens write $\lambda\rhd \mu$.
   This relation defines a partial order on the set of all integer partitions of $n$ for any non-negative integer $n$.
 \end{definition}
 \begin{exercise}
@@ -502,10 +503,9 @@ We have:
   Given partition $\lambda$ and $\mu$ of an integer $n$, $K_{\lambda\mu}>0$ if and only if $\lambda\rhd\mu$.
 \end{theorem}
 \begin{proof}
-  We have already seen that if $K_{\lambda\mu}>0$, then $\lambda \rhd \mu$.
-  While reading the proof of the converse, it is helpful to keep in mind Example~\ref{example:can-tab} below.
-  Suppose that $\lambda\rhd\mu$.
-  Then $\lambda_1\geq \mu_1\geq \mu_m$.
+  It only remains to construct, whenever $\lambda\rhd\mu$, a semistandard tableau of shape $\lambda$ and type $\mu$.
+  In order to undertsand the algorithm that follows, it is helpful to keep in mind Example~\ref{example:can-tab} below.
+  Since $\lambda\rhd\mu$, $\lambda_1\geq \mu_1\geq \mu_m$.
   Therefore, the Young diagram of $\lambda$ has at least $\mu_m$ cells in its first row, or in other words, it has at least $\mu_m$ columns.
   Choose the smallest integer $i$ for which $\lambda_i\geq\mu_m$.
   Fill the bottom-most box in the $\lambda_{i+1}$ leftmost columns with $m$.
@@ -528,7 +528,8 @@ We have:
                              & \geq \mu_1 + \dotsb + \mu_j.
   \end{align*}
   It follows that $\eta\rhd (\mu_1,\dotsc,\mu_{m-1})$.
-  The result now follows by induction in $m$.
+  Recursively applying this step to $\eta$ and $(\mu_1,\dotsc,\mu_{m-1})$ gives rise to a semistandard tableau of shape $\lambda$ and type $\mu$.
+  The base case is where $\mu$ has only one part, in which case the dominance condition (\ref{eq:dominance}) implies that $\lambda=\mu$.
 \end{proof}
 \begin{example}
   \label{example:can-tab}
@@ -562,60 +563,6 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
-\subsection{The hook-length formula}
-\label{sec:hook-length-fmla}
-Let $\lambda$ be a partition of $n$.
-The $f$-number $f_\lambda = K_{\lambda,(1^n)}$ is given by the hook-length formula:
-\begin{equation}
-  \label{eq:1hook-length-fmla}
-  f_\lambda = \frac{n!}{\prod_{(i,j)\in \lambda} h_{ij}}.
-\end{equation}
-Here $h_{ij}$ denotes the number of cells in the Young diagram of $\lambda$ that lie either to the right of $(i,j)$ in the $i$th row, or below $(i,j)$ in the $j$th column, including the cell $(i,j)$ itself.
-For example, the Young diagram of $\lambda=(6,5,3,3)$ with the hook lengths are entered into the cells is:
-\begin{displaymath}
-  \ytableaushort{987431,76521,432,321}.
-\end{displaymath}
-\begin{theorem}
-  [Frobenius dimension formula]
-  For every partition $\lambda$ of $n$,
-  \begin{displaymath}
-    f_\lambda = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}a_\delta(\lambda_1+n-1,\lambda_2+n-2,\dotsc,\lambda_n).
-  \end{displaymath}
-\end{theorem}
-\begin{proof}
-  Work with symmetric polynomials in $n$ variables.
-  The starting point of the proof of the Frobenius dimension formula is that $f_\lambda$ is the coefficient of $s_\lambda$ in the elementary symmetric function $e_{(1^n)} = (x_1+\dotsb+x_n)^n$ (by Theorem~\ref{theorem:schur-to-eh}).
-  In terms of alternating functions, we have that $f_\lambda$ is the coefficient of $a_{\lambda+\delta}$ in $(x_1+\dotsb+x_n)^na_\delta$.
-  This is the same as the coefficients of the strictly decreasing monomial $x^{\lambda+\delta}$ in $(x_1+\dotsb+x_n)^na_\delta$.
-  Expanding out the latter sing the multinomial theorem give:
-  \begin{displaymath}
-    \sum_{\alpha_1+\dotsb+\alpha_n=n} \sum_{w\in S_n} \frac{n!}{\alpha_1!\dotsb \alpha_n!} \epsilon(w) x_1^{\alpha_1+\delta_{w(1)}} x_2^{\alpha_2+\delta_{w(2)}} \dotsb x_n^{\alpha_n+\delta_{w(n)}}.
-  \end{displaymath}
-  The coefficient of $x^{\lambda+\delta}$ in the above sum is:
-  \begin{displaymath}
-    \sum_{\alpha, w} \frac{n!}{\alpha_1!\dotsb \alpha_n!}\epsilon(w),
-  \end{displaymath}
-  the sum being over all vectors $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with non-negative integer coordinates summing to $n$ such that:
-  \begin{equation}
-    \label{eq:alpha-la}
-    \alpha_i + \delta_{w(i)} = \lambda_i + \delta_i.
-  \end{equation}
-  
-  Mutliplying and dividing by the desired denominator of the Frobenius dimension formula gives:
-  \begin{align*}
-    f_\lambda & = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}\sum_{\alpha,w} \epsilon(w) \prod_{i=1}^n \frac{(\lambda_i + \delta_i)!}{\alpha_i!}\\
-    & = \frac{n!}{\prod_{i=1}^n(\lambda_1 + n - i)!}\sum_{w\in S_n} \epsilon(w)\prod_{i=1}^n (\lambda_i+\delta_i)(\lambda_i+\delta-1)\dotsb (\lambda_i+\delta_i-\delta_{w(i)} + 1),
-  \end{align*}
-  where the second step uses the identity (\ref{eq:alpha-la}) relation $\lambda$ and $\alpha$.
-  The condition that $\alpha\geq 0$ for each $i$ is now automatically taken care of, since one of the factors in the product
-  \begin{displaymath}
-    (\lambda_i+\delta_i)(\lambda_i+\delta-1)\dotsb (\lambda_i+\delta_i-\delta_{w(i)} + 1)
-  \end{displaymath}
-  will be zero if $\alpha_i=\lambda_i+\delta_i-\delta_{w(i)}<0$.
-
-  Setting $f_j(x) = x(x-1)\prod (x-j+1)$, the above expression for $f_\lambda$ becomes the determinant:
-
-\end{proof}
 \subsection{Schensted's insertion algorithm}
 \label{sec:schenst-insert-algor}
 Let $t$ be a semistandard tableau, and $x$ be a positive integer.
@@ -637,12 +584,12 @@ In the second case, one says that \emph{$x$ has been inserted into $t=a_1\dotsb 
 Also, it is notationally convenient to write $\rins(t, \emptyset) = (\emptyset, t)$ (when nothing is inserted, $t$ remains unchanged, and nothing is bumped out).
 
 Now suppose $t$ is a tableau, with rows $r_1,r_2,\dotsc, r_l$.
-The reading word of $t$ is $r_l r_{l-1} \dotsb r_1$.
 Suppose that $\rins(r_1,x) = (y, r_1')$.
 Recursively define:
 \begin{displaymath}
-  \ins(t, x) = \ins(r_l \dotsb r_2, y) r_1'
+  \ins(t, x) = \ins(t', y) r_1',
 \end{displaymath}
+where $t'$ is the tableau with rows $r_1,\dotsc,r_{l-1}$.
 \begin{example}
   \label{example:insertion}
   Consider the insertion of $3$ into the tableau:
@@ -660,7 +607,7 @@ For example, the above tableau can be obtained by inserting $3$ into a different
   \ins\left(\vcenter{\hbox{\ytableaushort{13368,245,356,48}}}, 3\right) = \vcenter{\hbox{\ytableaushort{13338,2456,356,48}}}.
 \end{displaymath}
 \end{example}
-Clearly, the shape of $\ins(t,x)$ can be obtained by adding one box to the shape of $t$.
+Clearly, the shape of $\ins(t,x)$ is obtained by adding one box to the shape of $t$.
 If we know the row into which the new box was added, and the value of $x$, then $t$ can be recovered from $\ins(t,x)$.
 This recovery is based on the fact that $\rins$ can be inverted:
 define
@@ -684,13 +631,14 @@ The preceding discussion shows:
 \end{exercise}
 \subsection{Tableaux and Words}
 \label{sec:tabl-assoc-word}
-Let $L^*_n$ denote the concatenation monoid of all words in the alphabet $\{1,\dotsc,n\}$.
+Let $L^*_n$ denote the concatenation monoid of all words in the alphabet $L_n\{1,\dotsc,n\}$.
 For any $w=a_1\dotsb a_k\in L^*_n$, Schensted's insertion algorithm allows us to associate a unique semistandard tableau $P(w)$ as follows:
 \begin{itemize}
 \item If $w=a$ has only one letter, then $P(a)$ is the single-cell tableau with entry $a$.
 \item If $w=ua$, where $u\in L_n^*$ and $a\in \{1,\dotsc,n\}$, then \linebreak $P(w)=\ins(P(u), a)$.
 \end{itemize}
 \begin{example}
+  \label{example:insertion}
   If $w=1374433254$, then $P(w)$ is the tableau:
   \begin{displaymath}
     \ytableaushort{12334,345,4,7}
@@ -700,18 +648,18 @@ For any $w=a_1\dotsb a_k\in L^*_n$, Schensted's insertion algorithm allows us to
 Given a semistandard tableau $t$, its reading word $w$ is defined to be the sequence of numbers obtained from reading its rows from left to right, starting with the bottom row, and moving up sequentially to the top row.
 Since the first entry of each row is strictly smaller than the last entry of the row below it, the tableau $t$ can be recovered from $w$ by chopping it up into segments with a cut after each $a_i$ with $a_{i+1}<a_i$ (we say that $w$ has a descent at $i$). The resulting segments, taken from right to left, form the rows of $t$.
 \begin{example}
-  The reading word of the tableau $t$ formed at the end of Example~\ref{example:can-tab} is:
+  The reading word of the tableau $t$ formed at the end of Example~\ref{example:insertion} is:
   \begin{displaymath}
-    w = 332231111223.
+    w = 7434512334.
   \end{displaymath}
-  The tableau $t$ is recovered by marking off the descents $w = 333|223|1111223$, and then rearranging the segments into a tableau.
+  The tableau $t$ is recovered by marking off the descents $w = 7|4|345|12334$, and then rearranging the segments into a tableau.
 \end{example}
 \begin{exercise}
   \label{exercise:tableau-word}
   Let $w$ denote the reading word of a tableau $t$.
   Show that $P(w)=t$.
 \end{exercise}
-Not every word comes from a tableau; for example the word $132$, when broken up at descents gives rise to $\ytableaushort{2,13}$.
+Not every word comes from a semistandard tableau; for example the word $132$, when broken up at descents gives rise to $\ytableaushort{2,13}$.
 We shall say that a word is a tableau if it is the reading word of a semistandard tableau.
 
 Call the word $w=a_1\dotsb a_k$ a \emph{row} if $a_1\leq \dotsb \leq a_k$.
@@ -734,8 +682,9 @@ If $w_1$ and $w_2$ are words, and $w_1w_2$ is their concatenation, then
 \end{displaymath}
 This gives rise to an algebra homomorphism called the \emph{evaluation map}:
 \begin{displaymath}
-\ev:\mathbf Z[L_n^*]\to \mathbf Z[x_1,\dotsc, x_n].
+\ev:\mathbf Z[L_n^*]\to \mathbf Z[x_1,\dotsc, x_n]
 \end{displaymath}
+from the monoid algebra of $L_n^*$ onto the ring of polynomials in $n$ variables.
 In the algebra $\mathbf Z[L_n^*]$, define elements
 \begin{align*}
   \mathbf H_k & = \sum_{\text{$w\in L_n^*$ is a row of length $k$}} w\\
@@ -748,7 +697,7 @@ Then Exercise~\ref{exercise:row-col} can be restated as the identities:
 \end{displaymath}
 The evaluation map has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
 The algebra on the right contains our primary object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
-In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $L_n^*$ such that the resulting quotient monoid $\pl(L_n):=L_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl(L_n)]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $L_n^*$, called \emph{Knuth equivalence}, such that the resulting quotient monoid $\pl(L_n):=L_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl(L_n)]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
 \subsection{The Plactic Monoid}
 \label{sec:plactic-monoid}
 The plactic monoid $\pl(L_n)$ is the quotient of $L^*_n$ by the equivalence relation generated by the Knuth relations:
@@ -789,17 +738,21 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   \label{lemma:two-step}
   Let $t$ be the (the reading word of) a semistandard tableau in $L_n^*$ and $x,y$ be letters in $L_n$.
   Let $t'=\ins(t,x)$ and $t''=\ins(t',y)$.
-  Let $a$ be the box added to $\shape(t')$ to obtain $\shape(t'')$, and $b$ be the box added to $\shape(t)$ to obtain $\shape(t')$.
+  Let $a$ be the box added to $\shape(t)$ to obtain $\shape(t')$, and $b$ be the box added to $\shape(t')$ to obtain $\shape(t'')$.
   If $x\leq y$, then $b$ lies in a column strictly to the right of the column of $a$.
   If $x>y$, then $b$ lies in a row strictly below the row of $a$.
 \end{lemma}
 \begin{proof}
   Let $a_1\dotsb a_k$ be the first row of $t$.
-  Consider first the case where $a\leq y$.
+
+  Suppose $x\leq y$.
+  Consider first the case where $a_k\leq y$.
   If $a_k\leq x\leq y$, then the result is obvious.
   If $x<a_k$ and $y\geq a_k$, then $b$ lies in the $(k+1)$st column, whereas $x$ bumps some letter $x'\leq y$ to a lower row.
   This letter cannot come to rest in the $(k+1)$st column because that would violate the fact that columns increase strictly in a semistandard tableau.
-  If $y<a_k$ as well, then $x$ bumps out $x'$ and $y$ bumps out $y'$ with $x'\leq y'$.
+
+  Now consider the case where $a_k>y$.
+  Then $x$ bumps out $x'$ and $y$ bumps out $y'$ with $x'\leq y'$.
   The problem is now reduced to the tableau obtained by removing the top row of $t$, allowing for the application of induction.
   In the base case (where the original tableau $t$ is a row), $a$ and $b$ are the first and second boxes in the second row of $t''$.
 
@@ -839,8 +792,8 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   Define $S_\lambda = \sum_{t\in \Tab_n(\lambda)} x^t$.
   Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur functions.
   Moreover, the class of functions $S_\lambda$ satisfy the Pieri rule, just like the Schur function.
-  This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$ (since the proof only uses properties that are common to $s_\lambda$ and $S_\lambda$.
-  By the triangularity properties of of Kostka numbers described in Section~\ref{sec:triang-kostka-numb}, these identities uniquely determine the Schur functions, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
+  This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$.
+  By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur functions, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
 \end{proof}
 \subsection{Greene's Theorem}
 \label{sec:greenes-theorem}
@@ -860,7 +813,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
   Let $l'_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint strictly decreasing subwords of $w$.
 \end{definition}
 \begin{example}
-  If $w=2133$, then $l_1(3)=2$, $l_k(w)=4$ for all $k\geq 2$.
+  If $w=2133$, then $l_1(w)=3$, $l_k(w)=4$ for all $k\geq 2$.
   Also, $l'_1(w) = 2$, $l'_2(w)=3$, and $l'_k(w)=4$ for all $k\geq 3$.
 \end{example}
 \begin{theorem}
@@ -868,7 +821,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
   \label{theorem:Greene}
   Given a word $w$, define a partition $\lambda=(\lambda_1,\lambda_2,\dotsc)$ by $\lambda_k=l_k(w)-l_{k-1}(w)$ for each $k\geq 1$.
   Then $\lambda$ is the shape of $P(w)$.
-  Moreover, if $\lambda'_k=l'_k(w)-l'_{k-1}(w)$ for each $k\geq 1$, then $\lambda'=(\lambda'_1,\lambda'_2,\dotsc)$ is the partition conjugate to $\lambda$.
+  Moreover, if $\mu'_k=l'_k(w)-l'_{k-1}(w)$ for each $k\geq 1$, then $\mu=(\mu_1,\mu_2,\dotsc)$ is the partition conjugate to $\lambda$.
 \end{theorem}
 \begin{proof}
   Greene's theorem follows by putting together two relatively simple observations---the first is that the Greene invariants $l_k(w)$ and $l'_k(w)$ remain unchanged when either of the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}) is applied to $w$.
@@ -1072,7 +1025,32 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   \end{displaymath}
   proving the second Jacobi-Trudi identity.
 \end{proof}
-\subsection{Giambelli's identity}
+\subsection{Skew-Schur Functions}
+\label{sec:skew-schur-functions}
+In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(1,\dotsc, l)$, we used:
+\begin{align*}
+  A_i & = (l-i, 1),\\
+  B_i & = (\lambda_i+l-i, n)
+\end{align*}
+for $i=1,\dotsc, l$.
+Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu_i\subset \lambda_i$, then we can take:
+\begin{align*}
+  A_i & = (\mu_i+l-i, n),\\
+  B_i & = (\lambda_i+l-1, n).
+\end{align*}
+Consider a collection of non-crossing paths $\omega_i:A_i\to B_i$, $i=1,\dotsc,l$.
+The path $\omega_i$ has $\lambda_i-\mu_i$ horizontal steps.
+If these steps occur in rows $1\leq k_1\leq \dotsb \leq k_{lambda_i-\mu_i}\leq n$, then enter the integers $k_1,\dotsc,k_{\lambda_i-\mu_i}$ into the $i$th row of the skew-shape.
+As in the proof of the first Jacobi-Trudi identity, this results in a semistandard tableau of skew-shape $\lambda/\mu$.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{skew_jth.png}
+  \caption{Non-crossing path configuration corresponding to $\ytableaushort{{}{}3,{}1,{}4,2}$}
+  \label{fig:skew-jth}
+\end{figure}
+For an example, see Figure~\ref{fig:skew-jth}.
+
+\subsection{Giambelli's Identity}
 \label{sec:giambelli}
 \begin{definition}
   [Frobenius coordinates]

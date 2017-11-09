@@ -31,6 +31,12 @@ def path(n, startj, steps):
 # for u, i in enumerate([6, 4, 3, 1]):
 #     G += circle((i, 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i, 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (3-u, 0.6), color='blue', fontsize=14) + circle((3-u, 1), 0.05, fill=True, color="blue") 
 
+# for the tableau [[*, *, 3], [*, 4], [*,5], [5]]
+G = jacobi1(5, 7) + path(5, 5, 'uuruu') + path(5, 3, 'ruuuu') + path(5, 2, 'uuuru') + path(5, 0, 'uruuu')
+for u, i in enumerate([(6,5), (4,3), (3,2), (1,0)]):
+    G += circle((i[0], 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i[0], 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (i[1], 0.6), color='blue', fontsize=14) + circle((i[1], 1), 0.05, fill=True, color="blue") 
+
+
 def jacobi2(n, k):
     G = Graphics()
     for i in range(k):
@@ -58,9 +64,9 @@ def path2(starti, path):
         now = nxt
     return G
 
-G = jacobi2(5, 7) + path2(2, 'rrrur') + path2(1, 'ruurr') + path2(0, 'uuruu')
-for u, i in enumerate([6, 4, 1]):
-    G += circle((i, 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i, 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (2-u, -0.4), color='blue', fontsize=14) + circle((2-u, 0), 0.05, fill=True, color="blue") 
+# G = jacobi2(5, 7) + path2(2, 'rrrur') + path2(1, 'ruurr') + path2(0, 'uuruu')
+# for u, i in enumerate([6, 4, 1]):
+#     G += circle((i, 5), 0.05, fill=True, color = "blue") + text('$B_%s$'%(u+1), (i, 5.4), color="blue", fontsize=14) + text('$A_%s$'%(u+1), (2-u, -0.4), color='blue', fontsize=14) + circle((2-u, 0), 0.05, fill=True, color="blue") 
 
 
 def giambelli(n,k):
