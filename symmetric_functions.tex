@@ -1,8 +1,11 @@
-\documentclass[11pt]{amsart}
+\documentclass[11pt]{amsproc}
 \usepackage{ytableau,graphicx,xypic,hyperref}
 \xyoption{all}
 \title{An Introduction to Schur Polynomials}
 \author{Amritanshu Prasad}
+\address{The Institute of Mathematical Sciences, Chennai.}
+\address{Homi Bhabha National Institute, Mumbai.}
+\email{amri@imsc.res.in}
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -477,7 +480,7 @@ The method for computing elementary and complete polynomials from Schur polynomi
 \end{theorem}
 \subsection{Triangularity of Kostka Numbers}
 \label{sec:triang-kostka-numb}
-Give partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_m)$, if $K_{\lambda\mu}>0$,
+If partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_m)$ have $K_{\lambda\mu}>0$,
 then there exists a semistandard tableau $t$ of shape $\lambda$ and type $\mu$.
 Since the columns of $t$ are strictly increasing, all the $1$'s in $t$ must occur in its first row, so $\lambda_1\geq \mu_1$.
 Also, all the $2$'s must occur in the first two rows (along with all the $1$'s), so $\lambda_1+\lambda_2\geq \mu_1+\mu_2$.
@@ -503,7 +506,7 @@ We have:
 \end{theorem}
 \begin{proof}
   It only remains to construct, whenever $\lambda\rhd\mu$, a semistandard tableau of shape $\lambda$ and type $\mu$.
-  In order to undertsand the algorithm that follows, it is helpful to keep in mind Example~\ref{example:can-tab} below.
+  In order to understand the algorithm that follows, it is helpful to keep in mind Example~\ref{example:can-tab} below.
   Since $\lambda\rhd\mu$, $\lambda_1\geq \mu_1\geq \mu_m$.
   Therefore, the Young diagram of $\lambda$ has at least $\mu_m$ cells in its first row, or in other words, it has at least $\mu_m$ columns.
   Choose the smallest integer $i$ for which $\lambda_i\geq\mu_m$.
@@ -776,7 +779,7 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   \end{displaymath}
 \end{theorem}
 \begin{proof}
-  Lemma~\ref{lemma:two-step} implies that $\shape(P(wr))$ is obtained from $\shape(P(w))$ by adding a horizontal strip, and that $\shape(P(wc))$ is obtained from \linebreak $\shape(P(w))$ by adding a vertical strip.
+  Lemma~\ref{lemma:two-step} implies that $\shape(P(wr))$ is obtained from\linebreak $\shape(P(w))$ by adding a horizontal strip, and that $\shape(P(wc))$ is obtained from $\shape(P(w))$ by adding a vertical strip.
   The bijectivity can be shown by repeated used of the $\del$ algorithm (because we know which box from $\mu$ has to be removed at each step).
 \end{proof}
 \begin{corollary}
@@ -840,7 +843,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
   Then the top $k$ rows of $w$ form a union of $k$ pairwise disjoint weakly increasing subwords of total size $\lambda_1+\dotsb+\lambda_k$.
   Also, if $v$ is a weakly increasing subword of $w$, then the fact that the columns of $t$ are strictly increasing (and that the rows are read from \emph{bottom to top}) implies that $v$ cannot contain more than one element from each column of $w$.
   Therefore, any collection of $k$ pairwise disjoint weakly increasing subwords of $w$ can have at most $k$ entries in each column of $w$.
-  Thus no union of $k$ pairwise disjoint weakly incresing subwords of $w$ can have cardinality more than $\lambda_1+\dotsb+\lambda_k$
+  Thus no union of $k$ pairwise disjoint weakly increasing subwords of $w$ can have cardinality more than $\lambda_1+\dotsb+\lambda_k$
   Therefore, $l_k(w)=\lambda_1+\dotsb+\lambda_k$.
 
   Similarly, the leftmost $k$ columns of $w$ (read bottom to top) form a union of $k$ pairwise disjoint strictly decreasing subwords of $w$, and any such union can only contain $k$ elements from each row.
@@ -849,7 +852,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
-Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $w$ as a \emph{weight function}.
+Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $w$ as a \emph{weight function}).
 Given $s, t\in S$, a path in $S$ from $s$ to $t$ is is a sequence $\omega=(s=s_0,s_1,\dotsc,s_k=t)$ of distinct points in $S$.
 We denote this by $\omega:s\to t$.
 The weight of the path $\omega$ is defined to be:
@@ -897,9 +900,9 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
     \label{eq:det-expansion}
     \sum_{\bar\omega\in P} \epsilon(\bar\omega)v(\bar\omega).
   \end{equation}
-  The cancelling involution $I:P\to P$ is defined by \emph{uncrossing the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
+  The cancelling involution $I:P\to P$ is defined by \emph{swapping the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
   In this case the crossing condition implies that $w$ is the identity permutation.
-  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path $\omega_j=(t_0,\dotsc,t_l)$.
+  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $j$ such that $\omega_j=(t_0,\dotsc,t_l)$ crosses $\omega_i$.
   Let $m$ be the smallest number such that a point $s_m$ of $\omega_i$ lies in the path $\omega_j$, say $s_m=t_r$.
   Let $I(\bar\omega)$ be the family of paths obtained from $\bar\omega$ by modifying $\omega_i$ and $\omega_j$ to $\omega'_i$ and $\omega'_j$ as follows:
   \begin{align*}
@@ -907,6 +910,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
     \omega'_j & = (t_0,\dotsc, t_r, s_{m+1}, \dotsc, s_k).
   \end{align*}
   Clearly, $v(I(\bar\omega)) = v(\bar\omega)$ and $\epsilon(I(\bar\omega)) = - \epsilon(\bar\omega)$.
+  It is not hard to see that $I$ is an involution.
   This involution cancels out all the terms in (\ref{eq:det-expansion}) except those that occur on the right hand side of (\ref{eq:lgv}).
 \end{proof}
 \subsection{The Jacobi-Trudi Identities}
@@ -960,7 +964,7 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
     \label{fig:jacobi-trudi}
   \end{figure}
   So the left-hand-side of the first Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
-  The right hand side of the Linstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  The right hand side of the Lindstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
   Reading the row numbers of the horizontal steps in $\omega_i$ gives a weakly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda_i}\leq n$.
   Enter these numbers into the $i$th row of the Young diagram of $\lambda$ for $i=1,\dotsc,n$.
   Since the paths are non-crossing, the $j$th rightward step of $\omega_i$ must be strictly higher than the $j$th rightward step of $\omega_{i+1}$.
@@ -1004,7 +1008,7 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
   \end{displaymath}
   So the left-hand-side of the second Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
 
-  The right hand side of the Linstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
+  The right hand side of the Lindstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
   Reading the row numbers where the upper-rightward steps in $\omega_i$ originate gives a strictly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda'_i}\leq n$.
   Enter these numbers into the $i$th column of the Young diagram of $\lambda$.
   Since the paths are non-crossing, the $j$th upper-rightward step of $\omega_i$ must be no lower than the $j$th upper-rightward step of $\omega_{i+1}$.
@@ -1030,14 +1034,14 @@ In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=
   B_i & = (\lambda_i+l-i, n)
 \end{align*}
 for $i=1,\dotsc, l$.
-Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu_i\subset \lambda_i$, then we can take:
+Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu\subset \lambda$, then we can take:
 \begin{align*}
   A_i & = (\mu_i+l-i, n),\\
   B_i & = (\lambda_i+l-1, n).
 \end{align*}
 Consider a collection of non-crossing paths $\omega_i:A_i\to B_i$, $i=1,\dotsc,l$.
 The path $\omega_i$ has $\lambda_i-\mu_i$ horizontal steps.
-If these steps occur in rows $1\leq k_1\leq \dotsb \leq k_{lambda_i-\mu_i}\leq n$, then enter the integers $k_1,\dotsc,k_{\lambda_i-\mu_i}$ into the $i$th row of the skew-shape.
+If these steps occur in rows $1\leq k_1\leq \dotsb \leq k_{\lambda_i-\mu_i}\leq n$, then enter the integers $k_1,\dotsc,k_{\lambda_i-\mu_i}$ into the $i$th row of the skew-shape.
 As in the proof of the first Jacobi-Trudi identity, this results in a semistandard tableau of skew-shape $\lambda/\mu$.
 \begin{figure}[h]
   \centering 
@@ -1071,10 +1075,10 @@ A modification of the proof of the second Jacobi-Trudi identity gives:
 \begin{definition}
   [Frobenius coordinates]
   Let $\lambda=(\lambda_1,\dotsc,\lambda_l)$ be a partition.
-  Its \emph{Drufee rank} $d$ is defined to be the largest integer $i$ such that $(i,i)$ lies in the Young diagram of $\lambda$.
+  Its \emph{Durfee rank} $d$ is defined to be the largest integer $i$ such that $(i,i)$ lies in the Young diagram of $\lambda$.
   Let $\alpha_i$ denote the number of cells in the $i$th row that lie strictly to the right of $(i,i)$ in the Young diagram of $\lambda$.
   Similarly let $\beta_i$ denote the number of cells in the $i$th column that lie strictly below $(i,i)$.
-  Clearly $\alpha_1>\dotsb>\alpha_d$, $\beta_1>\dotsb>\beta_d)$, and the Young diagram of $\lambda$ can be recovered from the data $(\alpha|\beta)=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$, which are called the \emph{Frobenius coordinates} of $\lambda$\footnote{While constructing the character tables of symmetric groups, Frobenius used these coordinates to index the irreducible representation, while he used the ordinary coordinates to index the congugacy classes.}.
+  Clearly $\alpha_1>\dotsb>\alpha_d$, $\beta_1>\dotsb>\beta_d)$, and the Young diagram of $\lambda$ can be recovered from the data $(\alpha|\beta)=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$, which are called the \emph{Frobenius coordinates} of $\lambda$\footnote{While constructing the character tables of symmetric groups, Frobenius used these coordinates to index the irreducible representation, while he used the ordinary coordinates to index the conjugacy classes.}.
 \end{definition}
 \begin{example}
   The hook partition $(a+1,1^b)$ has Frobenius coordinates $(a|b)$.
@@ -1130,7 +1134,7 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
     v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j \leq n.
   \end{align*}
   All other weights are set to zero.
-  A path from $(-(b-1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandaed tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
+  A path from $(-(b-1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandard tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
   For instance, the path in Fig.~\ref{fig:giambelli} from $(-4,6)$ to $(3,5)$ corresponds to the tableau $\ytableaushort{1113,2,4,5}$.
 
   Thus, setting $A_i=(-(\beta_i-1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
@@ -1165,7 +1169,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{lemma}
 \begin{proof}
   The proof is an application of Greene's theorem (Theorem~\ref{theorem:Greene}).
-  Any weakly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with repititions of up to $a_{i_1j_1},\dotsc, a_{i_rj_r}$ respectively, with $i_1\leq \dotsb \leq i_r$ and $j_1\leq \dotsc\leq j_r)$.
+  Any weakly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with repetitions of up to $a_{i_1j_1},\dotsc, a_{i_rj_r}$ respectively, with $i_1\leq \dotsb \leq i_r$ and $j_1\leq \dotsc\leq j_r)$.
   If $A$ is an $m\times n$ matrix, its entries are indexed by the rectangular lattice $P_{mn} = \{(i,j)\mid 1\leq i\leq m,\;1\leq j\leq n\}$ which may be regarded as a poset under $(i,j)\leq (i',j')$ if $i\leq i'$ and $j\leq j'$.
   It follows that
   \begin{displaymath}
@@ -1188,6 +1192,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   [Knuth's theorem]
   \label{theorem:knuth}
   Let $\mathbf M_{\mu\nu}$ denote the set of integer matrices with non-negative entries, row sums $(\mu_1,\dotsc, \mu_m)$, column sums $(\nu_1,\dotsc,\nu_n)$.
+  Let $\Tab(\lambda,\mu)$ denote the set of semistandard tableaux of shape $\lambda$ and type $\mu$.
   Then $\rsk$ gives rise to a bijection:
   \begin{equation}
     \label{eq:rsk}
@@ -1239,7 +1244,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   Obviously $\mu/\lambda$ is a horizontal strip.
   Applying the inverse of the first bijection in Theorem~\ref{theorem:plactic-pieri} recovers $t_1$ and $r$.
 
-  Combining the bijections (\ref{eq:bij1}) and (\ref{eq:bij2}) gives rise to thr RSK correspondence, which is therefore also a bijection.
+  Combining the bijections (\ref{eq:bij1}) and (\ref{eq:bij2}) gives rise to the RSK correspondence, which is therefore also a bijection.
 
   The proof for the bijectivity of $\rsk^*$ is similar (although with a few twists) and is left as an interesting exercise to the reader.
 \end{proof}
@@ -1292,7 +1297,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \begin{displaymath}
     C_{\alpha\beta} = \{\tbinom AB\mid P(v_A)=t_\alpha\text{ and } P(v_B)=t_\beta\}.
   \end{displaymath}
-  Define a monoid homomorphis $\pi_a:L_{a+b}^*\to L_a$ by taking $\pi_a(w)$ to be the word obtained by discarding all letters in $w$ that are not in $\{1,\dotsc,a\}$.
+  Define a monoid homomorphism $\pi_a:L_{a+b}^*\to L_a$ by taking $\pi_a(w)$ to be the word obtained by discarding all letters in $w$ that are not in $\{1,\dotsc,a\}$.
   Also define $\pi_b:L_{a+b}^*\to L_b^*$ by taking $\pi_b(w)$ to be the word obtained discarding all letters in $w$ that are not in $\{a+1,\dotsc, a+b\}$, and then replacing the letter $a+i$ by $i$.
   It is not hard to see that $\pi_a$ and $\pi_b$ preserve the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}).
   The words $v_A$ and $v_B$ are obtained from $v_C$ as follows:
@@ -1310,8 +1315,9 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \end{align*}
   the disjoint union being over
   \begin{displaymath}
-    \{t\in \Tab(L_{a+b})\mid \pi_a(t)=t_\alpha \text{ and } \pi_b(t)\equiv t_\beta\}.
+    \{t\in \Tab(L_{a+b})\mid \pi_a(t)=t_\alpha \text{ and } \pi_b(t)\equiv t_\beta\},
   \end{displaymath}
+  Here $\Tab(L_n)$ is used to denote the set of all semistandard tableaux in $L_n^*$.
   Let $t$ be a tableau $t$ in the above set of shape $\lambda$.
   The entries of this tableau in the cells of $\alpha$ are completely fixed by the condition $\pi_a(t)=t_\alpha$.
   Subtracting $a$ from the remaining entries gives rise to a skew-tableau of shape $\lambda/\alpha$ whose reading word is equivalent to $t_\beta$.
@@ -1372,9 +1378,9 @@ Littlewood-Richardson coefficients also answer the question of expanding skew-Sc
 \end{exercise}
 \subsection{Sources}
 \label{sec:notes-literature}
-The arrangement and selection of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is detailed in Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's lectures at The Institute of Mathematical Sciences, Chennai in 2016 \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. Also my use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out most of the standard references in the area, and should not be regarded as a list of my own readings while preparing  these notes.
+The arrangement and selection of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is detailed in Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's lectures at The Institute of Mathematical Sciences, Chennai in 2016 \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. Also my use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out most of the standard references in the area, and is merely a list of my own readings while preparing these notes.
 
-Many details of proofs and perpectives emerged in discussions with Digjoy Paul.
+Many details of proofs and perspectives emerged in discussions with Digjoy Paul.
 I also benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
 \bibliographystyle{abbrv}
 \bibliography{refs}
