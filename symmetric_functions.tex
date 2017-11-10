@@ -1,7 +1,7 @@
 \documentclass[11pt]{amsart}
-\usepackage{ytableau,graphicx, xypic}
+\usepackage{ytableau,graphicx,xypic,hyperref}
 \xyoption{all}
-\title{An Introduction to Schur Functions}
+\title{An Introduction to Schur Polynomials}
 \author{Amritanshu Prasad}
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -43,13 +43,13 @@ where, for any permutation $w\in S_n$,
   c_{(\alpha_1,\dotsc,\alpha_n)} = c_{(\alpha_{w(1)},\dotsc,\alpha_{w(n)})}.
 \end{displaymath}
 The integer partition $\lambda$ obtained by sorting the coordinates of $\alpha$  is called the \emph{shape} of $\alpha$, denoted $\lambda(\alpha)$.
-The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric function}, defined for each integer partition $\lambda$:
+The most obvious example of a symmetric polynomial in $n$ variables is the \emph{monomial symmetric polynomial}, defined for each integer partition $\lambda$:
 \begin{displaymath}
   m_\lambda = \sum_{\lambda(\alpha) = \lambda} x^\alpha.
 \end{displaymath}
 Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts of $\lambda$).
 \begin{exercise}
-  Take $n=4$. Compute the monomial symmetric functions $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
+  Take $n=4$. Compute the monomial symmetric polynomials $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
 \end{exercise}
 \begin{theorem}
 The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
@@ -112,7 +112,7 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   \end{displaymath}
 \end{theorem}
 \begin{proof}
-  To prove the second identity involving elementary symmetric functions, note that a monomial in the expansion of
+  To prove the second identity involving elementary symmetric polynomials, note that a monomial in the expansion of
   \begin{displaymath}
     e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}}
   \end{displaymath}
@@ -121,9 +121,9 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   if the summand $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$ to be $1$ (the remaining entries of the $i$th row are $0$).
   Clearly the $i$th row of such a matrix sums to $\lambda_i$.
   The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in the monomial corresponding to the $i$gth row is $\mu_j$. This is just the sum of the $j$th column of the matrix $(a_{ij})$.
-  It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric functions of degree $n$, is $N_{\lambda\mu}$.
+  It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric polynomials of degree $n$, is $N_{\lambda\mu}$.
 
-A similar proof can be given for the first identity involving complete symmetric functions. The only difference is that variables may be repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
+A similar proof can be given for the first identity involving complete symmetric polynomials. The only difference is that variables may be repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
 \end{proof}
 \subsection{Alternating Polynomials}
 \label{sec:alt-poly}
@@ -195,7 +195,7 @@ The shape of the abacus, $\shape(w)$ is the unique partition $\lambda$ such that
 \begin{proof}
   The theorem follows from the expansion of the determinant.
 \end{proof}
-\subsection{Cauchy's Bialternant Form of a Schur Function}
+\subsection{Cauchy's Bialternant Form of a Schur Polynomial}
 \label{sec:cauchys-bialt-form}
 The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
 \begin{displaymath}
@@ -208,23 +208,23 @@ The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$
   \label{exercise:vandermonde-iso}
   Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$.
 \end{exercise}
-This motivates the historically oldest definition of Schur functions---\emph{Cauchy's bialternant formula}:
+This motivates the historically oldest definition of Schur polynomials---\emph{Cauchy's bialternant formula}:
 \begin{equation}
   \label{eq:schur}
   s_\lambda(x_1,\dotsc,x_n) = a_{\lambda+\delta}/a_\delta,
 \end{equation}
 for any partition $\lambda$ with at most $n$ parts.
 If $\lambda$ has more than $n$ parts, set $s_\lambda(x_1,\dotsc,x_n) =0$.
-This is clearly a symmetric function of degree $|\lambda|$.
+This is clearly a symmetric polynomial of degree $|\lambda|$.
 \begin{theorem}
-  As $\lambda$ runs over all integer partitions of $d$ with at most $n$ parts, the Schur functions $s_\lambda(x_1,\dotsc,x_n)$ form a basis of the space of all homogeneous symmetric functions in $x_1,\dotsc,x_n$ of degree $d$.
+  As $\lambda$ runs over all integer partitions of $d$ with at most $n$ parts, the Schur polynomials $s_\lambda(x_1,\dotsc,x_n)$ form a basis of the space of all homogeneous symmetric polynomials in $x_1,\dotsc,x_n$ of degree $d$.
 \end{theorem}
 \begin{proof}
   This follows from Exercises~\ref{exercise:alt-basis} and~\ref{exercise:vandermonde-iso}.
 \end{proof}
 \begin{exercise}
-  [Stability of Schur functions]
-  Show that substituting $x_n=0$ in the Schur function $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur function $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
+  [Stability of Schur polynomials]
+  Show that substituting $x_n=0$ in the Schur polynomial $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur polynomial $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
 \end{exercise}
 \subsection{Pieri's rule}
 \label{sec:pieri}
@@ -260,7 +260,6 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
   where the sum runs over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a vertical strip of size $k$.
 \end{theorem}
 \begin{proof}
-  We reproduce an elegant proof due to Loehr \cite{loehr}. 
   Let $\abc(\lambda)$ denote the set of all $n$-bead labeled abaci (see Section~\ref{sec:abaci}) of shape $\lambda$.
   Let $M(n,k)$ denote the set of all vectors $\alpha=(\alpha_1,\dots,\alpha_n)$ with non-negative integer coordinates and sum $k$.
   Set $\wt(\alpha)=x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
@@ -343,7 +342,7 @@ The following is a special case of Pieri's rule:
   \end{displaymath}
 \end{exercise}
 \subsection{Schur to Complete and Elementary via Tableaux}
-Pieri's rule allows us to compute the complete and elementary symmetric functions $h_\lambda$ and $e_\lambda$ in terms of Schur functions.
+Pieri's rule allows us to compute the complete and elementary symmetric polynomials $h_\lambda$ and $e_\lambda$ in terms of Schur polynomials.
 \begin{example}
   \label{example:expansion-e}
   Repeated application of Pieri's rule gives an expansion of $e_{(2, 2, 1)} = e_2e_2e_1$ as:
@@ -423,7 +422,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
     \ydiagram{2}\subset \ydiagram{3,1}\subset \ydiagram{3,2} \text{ and } \ydiagram{2}\subset \ydiagram{2,2}\subset \ydiagram{3,2},
   \end{displaymath}
   respectively.
-  As illustrated in Example~\ref{example:expansion-h}, the coefficient of $s_{(3,2)}$ in the complete symmetric function $h_{(2,2,1)}$ is the number of semistandard tableau of shape $(3,2)$ and type $(2,2,1)$.
+  As illustrated in Example~\ref{example:expansion-h}, the coefficient of $s_{(3,2)}$ in the complete symmetric polynomial $h_{(2,2,1)}$ is the number of semistandard tableau of shape $(3,2)$ and type $(2,2,1)$.
 \end{example}
 \begin{definition}
   [Kostka number]
@@ -445,7 +444,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric function
   A hook is a partition of the form $h(a,b)=(a+1,1^b)$.
   Show that $f_{h(a,b)}=\binom{a+b}a$.
 \end{exercise}
-In order to understand the expansion of elementary symmetric functions we would need a variant of semistandard tableaux, one where the difference between successive shapes are vertical strips, rather than horizontal strips.
+In order to understand the expansion of elementary symmetric polynomials we would need a variant of semistandard tableaux, one where the difference between successive shapes are vertical strips, rather than horizontal strips.
 However, it has become common practice to \emph{conjugate} partitions instead:
 \begin{definition}
   [Conjugate of a partition]
@@ -464,14 +463,14 @@ Semistandard tableaux of shape $\lambda'$ and type $\mu$ correspond to chains of
   \end{displaymath}
   where $\lambda^{(i)}/\lambda^{(i-1)}$ is a \emph{vertical} strip of size $\mu_i$.  
 \end{exercise}
-The method for computing elementary and complete functions from Schur functions illustrated in Examples~\ref{example:expansion-e} and \ref{example:expansion-h} can be expressed as follows:
+The method for computing elementary and complete polynomials from Schur polynomials illustrated in Examples~\ref{example:expansion-e} and \ref{example:expansion-h} can be expressed as follows:
 \begin{theorem}
   \label{theorem:schur-to-eh}
-  The expansion of complete symmetric functions in terms of Schur functions is given by:
+  The expansion of complete symmetric polynomials in terms of Schur polynomials is given by:
   \begin{displaymath}
     h_\mu = \sum_\lambda K_{\lambda\mu}s_\lambda.
   \end{displaymath}
-  Dually, the extension of elementary symmetric functions in terms of Schur functions is given by:
+  Dually, the extension of elementary symmetric polynomials in terms of Schur polynomials is given by:
   \begin{displaymath}
     e_\mu = \sum_\lambda K_{\lambda'\mu}s_\lambda.
   \end{displaymath}
@@ -550,11 +549,11 @@ We have:
   \end{displaymath}
 \end{example}
 \begin{theorem}
-  The complete symmetric functions:
+  The complete symmetric polynomials:
   \begin{displaymath}
     \{h_\mu \mid \text{$\mu$ is a partition of $d$ with at most $n$ parts}\}
   \end{displaymath}
-  and the elementary symmetric functions:
+  and the elementary symmetric polynomials:
   \begin{displaymath}
     \{e_\mu\mid \text{$\mu$ is a partition of $d$ with $\mu_1\leq n$}\}
   \end{displaymath}
@@ -781,7 +780,7 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   The bijectivity can be shown by repeated used of the $\del$ algorithm (because we know which box from $\mu$ has to be removed at each step).
 \end{proof}
 \begin{corollary}
-  [Kostka's definition of Schur functions]
+  [Kostka's definition of Schur polynomials]
   \label{corollary:kostka-def-schur}
   For every partition $\lambda$ and every positive integer $n$, we have:
   \begin{displaymath}
@@ -790,10 +789,10 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
 \end{corollary}
 \begin{proof}
   Define $S_\lambda = \sum_{t\in \Tab_n(\lambda)} x^t$.
-  Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur functions.
-  Moreover, the class of functions $S_\lambda$ satisfy the Pieri rule, just like the Schur function.
+  Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur polynomials.
+  Moreover, the class of polynomials $S_\lambda$ satisfy the Pieri rule, just like the Schur polynomial.
   This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$.
-  By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur functions, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
+  By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur polynomials, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
 \end{proof}
 \subsection{Greene's Theorem}
 \label{sec:greenes-theorem}
@@ -912,8 +911,8 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
 \end{proof}
 \subsection{The Jacobi-Trudi Identities}
 \label{sec:jacobi-trudi-ident}
-We have seen that the Kostka numbers can be used to express complete and elementary symmetric functions in terms of Schur functions.
-The reverse operation---that of expressing Schur functions in terms of complete or elementary symmetric functions---is done by the Jacobi-Trudi identities:
+We have seen that the Kostka numbers can be used to express complete and elementary symmetric polynomials in terms of Schur polynomials.
+The reverse operation---that of expressing Schur polynomials in terms of complete or elementary symmetric polynomials---is done by the Jacobi-Trudi identities:
 \begin{theorem}
   [Jacobi-Trudi identities]
   For every integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ form the $l\times l$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda_i-i+j}$ respectively.
@@ -1023,7 +1022,7 @@ The reverse operation---that of expressing Schur functions in terms of complete 
   \end{displaymath}
   proving the second Jacobi-Trudi identity.
 \end{proof}
-\subsection{Skew-Schur Functions}
+\subsection{Skew-Schur Polynomials}
 \label{sec:skew-schur-functions}
 In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(1,\dotsc, l)$, we used:
 \begin{align*}
@@ -1058,12 +1057,15 @@ by the Lindstr\"om-Gessel-Viennot, is also given by
   \label{eq:skew-kostka}
   s_{\lambda/\mu}(x_1,\dotsc,x_n) = \sum_{t\in \Tab_n(\lambda/\mu)} x^t.
 \end{equation}
-The functions $s_{\lambda/\mu}$ generalize the Schur functions and are called \emph{skew-Schur functions}.
+The polynomials $s_{\lambda/\mu}$ generalize the Schur polynomials and are called \emph{skew-Schur polynomials}.
 A modification of the proof of the second Jacobi-Trudi identity gives:
 \begin{equation}
   \label{eq:skew-jti}
   s_{\lambda'/\mu'}(x_1,\dotsc,x_n) = \det(e_{\lambda_j-\mu_j+i-j}),
 \end{equation}
+\begin{exercise}
+  Expand the skew-Schur polynomial $s_{(2,1)/(1)}(x_1,x_2,x_3)$ in the basis of Schur polynomials.
+\end{exercise}
 \subsection{Giambelli's Identity}
 \label{sec:giambelli}
 \begin{definition}
@@ -1081,7 +1083,7 @@ A modification of the proof of the second Jacobi-Trudi identity gives:
   If $\lambda$ has Frobenius coordinates $(\alpha|\beta)$, then its conjugate $\lambda'$ has Frobenius coordinates $(\beta|\alpha)$.
   The size of a partition with Durfee rank $d$ and Frobenius coordinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
 \end{example}
-Schur functions of hook partitions can be calculated using Exercise~\ref{exercise:hook-schur}, which, when written is terms of Frobenius coordinates, becomes:
+Schur polynomials of hook partitions can be calculated using Exercise~\ref{exercise:hook-schur}, which, when written is terms of Frobenius coordinates, becomes:
 \begin{equation}
   \label{eq:hook-schur-frob}
   s_{(a|b)} = \sum_{l=0}^b (-1)^l h_{a+l+1}e_{b-l}
@@ -1093,10 +1095,10 @@ Schur functions of hook partitions can be calculated using Exercise~\ref{exercis
     \label{eq:giambelli}
     s_{(\alpha|\beta)} = \det(s_{(\alpha_j|\beta_i)})_{d\times d}.
   \end{equation}
-  Note that the determinant on the right consists of hook-partition Schur functions, which are given by \textup{(\ref{eq:hook-schur-frob})}.
+  Note that the determinant on the right consists of hook-partition Schur polynomials, which are given by \textup{(\ref{eq:hook-schur-frob})}.
 \end{theorem}
 \begin{example}
-  The Schur function for $\lambda=(4,4,3,1)=(3,2,0|3,1,0)$ can be computed as:
+  The Schur polynomial for $\lambda=(4,4,3,1)=(3,2,0|3,1,0)$ can be computed as:
   \begin{displaymath}
     s_{(3,2,1|3,1,0)} = \det
     \begin{pmatrix}
@@ -1243,6 +1245,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{proof}
 \begin{exercise}
   [The Burge Correspondence]
+  \label{exercise:burge}
   Define
   \begin{displaymath}
     \bur(A) = (P^*(\bar u_A), P^*(\bar v_A)).
@@ -1266,51 +1269,58 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   If $P(v_A) = t_\lambda$, a tableau of shape $\lambda$, $P(u_A)$ is also a semistandard tableau of shape $\lambda$.
   Moreover, for every semistandard tableau $t\in \Tab_n(\lambda)$,  by Knuth's theorem (Theorem~\ref{theorem:knuth}), there exists a unique $m\times n$ integer matrix $A$ such that $\rsk(A) = (t, t_\lambda)$.
   In other words, among matrices with $P(v_A)=t_\lambda$, there exists a unique matrix such that $u_A\equiv t$.
-  The lemma now follows from Kostka's definition of Schur functions (Corollary~\ref{corollary:kostka-def-schur}).
+  The lemma now follows from Kostka's definition of Schur polynomials (Corollary~\ref{corollary:kostka-def-schur}).
 \end{proof}
-Given a partition $\lambda$, let $t^0_\lambda$ denote the unique semistandard tableau of shape $\lambda$ and type $\lambda$.
-All the boxes in the $i$th row of this tableau are filled with the integer $i$.
 \begin{theorem}
   [Littlewood-Richardson Rule]
   Let $\alpha$, $\beta$ and $\lambda$ be partitions.
-  Let $c^\lambda_{\alpha\beta}$ denote the number of semistandard skew-tableaux of shape $\lambda/\alpha$ whose reading word is Knuth-equivalent to $t^0_\beta$, the unique tableau of shape and type $\beta$.
+  Let $t_\beta$ be any semistandard tableau in $\Tab_b(\beta)$ for some integer $b$.
+  Let $c^\lambda_{\alpha\beta}$ denote the number of semistandard skew-tableaux of shape $\lambda/\alpha$ whose reading word is Knuth-equivalent to $t_\beta$, the unique tableau of shape and type $\beta$.
   Then
   \begin{displaymath}
     s_\alpha s_\beta = \sum_\lambda c^\lambda_{\alpha\beta} s_\lambda.
   \end{displaymath}
 \end{theorem}
 \begin{proof}
+  Let $\alpha\in \Tab_a(\alpha)$ for some integer $a$.
   By Lemma~\ref{lemma:section}, we have:
   \begin{align}
-    \nonumber s_\alpha s_\beta & = \sum_{\{A_{a\times n}\mid P(v_{A'}) = t_\alpha\}} x^{u_{A'}} \sum_{\{B_{b\times n}\mid P(v_B) = t_\beta} x^{u_{A''}}\\
-    \label{eq:sum-C} & = \sum_C x^{u_C},
+    \nonumber s_\alpha s_\beta & = \sum_{\{A_{a\times n}\mid P(v_{A'}) = t_\alpha\}} x^{u_{A'}} \sum_{\{B_{b\times n}\mid P(v_B) = t_\beta\}} x^{u_{A''}}\\
+    \label{eq:sum-C} & = \sum_{C_\alpha\beta} x^{u_C},
   \end{align}
-  where $C$ runs over all $(a+b)\times n$ block matrices of the form $\binom AB$, with $P(v_A)=t_\alpha$ and $P(v_B)=t_\beta$.
-  \begin{lemma}
-    Given integer matrices $A_{a\times n}$ and $B_{b\times n}$, form the block matrix $C_{(a+b)\times n} = \binom AB$.
-    Given a word in $L_{a+b}$, let $w^a$ denote the subword of $a$ obtained by removing all letters of $w$ that do not lie in $[1, a]$.
-    Let $w^b$ denote the word obtained from $w$ by removing all letters of $w$ that lie in $[1,a]$, and then replacing each of the remaining letters $x$ (which will lie in $[a+1, a+b]$) by $x-a$ (so that they now lie in $[1, b]$).
-    Then $P(v_A) = t_\alpha$ and $P(v_B) = t_\beta$ if and only if $P(v_C)^a = t_\alpha$, and $P(v_C)^b \equiv t_\beta$.
-  \end{lemma}
-  Thus the sum 
-  Given a word $w\in L_n^*$, and a subset $S\subset L_n$, let $w^S$ denote the word obtained by deleting all the letter from $w$ that are not in $S$.
-  \begin{lemma}
-    Let 
-    \begin{displaymath}
-      C(\alpha,\beta) = \{t\in \Tab(L_{a+b}) \mid t^{[0, a]} = t^0_\alpha,\;t^{[a+1, a+b]} \equiv t^0_\beta\}.
-    \end{displaymath}
-    Taking $A = \binom{A'}{A''}$ to $(A', A'')$ gives rise a bijection:
-    \begin{displaymath}
-      \{A\mid P(v_A) \in C(\alpha,\beta)\} \tilde\to \{(A', A'')\mid P(v_{A'}) = t^0_\alpha,\; P(v_{A''}) = t^0_\beta\}.
-    \end{displaymath}
-  \end{lemma}
-  Thus, as $A'$ and $A''$ run over all matrices with $P(v_{A'})=t^0_\alpha$ and $P(v_{A''})=t^0_\beta$, $A=\binom{A'}{A''}$ runs over all matrices with $P(v_A)\in C(\alpha,\beta)$.
-  It follows that
+  where
   \begin{displaymath}
-    s_\alpha s_\beta = \#\{t\in \Tab(L_{a+b})\mid t^{[0,a]} = t^0_\alpha,\; t^{[a+1,b]}\equiv t^0_\beta\}.
+    C_{\alpha\beta} = \{\tbinom AB\mid P(v_A)=t_\alpha\text{ and } P(v_B)=t_\beta\}.
   \end{displaymath}
-  Ignoring the entries of the boxes of $t$ which lie in $\alpha$ (since they are fixed) we get a semistandard tableau $s$ of shape $\lambda/\alpha$.
-  The condition that $t^{[a+1,b]}\equiv t^0_\beta$ is equivalent to saying that the reading word of $s$ lies in the plactic class of $t^0_\beta$.
+  Define a monoid homomorphis $\pi_a:L_{a+b}^*\to L_a$ by taking $\pi_a(w)$ to be the word obtained by discarding all letters in $w$ that are not in $\{1,\dotsc,a\}$.
+  Also define $\pi_b:L_{a+b}^*\to L_b^*$ by taking $\pi_b(w)$ to be the word obtained discarding all letters in $w$ that are not in $\{a+1,\dotsc, a+b\}$, and then replacing the letter $a+i$ by $i$.
+  It is not hard to see that $\pi_a$ and $\pi_b$ preserve the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}).
+  The words $v_A$ and $v_B$ are obtained from $v_C$ as follows:
+  \begin{displaymath}
+    v_A = \pi_a(v_C) \text{ and } v_B = \pi_b(v_C).
+  \end{displaymath}
+  So $P(v_A) = P(\pi_a(v_C)) \equiv \pi_a(P(v_C))$.
+  Since $\pi_A$ is a restriction to the first few letters of $L_{a+b}$, $\pi_a(P(v_C))$ is still a tableau.
+  So $P(v_A) = \pi_a(P(v_C))$.
+  Also, $P(v_B) \equiv \pi_b(P(v_c))$.
+  Therefore
+  \begin{align*}
+    C_{\alpha\beta} & = \{C \mid \pi_a(P(v_C)) = t_\alpha \text{ and } \pi_b(P(v_C))\equiv  t_\beta\}\\
+    & = \coprod_t \{C\mid P(v_C)=t\},
+  \end{align*}
+  the disjoint union being over
+  \begin{displaymath}
+    \{t\in \Tab(L_{a+b})\mid \pi_a(t)=t_\alpha \text{ and } \pi_b(t)\equiv t_\beta\}.
+  \end{displaymath}
+  Let $t$ be a tableau $t$ in the above set of shape $\lambda$.
+  The entries of this tableau in the cells of $\alpha$ are completely fixed by the condition $\pi_a(t)=t_\alpha$.
+  Subtracting $a$ from the remaining entries gives rise to a skew-tableau of shape $\lambda/\alpha$ whose reading word is equivalent to $t_\beta$.
+  The number of such tableaux is, by definition, $c^\lambda_{\alpha\beta}$. Therefore,
+  \begin{align*}
+    s_\alpha s_\beta &= \sum_\lambda \sum_{\{t\in \Tab_b(\lambda/\alpha)\mid t\equiv t_\beta\}} \sum_{\{C\mid P(v_C)=t\}} x^{u_C}\\
+    &=\sum_\lambda c^\lambda_{\alpha\beta} s_\lambda \hspace{3cm}\text{ [using Lemma~\ref{lemma:section}]}
+  \end{align*}
+  as required.
 \end{proof}
 \begin{definition}
   [Yamanouchi Word]
@@ -1328,6 +1338,44 @@ In view of Lemma~\ref{lemma:yamanouchi}, the Littlewood-Richardson rule becomes:
 \begin{theorem}
   For partition $\alpha,\beta,\lambda$, $c^\lambda_{\alpha\beta}$ is the number of semistandard tableau of shape $\lambda/\alpha$ and type $\beta$ whose reading word is a Yamanouchi word.
 \end{theorem}
+\begin{exercise}
+  If $c^\lambda_{\alpha\beta}>0$ then $\lambda\supset \alpha$ and $\lambda\supset \beta$.
+\end{exercise}
+\subsection{Skew-Schur polynomials and the Littlewood-Richardson Rule}
+\label{sec:skew-lr}
+Littlewood-Richardson coefficients also answer the question of expanding skew-Schur polynomials in terms of Schur polynomials:
+\begin{theorem}
+  [Expansion of skew-Schur polynomials]
+  \label{theorem:skew-exp}
+  Let $\lambda$, $\alpha$ and $\beta$ be partitions such that $\lambda\supset \alpha$.
+  Then
+  \begin{displaymath}
+    s_{\lambda/\alpha}(x_1,\dotsc,x_n) = \sum_\beta c^\lambda_{\alpha\beta}s_\beta(x_1,\dotsc,x_n).
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  We have:
+  \begin{align*}
+    s_{\lambda/\alpha}(x_1,\dotsc,x_n) & = \sum_{t\in \Tab_n(\lambda/\alpha)} x^t\\
+      & = \sum_\beta \sum_{t_\beta\in \Tab_n(\beta)} \sum_{\{t\in \Tab_n(\lambda/\alpha)\mid P(t)=t_\beta\}} x^t\\
+      & = \sum_\beta c^\lambda_{\alpha\beta} \sum_{t_\beta\in \Tab_n(\beta)} x^t\\
+      & = \sum_\beta c^\lambda_{\alpha\beta} s_\beta,
+  \end{align*}
+  as required.
+\end{proof}
+\begin{exercise}
+  For each partition $\mu$ with $|\mu|=|\lambda|-|\alpha|$, show that
+  Show that
+  \begin{displaymath}
+    K_{\lambda/\alpha,\mu} = \sum_\beta c^\lambda_{\alpha\beta} K_{\beta\mu}.
+  \end{displaymath}
+\end{exercise}
+\subsection{Sources}
+\label{sec:notes-literature}
+The arrangement and selection of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is detailed in Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's lectures at The Institute of Mathematical Sciences, Chennai in 2016 \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. Also my use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out most of the standard references in the area, and should not be regarded as a list of my own readings while preparing  these notes.
+
+Many details of proofs and perpectives emerged in discussions with Digjoy Paul.
+I also benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
