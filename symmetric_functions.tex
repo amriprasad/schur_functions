@@ -1,5 +1,31 @@
 \documentclass[11pt]{amsproc}
-\usepackage{ytableau,graphicx,xypic,hyperref}
+\usepackage{ytableau,graphicx,xypic,hyperref,accents}
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  \mathpalette\do@cev{#1}%
+}
+\newcommand{\do@cev}[2]{%
+  \fix@cev{#1}{+}%
+  \reflectbox{$\m@th#1\vec{\reflectbox{$\fix@cev{#1}{-}\m@th#1#2\fix@cev{#1}{+}$}}$}%
+  \fix@cev{#1}{-}%
+}
+\newcommand{\fix@cev}[2]{%
+  \ifx#1\displaystyle
+    \mkern#23mu
+  \else
+    \ifx#1\textstyle
+      \mkern#23mu
+    \else
+      \ifx#1\scriptstyle
+        \mkern#22mu
+      \else
+        \mkern#22mu
+      \fi
+    \fi
+  \fi
+}
+
+\makeatother
 \xyoption{all}
 \title{An Introduction to Schur Polynomials}
 \author{Amritanshu Prasad}
@@ -887,7 +913,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   Let $P$ be the set of all $n$-tuples of paths of the form:
   \begin{equation}
     \label{eq:paths}
-    \bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
+    bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
   \end{equation}
   where $w$ is a permutation of $\{1,\dotsc, n\}$.
   Define the weight of $\bar \omega\in P$ by:
@@ -1147,25 +1173,25 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
 \end{proof}
 \subsection{The Robinson-Schensted-Knuth Correspondences}
 \label{sec:rsk}
-For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ and their duals $\bar u_A$ and $\bar v_A$ are defined as follows:
+For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ and their duals $\cev u_A$ and $\cev v_A$ are defined as follows:
 \begin{align*}
   u_A &= 1^{a_{11}}2^{a_{12}}\dotsb n^{a_{1n}} \; 1^{a_{21}} 2^{a_{22}} \dotsb n^{a_{2n}} \; \dotsb \; 1^{a_{m1}} 2^{a_{m2}} \dotsb n^{a_{mn}}\\
   v_A &= 1^{a_{11}}2^{a_{21}}\dotsb m^{a_{m1}} \; 1^{a_{12}} 2^{a_{22}} \dotsb m^{a_{m2}} \; \dotsb \; 1^{a_{1n}} 2^{a_{2n}} \dotsb m^{a_{mn}}\\
-  \bar u_A &= n^{a_{1n}} \dotsb 2^{a_{12}}1^{a_{11}}\; n^{a_{2n}}\dotsb 2^{a_{22}}1^{a_{21}} \; n^{a_{mn}} \dotsb 2^{a_{m2}} 1^{a_{11}}\\
-  \bar v _A &= m^{a_{m1}}\dotsb 2^{a_{21}}1^{a_{11}} \; m^{a_{m2}}\dotsb 2^{a_{22}} 1^{a_{12}} \; \dotsb \; m^{a_{mn}}\dotsb  2^{a_{2n}} \dotsb 1^{a_{1n}}
+  \cev u_A &= n^{a_{1n}} \dotsb 2^{a_{12}}1^{a_{11}}\; n^{a_{2n}}\dotsb 2^{a_{22}}1^{a_{21}} \; n^{a_{mn}} \dotsb 2^{a_{m2}} 1^{a_{11}}\\
+  \cev v _A &= m^{a_{m1}}\dotsb 2^{a_{21}}1^{a_{11}} \; m^{a_{m2}}\dotsb 2^{a_{22}} 1^{a_{12}} \; \dotsb \; m^{a_{mn}}\dotsb  2^{a_{2n}} \dotsb 1^{a_{1n}}
 \end{align*}
 \begin{definition}
   [Robinson-Schensted-Knuth Correspondences]
   Define functions from integer matrices onto pairs of semistandard tableaux by:
   \begin{align*}
     \rsk(A) & = (P(u_A), P(v_A)),\\
-    \rsk^*(A) & = (P^*(u_A), P(\bar v_A)).
+    \rsk^*(A) & = (P^*(u_A), P(\cev v_A)).
   \end{align*}
 \end{definition}
 \begin{lemma}
   \label{lemma:same_shape}
   For every integer matrix $A$ with non-negative entries, the tableaux $P(u_A)$ and $P(v_A)$ have the same shape.
-  For every zero-one matrix $A$, the tableaux $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
+  For every zero-one matrix $A$, the tableaux $P^*(u_A)$ and $P(\cev v_A)$ have the same shape.
 \end{lemma}
 \begin{proof}
   The proof is an application of Greene's theorem (Theorem~\ref{theorem:Greene}).
@@ -1185,8 +1211,8 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
     l_k^*(u_A) = \max_{C_k} \Big\{\sum_{(i,j)\in C_k} a_{ij}\Big\}
   \end{displaymath}
   where the maximum is over all subsets $C_k\subset P_{mn}$ which can be written as a union of $k$ chains in the new partial order.
-  On the other hand, the row numbers in the sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ form a weakly increasing subword of $\bar v_A$ if and only if $i_1\leq \dotsb \leq i_r$, and since the entries must come from distinct rows (since $\bar v_A$ reads each row in reverse order and all entries are $0$ or $1$), so $j_1<\dotsb < j_r$.
-  Thus $l_k(\bar v_A)=l_k^*(u_A)$, so $P^*(u_A)$ and $P(\bar v_A)$ have the same shape.
+  On the other hand, the row numbers in the sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ form a weakly increasing subword of $\cev v_A$ if and only if $i_1\leq \dotsb \leq i_r$, and since the entries must come from distinct rows (since $\cev v_A$ reads each row in reverse order and all entries are $0$ or $1$), so $j_1<\dotsb < j_r$.
+  Thus $l_k(\cev v_A)=l_k^*(u_A)$, so $P^*(u_A)$ and $P(\cev v_A)$ have the same shape.
 \end{proof}
 \begin{theorem}
   [Knuth's theorem]
@@ -1253,7 +1279,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \label{exercise:burge}
   Define
   \begin{displaymath}
-    \bur(A) = (P^*(\bar u_A), P^*(\bar v_A)).
+    \bur(A) = (P^*(\cev u_A), P^*(\cev v_A)).
   \end{displaymath}
   Show that $\bur$ is a bijection
   \begin{displaymath}
@@ -1370,18 +1396,18 @@ Littlewood-Richardson coefficients also answer the question of expanding skew-Sc
   as required.
 \end{proof}
 \begin{exercise}
-  For each partition $\mu$ with $|\mu|=|\lambda|-|\alpha|$, show that
-  Show that
+  For partitions $\alpha\subset \lambda$, show that
   \begin{displaymath}
     K_{\lambda/\alpha,\mu} = \sum_\beta c^\lambda_{\alpha\beta} K_{\beta\mu}.
   \end{displaymath}
+  Here $K_{\lambda/\alpha}$ is the number of skew-tableaux of shape $\lambda/\alpha$ and type $\mu$.
 \end{exercise}
 \subsection{Sources}
 \label{sec:notes-literature}
-The arrangement and selection of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is detailed in Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's lectures at The Institute of Mathematical Sciences, Chennai in 2016 \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. Also my use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out most of the standard references in the area, and is merely a list of my own readings while preparing these notes.
+The arrangement of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is from Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's 2016 lectures at The Institute of Mathematical Sciences, Chennai \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. My use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out many standard references in the area, and is only a list of what I read while preparing these notes.
 
 Many details of proofs and perspectives emerged in discussions with Digjoy Paul.
-I also benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
+I benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
