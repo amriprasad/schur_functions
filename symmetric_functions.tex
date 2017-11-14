@@ -1,5 +1,5 @@
 \documentclass[11pt]{amsproc}
-\usepackage{ytableau,graphicx,xypic,hyperref,accents}
+\usepackage{ytableau,graphicx,xypic,hyperref}
 \makeatletter
 \DeclareRobustCommand{\cev}[1]{%
   \mathpalette\do@cev{#1}%
@@ -61,7 +61,7 @@
 \maketitle
 \subsection{Symmetric Polynomials}
 \label{sec:symmetric-functions}
-Consider polynomials in $n$ variables \linebreak $x_1,\dotsc,x_n$.
+Consider polynomials with integer coefficients in variables $x_1,\dotsc,x_n$.
 Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, let $x^\alpha$ denote the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
 A \emph{symmetric polynomial} is a polynomial of the form
 \begin{displaymath}
@@ -878,7 +878,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
-Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $v$ as a \emph{weight function}).
+Let $S$ be any set of points, and $v:S\times S\to R$ be any function (think of $v$ as a \emph{weight function}).
 Given $s, t\in S$, a path in $S$ from $s$ to $t$ is is a sequence $\omega=(s=s_0,s_1,\dotsc,s_k=t)$ of distinct points in $S$.
 We denote this by $\omega:s\to t$.
 The weight of the path $\omega$ is defined to be:
@@ -916,7 +916,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
     \bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
   \end{equation}
   where $w$ is a permutation of $\{1,\dotsc, n\}$.
-  Define the weight of $\bar \omega\in P$ by:
+  Define the weight of $\bar\omega\in P$ by:
   \begin{displaymath}
     v(\bar\omega) = \prod_{i=1}^n v(\omega_i)
   \end{displaymath}
@@ -1104,11 +1104,11 @@ A modification of the proof of the second Jacobi-Trudi identity gives:
   Its \emph{Durfee rank} $d$ is defined to be the largest integer $i$ such that $(i,i)$ lies in the Young diagram of $\lambda$.
   Let $\alpha_i$ denote the number of cells in the $i$th row that lie strictly to the right of $(i,i)$ in the Young diagram of $\lambda$.
   Similarly let $\beta_i$ denote the number of cells in the $i$th column that lie strictly below $(i,i)$.
-  Clearly $\alpha_1>\dotsb>\alpha_d$, $\beta_1>\dotsb>\beta_d)$, and the Young diagram of $\lambda$ can be recovered from the data $(\alpha|\beta)=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$, which are called the \emph{Frobenius coordinates} of $\lambda$\footnote{While constructing the character tables of symmetric groups, Frobenius used these coordinates to index the irreducible representation, while he used the ordinary coordinates to index the conjugacy classes.}.
+  Clearly $\alpha_1>\dotsb>\alpha_d$, $\beta_1>\dotsb>\beta_d$, and the Young diagram of $\lambda$ can be recovered from the data $(\alpha|\beta)=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$, which are called the \emph{Frobenius coordinates} of $\lambda$\footnote{While constructing the character tables of symmetric groups, Frobenius used these coordinates to index the irreducible representation, while he used the ordinary coordinates to index the conjugacy classes.}.
 \end{definition}
 \begin{example}
   The hook partition $(a+1,1^b)$ has Frobenius coordinates $(a|b)$.
-  Hook partitions are precisely those partitions which have Durfee rank $1$.
+  Hook partitions are precisely those partitions which have Durfee rank one.
   The partition with Frobenius coordinates $(5,2,1|4,3,0)$ is $(6,4,4,2,2)$.
   If $\lambda$ has Frobenius coordinates $(\alpha|\beta)$, then its conjugate $\lambda'$ has Frobenius coordinates $(\beta|\alpha)$.
   The size of a partition with Durfee rank $d$ and Frobenius coordinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
@@ -1236,7 +1236,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \begin{displaymath}
     \mathbf M_{m\times n} \tilde\to \coprod_\lambda \Tab_n(\lambda)\times \Tab_m(\lambda).
   \end{displaymath}
-  For the definition it is clear that this bijection will map the left hand side of (\ref{eq:rsk}) onto its right hand side.
+  That it maps $\mathbf M_{\lambda\mu}$ onto $\coprod_\lambda \Tab(\lambda,\mu)\times \Tab(\lambda,\nu)$ follows from the definition.
 
   Let $A'$ be the matrix consisting of the first $m-1$ rows of $A$.
   Let $r=1^{a_{m1}}2^{a_{m2}}\dotsb n^{a_{mn}}$ be the column word of the last row of $A$.
@@ -1272,7 +1272,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 
   Combining the bijections (\ref{eq:bij1}) and (\ref{eq:bij2}) gives rise to the RSK correspondence, which is therefore also a bijection.
 
-  The proof for the bijectivity of $\rsk^*$ is similar (although with a few twists) and is left as an interesting exercise to the reader.
+  The proof for the bijectivity of $\rsk^*$ is similar (with some interesting twists) and is left as an exercise.
 \end{proof}
 \begin{exercise}
   [The Burge Correspondence]
