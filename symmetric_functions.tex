@@ -255,7 +255,7 @@ This is clearly a symmetric polynomial of degree $|\lambda|$.
   [Stability of Schur polynomials]
   Show that substituting $x_n=0$ in the Schur polynomial $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur polynomial $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
 \end{exercise}
-\subsection{Pieri's rule}
+\subsection{Pieri's Rule}
 \label{sec:pieri}
 The set of integer partitions is endowed with the \emph{containment order}.
 We say that a partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ \emph{contains} a partition $\mu=(\mu_1,\dotsc, \mu_m)$ if $l \geq m$, and $\lambda_i\geq \mu_i$ for every $i=1,\dotsb, m$.
@@ -591,9 +591,9 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
-\subsection{Schensted's insertion algorithm}
+\subsection{Schensted's Insertion Algorithm}
 \label{sec:schenst-insert-algor}
-Let $t$ be a semistandard tableau, and $x$ be a positive integer.
+Let $t$ be a semistandard\linebreak tableau, and $x$ be a positive integer.
 Schensted's insertion algorithm is a method of inserting a box with the number $x$ into $t$, resulting in a new tableau $\ins(t, x)$.
 Applied repeatedly, it gives a way to convert any word into a tableau.
 This tableau succinctly expresses some combinatorial properties of the original word.
@@ -760,7 +760,7 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
 \begin{exercise}
   Show that any evaluation-preserving equivalence on $L_3^*$ under which the images of $\mathbf E_1$ and $\mathbf E_2$ commute must include either the Knuth equivalences or Sch\"utzenberger's forgotten equivalences.
 \end{exercise}
-\subsection{The plactic Pieri rules}
+\subsection{The Plactic Pieri Rules}
 Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
 \begin{lemma}
   \label{lemma:two-step}
@@ -819,8 +819,8 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
 \begin{proof}
   Define $S_\lambda = \sum_{t\in \Tab_n(\lambda)} x^t$.
   Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur polynomials.
-  Moreover, the class of polynomials $S_\lambda$ satisfy the Pieri rule, just like the Schur polynomial.
-  This alone is enough to imply that the identities of Theorem~\ref{theorem:schur-to-eh} hold with $s_\lambda$ replaced by $S_\lambda$.
+  Moreover, the class of polynomials $S_\lambda$ satisfy the Pieri rule, just like the Schur polynomials.
+  This suffices for the identities of Theorem~\ref{theorem:schur-to-eh} to hold with $s_\lambda$ replaced by $S_\lambda$.
   By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur polynomials, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
 \end{proof}
 \subsection{Greene's Theorem}
@@ -878,7 +878,7 @@ Two subwords of will be said to be disjoint, if their indexing sets are disjoint
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
-Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $w$ as a \emph{weight function}).
+Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $v$ as a \emph{weight function}).
 Given $s, t\in S$, a path in $S$ from $s$ to $t$ is is a sequence $\omega=(s=s_0,s_1,\dotsc,s_k=t)$ of distinct points in $S$.
 We denote this by $\omega:s\to t$.
 The weight of the path $\omega$ is defined to be:
@@ -913,7 +913,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   Let $P$ be the set of all $n$-tuples of paths of the form:
   \begin{equation}
     \label{eq:paths}
-    bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
+    \bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
   \end{equation}
   where $w$ is a permutation of $\{1,\dotsc, n\}$.
   Define the weight of $\bar \omega\in P$ by:
@@ -928,8 +928,8 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   \end{equation}
   The cancelling involution $I:P\to P$ is defined by \emph{swapping the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
   In this case the crossing condition implies that $w$ is the identity permutation.
-  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $j$ such that $\omega_j=(t_0,\dotsc,t_l)$ crosses $\omega_i$.
-  Let $m$ be the smallest number such that a point $s_m$ of $\omega_i$ lies in the path $\omega_j$, say $s_m=t_r$.
+  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $m$ such that $s_m$ belongs to another path from $\bar\omega$.
+  Now take the least $j>i$ such that $s_m$ occurs in $\omega_j$, and finally, if $\omega_j=(t_0,\dotsc,t_l)$, take the least $r$ such that $s_m=t_r$.
   Let $I(\bar\omega)$ be the family of paths obtained from $\bar\omega$ by modifying $\omega_i$ and $\omega_j$ to $\omega'_i$ and $\omega'_j$ as follows:
   \begin{align*}
     \omega'_i & = (s_0,\dotsc, s_m, t_{r+1}, \dotsc, t_l),\\
@@ -1054,13 +1054,13 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
 \end{proof}
 \subsection{Skew-Schur Polynomials}
 \label{sec:skew-schur-functions}
-In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(1,\dotsc, l)$, we used:
+In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(\lambda_1,\dotsc,\lambda_l)$, we used:
 \begin{align*}
   A_i & = (l-i, 1),\\
   B_i & = (\lambda_i+l-i, n)
 \end{align*}
 for $i=1,\dotsc, l$.
-Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu\subset \lambda$, then we can take:
+Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu\subset \lambda$, and take:
 \begin{align*}
   A_i & = (\mu_i+l-i, n),\\
   B_i & = (\lambda_i+l-1, n).
@@ -1154,16 +1154,16 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
   \ytableausetup{smalltableaux}
   Define a weight function as follows (see Fig.~\ref{fig:giambelli}):
   \begin{align*}
-    v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 0 \leq j \leq n,\\
-    v((-i,j+1), v(-(i-1),j)) & = x_j \text{ for all } i>0, j\geq 1,\\
+    v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 1 \leq j \leq n,\\
+    v((-i,j+1), v(-(i-1),j)) & = x_j \text{ for all } i>0, 1\leq j\neq n,\\
     v((i,j), (i+1,j)) & = x_j \text{ for all } i\geq 0, 1\leq j\leq n,\\
-    v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j \leq n.
+    v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j < n.
   \end{align*}
   All other weights are set to zero.
-  A path from $(-(b-1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandard tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
+  A path from $(-(b+1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandard tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
   For instance, the path in Fig.~\ref{fig:giambelli} from $(-4,6)$ to $(3,5)$ corresponds to the tableau $\ytableaushort{1113,2,4,5}$.
 
-  Thus, setting $A_i=(-(\beta_i-1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
+  Thus, setting $A_i=(-(\beta_i+1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
   the $(i,j)$th entry of the determinant on the right hand side of (\ref{eq:giambelli}) can be written as:
   \begin{equation}
     \label{eq:giambelli-det}
@@ -1373,7 +1373,7 @@ In view of Lemma~\ref{lemma:yamanouchi}, the Littlewood-Richardson rule becomes:
 \begin{exercise}
   If $c^\lambda_{\alpha\beta}>0$ then $\lambda\supset \alpha$ and $\lambda\supset \beta$.
 \end{exercise}
-\subsection{Skew-Schur polynomials and the Littlewood-Richardson Rule}
+\subsection{Expansion of Skew-Schur polynomials}
 \label{sec:skew-lr}
 Littlewood-Richardson coefficients also answer the question of expanding skew-Schur polynomials in terms of Schur polynomials:
 \begin{theorem}
@@ -1405,7 +1405,6 @@ Littlewood-Richardson coefficients also answer the question of expanding skew-Sc
 \subsection{Sources}
 \label{sec:notes-literature}
 The arrangement of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is from Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's 2016 lectures at The Institute of Mathematical Sciences, Chennai \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. My use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out many standard references in the area, and is only a list of what I read while preparing these notes.
-
 Many details of proofs and perspectives emerged in discussions with Digjoy Paul.
 I benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
 \bibliographystyle{abbrv}
