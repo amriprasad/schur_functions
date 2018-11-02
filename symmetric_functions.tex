@@ -83,7 +83,7 @@ Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts
   Take $n=4$. Compute the monomial symmetric polynomials $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
 \end{exercise}
 \begin{theorem}
-The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
+The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partitions of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
 \end{theorem}
 \subsection{Complete and Elementary Symmetric Polynomials}
 \label{sec:compl-elem-symm}
@@ -92,7 +92,7 @@ Recall that the coefficients of a polynomial are symmetric polynomials in its ro
   \label{eq:elem-id}
   (t-x_1)(t-x_2)\dotsb (t-x_n) \\= t^n - e_1(x_1,\dotsc, x_n)t^{n-1} + \dotsb + (-1)^n e_n(x_1,\dotsc, x_n),
 \end{multline}
-where coefficient $e_i(x_1,\dotsc, x_n)$ of $t^{n-i}$ is given by:
+where the expression $e_i(x_1,\dotsc, x_n)$ in the coefficient of $t^{n-i}$ is given by:
 \begin{equation}
   \label{eq:elem}
   e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1<\dotsb<j_i\leq n} x_{j_1}x_{j_2}\dotsb x_{j_i}.
@@ -113,17 +113,17 @@ Dually, the \emph{complete symmetric polynomials} are defined by the formal iden
   In three variables:
   \begin{align*}
     e_2(x_1,x_2,x_3) & = x_1x_2 + x_1x_3 + x_2x_3,\\
-    h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_2^3.
+    h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_3^2.
   \end{align*}
 \end{example}
 \begin{exercise}
   Show that
   \begin{displaymath}
-    h_i(x_1,\dotsb x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+    h_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i},
   \end{displaymath}
   and that
   \begin{displaymath}
-    e_i(x_1,\dotsb x_n) = \sum_{1\leq j_1< \dotsb < j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+    e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1< \dotsb < j_i\leq n} x_{j_1}\dotsb x_{j_i}.
   \end{displaymath}
 \end{exercise}
 More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)$, define:
@@ -137,7 +137,8 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   \begin{displaymath}
     h_\lambda = \sum_\mu M_{\lambda\mu} m_\mu.
   \end{displaymath}
-  Dually, let $=N_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with entries $0$ or $1$, whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Dually, let $N_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with entries $0$ or $1$, whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Then
   \begin{displaymath}
     e_\lambda = \sum_\mu N_{\lambda\mu} m_\mu.
   \end{displaymath}
@@ -145,7 +146,7 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
 \begin{proof}
   To prove the second identity involving elementary symmetric polynomials, note that a monomial in the expansion of
   \begin{displaymath}
-    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}}
+    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_i}}x_{j_1}\dotsb x_{j_{\lambda_i}}
   \end{displaymath}
   is a product of summands, one chosen from each of the $l$ factors.
   Construct an $l\times m$ matrix $(a_{ij})$ corresponding to such a choice as follows:
@@ -164,7 +165,7 @@ An \emph{alternating polynomial} in $x_1,\dotsc, x_n$ is of the form:
   f(x_1,\dotsc,x_n) = \sum_{\alpha} c_\alpha x_\alpha,
 \end{equation}
 where, $c_{w(\alpha)} = \epsilon(w)c_\alpha$ for every multiindex $\alpha$ as in Section~\ref{sec:symmetric-functions}.
-Here $\epsilon:S_n\to \{\pm 1\}$ denotes the sign function.
+Here $\epsilon:S_n\to \{\pm 1\}$ denotes the sign function (assume that the coefficients $c_\alpha$ lie in a unital ring with characteristic different from $2$).
 Equivalently, an alternating polynomial is one whose sign is reversed upon the interchange of any two variables.
 \begin{exercise}
   If $\alpha$ is a multiindex where $\alpha_i=\alpha_j$ for some $i\neq j$, then $c_\alpha = 0$.

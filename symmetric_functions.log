@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  2 NOV 2018 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  2 NOV 2018 14:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -510,29 +510,29 @@ LaTeX Info: Redefining \nameref on input line 60.
 \openout5 = `symmetric_functions.toc'.
 
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 213.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 214.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 213.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 214.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 213.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 214.
 
 [5] [6] [7] <xymatrix 7x4 484> <xymatrix 7x4 484>
 Underfull \vbox (badness 2762) has occurred while \output is active []
 
  [8]
 <xymatrix 7x4 484> <xymatrix 7x4 484> [9] [10] [11]
-Overfull \hbox (3.71178pt too wide) in paragraph at lines 598--602
+Overfull \hbox (3.71178pt too wide) in paragraph at lines 599--603
  \OT1/cmr/bx/n/10.95 9.Schensted's in-ser-tion al-go-rithm.[][] \OT1/cmr/m/n/10
 .95 Let $\OML/cmm/m/it/10.95 t$ \OT1/cmr/m/n/10.95 be a semi-s-tan-dard tableau
 ,
  []
 
 [12]
-Overfull \hbox (7.79082pt too wide) in paragraph at lines 616--619
+Overfull \hbox (7.79082pt too wide) in paragraph at lines 617--620
 []\OT1/cmr/m/n/10.95 Now sup-pose $\OML/cmm/m/it/10.95 t$ \OT1/cmr/m/n/10.95 is
  a tableau, with rows $\OML/cmm/m/it/10.95 r[]; r[]; [] ; r[]$\OT1/cmr/m/n/10.9
 5 . Sup-pose that $\OML/cmm/m/it/10.95 ^^S\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
@@ -540,7 +540,7 @@ Overfull \hbox (7.79082pt too wide) in paragraph at lines 616--619
  []
 
 [13]
-Underfull \hbox (badness 1960) in paragraph at lines 668--669
+Underfull \hbox (badness 1960) in paragraph at lines 669--670
 []\OT1/cmr/m/n/10.95 If $\OML/cmm/m/it/10.95 w \OT1/cmr/m/n/10.95 = \OML/cmm/m/
 it/10.95 ua$\OT1/cmr/m/n/10.95 , where $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.
 95 2 \OML/cmm/m/it/10.95 L[]$ \OT1/cmr/m/n/10.95 and $\OML/cmm/m/it/10.95 a \OM
@@ -549,7 +549,7 @@ S/cmsy/m/n/10.95 2 f\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; [] ; n\OMS/cmsy/m
  []
 
 [14]
-Overfull \hbox (2.25188pt too wide) in paragraph at lines 745--748
+Overfull \hbox (2.25188pt too wide) in paragraph at lines 746--749
 [][][]\OT1/cmr/m/sc/10.95 Exercise \OT1/cmr/m/n/10.95 11.1\OT1/cmr/m/sc/10.95 .
  []\OT1/cmr/m/it/10.95 Take $\OML/cmm/m/it/10.95 n \OT1/cmr/m/n/10.95 = 2$\OT1/
 cmr/m/it/10.95 . Show that $\OML/cmm/m/it/10.95 E[]$ \OT1/cmr/m/it/10.95 and $\
@@ -559,7 +559,7 @@ t/10.95 .
  []
 
 [15] [16]
-Underfull \hbox (badness 1067) in paragraph at lines 810--812
+Underfull \hbox (badness 1067) in paragraph at lines 811--813
 []\OT1/cmr/m/n/10.95 Lemma []12.1[] im-plies that $[](\OML/cmm/m/it/10.95 P\OT1
 /cmr/m/n/10.95 (\OML/cmm/m/it/10.95 wr\OT1/cmr/m/n/10.95 ))$ is ob-tained from
  []
@@ -568,32 +568,32 @@ Underfull \hbox (badness 1067) in paragraph at lines 810--812
 <path_example.png, id=324, 566.5968pt x 412.6617pt>
 File: path_example.png Graphic file (type png)
 <use path_example.png>
-Package pdftex.def Info: path_example.png  used on input line 979.
+Package pdftex.def Info: path_example.png  used on input line 980.
 (pdftex.def)             Requested size: 251.9989pt x 183.52997pt.
 <jth.png, id=327, 531.9072pt x 422.0568pt>
 File: jth.png Graphic file (type png)
 <use jth.png>
-Package pdftex.def Info: jth.png  used on input line 990.
+Package pdftex.def Info: jth.png  used on input line 991.
 (pdftex.def)             Requested size: 216.0022pt x 171.39574pt.
  [20] [21 <./path_example.png> <./jth.png>]
 <path_example2.png, id=345, 474.0912pt x 422.0568pt>
 File: path_example2.png Graphic file (type png)
 <use path_example2.png>
-Package pdftex.def Info: path_example2.png  used on input line 1027.
+Package pdftex.def Info: path_example2.png  used on input line 1028.
 (pdftex.def)             Requested size: 251.9989pt x 224.34592pt.
 <jte.png, id=347, 460.3599pt x 425.6703pt>
 File: jte.png Graphic file (type png)
 <use jte.png>
-Package pdftex.def Info: jte.png  used on input line 1046.
+Package pdftex.def Info: jte.png  used on input line 1047.
 (pdftex.def)             Requested size: 251.9989pt x 233.0152pt.
  [22 <./path_example2.png>]
 <skew_jth.png, id=356, 531.9072pt x 422.0568pt>
 File: skew_jth.png Graphic file (type png)
 <use skew_jth.png>
-Package pdftex.def Info: skew_jth.png  used on input line 1076.
+Package pdftex.def Info: skew_jth.png  used on input line 1077.
 (pdftex.def)             Requested size: 216.0022pt x 171.39574pt.
  [23 <./jte.png>] [24 <./skew_jth.png>]
-Overfull \hbox (18.48013pt too wide) in paragraph at lines 1125--1126
+Overfull \hbox (18.48013pt too wide) in paragraph at lines 1126--1127
 [][][]\OT1/cmr/m/sc/10.95 Theorem \OT1/cmr/m/n/10.95 17.3 (Gi-ambelli's for-mul
 a)\OT1/cmr/m/sc/10.95 . []\OT1/cmr/m/it/10.95 For a par-ti-tion $\OT1/cmr/m/n/1
 0.95 (\OML/cmm/m/it/10.95 []; [] ; []\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95
@@ -601,7 +601,7 @@ a)\OT1/cmr/m/sc/10.95 . []\OT1/cmr/m/it/10.95 For a par-ti-tion $\OT1/cmr/m/n/1
  []
 
 
-Overfull \hbox (1.59457pt too wide) in paragraph at lines 1133--1134
+Overfull \hbox (1.59457pt too wide) in paragraph at lines 1134--1135
 [][][]\OT1/cmr/m/sc/10.95 Example \OT1/cmr/m/n/10.95 17.4\OT1/cmr/m/sc/10.95 . 
 []\OT1/cmr/m/it/10.95 The Schur poly-no-mial for $\OML/cmm/m/it/10.95 ^^U \OT1/
 cmr/m/n/10.95 = (4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95
@@ -614,27 +614,27 @@ S/cmsy/m/n/10.95 j\OT1/cmr/m/n/10.95 3\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95
 <giambelli.png, id=378, 566.5968pt x 402.5439pt>
 File: giambelli.png Graphic file (type png)
 <use giambelli.png>
-Package pdftex.def Info: giambelli.png  used on input line 1152.
+Package pdftex.def Info: giambelli.png  used on input line 1153.
 (pdftex.def)             Requested size: 251.9989pt x 179.03012pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [25] [26 <./giambelli.png>]
-Overfull \hbox (15.04579pt too wide) in paragraph at lines 1228--1231
+Overfull \hbox (15.04579pt too wide) in paragraph at lines 1229--1232
 \OT1/cmr/m/it/10.95 Similarly let $\OT1/cmr/bx/n/10.95 N[]$ \OT1/cmr/m/it/10.95
  de-note the set of zero-one ma-tri-ces with row sums $\OT1/cmr/m/n/10.95 (\OML
 /cmm/m/it/10.95 ^^V[]; [] ; ^^V[]\OT1/cmr/m/n/10.95 )$
  []
 
 [27]
-Overfull \hbox (3.1535pt too wide) in paragraph at lines 1268--1274
+Overfull \hbox (3.1535pt too wide) in paragraph at lines 1269--1275
 []\OT1/cmr/m/n/10.95 It turns out that the above func-tion is in-vert-ible. Giv
 en tableaux $(\OML/cmm/m/it/10.95 t[]; t[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10
 .95 2
  []
 
 [28] [29]
-Overfull \hbox (15.55615pt too wide) in paragraph at lines 1381--1382
+Overfull \hbox (15.55615pt too wide) in paragraph at lines 1382--1383
  \OT1/cmr/bx/n/10.95 20.Skew-Schur poly-no-mi-als and the Littlewood-Richardson
  Rule.[][]
  []
@@ -646,12 +646,12 @@ Poly-no-mi-als and De-gen-er-acy Loci\OT1/cmr/m/n/9 .
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1416.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1417.
  [32]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1416.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1417.
  (./symmetric_functions.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1416.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1416.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1417.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1417.
 
 Package rerunfilecheck Info: File `symmetric_functions.out' has not changed.
 (rerunfilecheck)             Checksum: E05AD0054F4862EBE8A96FAEF9B49142;1608.
@@ -659,7 +659,7 @@ Package rerunfilecheck Info: File `symmetric_functions.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1416.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1417.
  ) 
 Here is how much of TeX's memory you used:
  10553 strings out of 492982
@@ -691,7 +691,7 @@ public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/x
 ypic/xyatip10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xypic/xybti
 p10.pfb>
-Output written on symmetric_functions.pdf (32 pages, 579728 bytes).
+Output written on symmetric_functions.pdf (32 pages, 579926 bytes).
 PDF statistics:
  596 PDF objects out of 1000 (max. 8388607)
  514 compressed objects within 6 object streams
