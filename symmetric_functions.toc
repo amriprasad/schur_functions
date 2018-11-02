@@ -1,0 +1,22 @@
+\contentsline {subsection}{\tocsubsection {}{1}{Symmetric Polynomials}}{1}{subsection.0.1}
+\contentsline {subsection}{\tocsubsection {}{2}{Complete and Elementary Symmetric Polynomials}}{2}{subsection.0.2}
+\contentsline {subsection}{\tocsubsection {}{3}{Alternating Polynomials}}{4}{subsection.0.3}
+\contentsline {subsection}{\tocsubsection {}{4}{Interpretation of Alternants with Labeled Abaci}}{4}{subsection.0.4}
+\contentsline {subsection}{\tocsubsection {}{5}{Cauchy's Bialternant Form of a Schur Polynomial}}{5}{subsection.0.5}
+\contentsline {subsection}{\tocsubsection {}{6}{Pieri's rule}}{6}{subsection.0.6}
+\contentsline {subsection}{\tocsubsection {}{7}{Schur to Complete and Elementary via Tableaux}}{8}{subsection.0.7}
+\contentsline {subsection}{\tocsubsection {}{8}{Triangularity of Kostka Numbers}}{11}{subsection.0.8}
+\contentsline {subsection}{\tocsubsection {}{9}{Schensted's insertion algorithm}}{12}{subsection.0.9}
+\contentsline {subsection}{\tocsubsection {}{10}{Tableaux and Words}}{14}{subsection.0.10}
+\contentsline {subsection}{\tocsubsection {}{11}{The Plactic Monoid}}{15}{subsection.0.11}
+\contentsline {subsection}{\tocsubsection {}{12}{The plactic Pieri rules}}{16}{subsection.0.12}
+\contentsline {subsection}{\tocsubsection {}{13}{Greene's Theorem}}{17}{subsection.0.13}
+\contentsline {subsection}{\tocsubsection {}{14}{The Lindstr\"om-Gessel-Viennot Lemma}}{18}{subsection.0.14}
+\contentsline {subsection}{\tocsubsection {}{15}{The Jacobi-Trudi Identities}}{20}{subsection.0.15}
+\contentsline {subsection}{\tocsubsection {}{16}{Skew-Schur Polynomials}}{23}{subsection.0.16}
+\contentsline {subsection}{\tocsubsection {}{17}{Giambelli's Identity}}{24}{subsection.0.17}
+\contentsline {subsection}{\tocsubsection {}{18}{The Robinson-Schensted-Knuth Correspondences}}{26}{subsection.0.18}
+\contentsline {subsection}{\tocsubsection {}{19}{The Littlewood-Richardson Rule}}{29}{subsection.0.19}
+\contentsline {subsection}{\tocsubsection {}{20}{Skew-Schur polynomials and the Littlewood-Richardson Rule}}{30}{subsection.0.20}
+\contentsline {subsection}{\tocsubsection {}{21}{Sources}}{31}{subsection.0.21}
+\contentsline {section}{\tocsection {}{}{References}}{31}{section*.10}
