@@ -46,7 +46,7 @@
 \newcommand{\rins}{\iota}
 \newcommand{\ins}{\textup{INSERT}}
 \newcommand{\del}{\textup{DELETE}}
-\newcommand{\rdel}{\delta}
+\newcommand{\rdel}{\partial}
 \newcommand{\pl}{\textup{Pl}}
 \newcommand{\supp}{\textup{supp}}
 \newcommand{\wt}{\textup{wt}}
@@ -165,14 +165,14 @@ where, $c_{w(\alpha)} = \epsilon(w)c_\alpha$ for every multiindex $\alpha$ as in
 Here $\epsilon:S_n\to \{\pm 1\}$ denotes the sign function.
 Equivalently, an alternating polynomial is one whose sign is reversed upon the interchange of any two variables.
 \begin{exercise}
-  If $\alpha$ is a multiindex where $\alpha_i=\alpha_j$ for some $i\neq j$, then $c_\alpha = 0$.
+  If $\alpha$ is a multiindex with $\alpha_i=\alpha_j$ for some $i\neq j$, then $c_\alpha = 0$.
 \end{exercise}
 In particular, every monomial in an alternating polynomial must be composed of distinct powers.
 Moreover, the polynomial is completely determined by the coefficients with strictly decreasing multiindices, namely, multiindices of the form $c_\alpha$, where $\alpha=(\alpha_1,\dotsc,\alpha_n)$ with $\alpha_1>\dotsb>\alpha_n$.
 \begin{exercise}
   Let $\delta=(n-1,n-2,\dotsc,1, 0)$.
   Given an integer partition with at most $n$ parts, we will pad it with $0$'s so that it can be regarded as a weakly decreasing multiindex of length $n$.
-  Then $\lambda\mapsto \lambda+\delta$ is a bijection from the set of integer partitions with at most $n$ onto the set of strictly decreasing multiindices.
+  Then $\lambda\mapsto \lambda+\delta$ is a bijection from the set of integer partitions with at most $n$ parts onto the set of strictly decreasing multiindices.
 \end{exercise}
 \begin{example}
   Let $\lambda = (\lambda_1,\dotsc, \lambda_n)$ be a weakly decreasing multiindex.
@@ -226,7 +226,7 @@ The shape of the abacus, $\shape(w)$ is the unique partition $\lambda$ such that
 \end{proof}
 \subsection{Cauchy's Bialternant Form of a Schur Polynomial}
 \label{sec:cauchys-bialt-form}
-The simplest polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
+The lowest degree polynomial of the form $a_{\lambda+\delta}$ arises when $\lambda=0$; $a_\delta$ is the Vandermonde determinant:
 \begin{displaymath}
   a_\delta = \prod_{1\leq i<j\leq n}(x_i-x_j).
 \end{displaymath}
@@ -461,10 +461,10 @@ Pieri's rule allows us to compute the complete and elementary symmetric polynomi
   \label{exercise:unit-kostka}
   For every partition $\lambda$, show that $K_{\lambda\lambda}=1$.
 \end{exercise}
-\begin{exercise}
+\begin{definition}
   [$f$-number]
   The $f$-number of a partition $\lambda$ of $n$ is defined to be the Kostka number $K_{\lambda,(1^n)}$, and is denoted $f_\lambda$.
-\end{exercise}
+\end{definition}
 \begin{exercise}
   For a partition $\lambda$, let $\lambda^-$ denote the set of all partitions whose Young diagram can be obtained by removing one box from the Young diagram of $\lambda$.
   Show that $f_\lambda = \sum_{\mu\in \lambda^-} f_\mu$.
@@ -611,13 +611,10 @@ The algorithm $\rins$ takes as input the single row $t$ and a letter $x$, and re
 In the second case, one says that \emph{$x$ has been inserted into $t=a_1\dotsb a_k$, obtaining $t'=a_1\dotsb a_{j-1} x a_j \dotsb a_k$, and \textbf{bumping out} $a_j$}.
 Also, it is notationally convenient to write $\rins(t, \emptyset) = (\emptyset, t)$ (when nothing is inserted, $t$ remains unchanged, and nothing is bumped out).
 
-Now suppose $t$ is a tableau, with rows $r_1,r_2,\dotsc, r_l$.
-Suppose that $\rins(r_1,x) = (y, r_1')$.
-Recursively define:
-\begin{displaymath}
-  \ins(t, x) = \ins(t', y) r_1',
-\end{displaymath}
-where $t'$ is the tableau with rows $r_1,\dotsc,r_{l-1}$.
+Now suppose $t$ is a tableau, with first row $r$.
+Suppose that $\rins(r,x) = (y, r')$.
+Recursively define $\ins(t,x)$ to be the tableau whose first row is $r'$, and remaining rows are the rows of $\ins(t',y)$,
+where $t'$ is the tableau consisting of all but the first row of $t$.
 \begin{example}
   \label{example:insertion}
   Consider the insertion of $3$ into the tableau:
@@ -636,14 +633,14 @@ For example, the above tableau can be obtained by inserting $3$ into a different
 \end{displaymath}
 \end{example}
 Clearly, the shape of $\ins(t,x)$ is obtained by adding one box to the shape of $t$.
-If we know the row into which the new box was added, and the value of $x$, then $t$ can be recovered from $\ins(t,x)$.
+If we know the row $r$ into which the new box was added, and the value of $x$, then $t$ can be recovered from $\ins(t,x)$.
 This recovery is based on the fact that $\rins$ can be inverted:
 define
 \begin{displaymath}
   \rdel(a, a_1a_2\dotsb a_k) = (a_1\dotsb a_{j-1}aa_{j+1}\dotsb a_k, a_j),
 \end{displaymath}
-where $j=k$ if $a_r\leq a$ for all $r=1,\dotsc, k$ and $j = \min\{r\mid a_{r+1}>a\}$.
-To recover $t$ and $x$ from $s=\ins(t,x)$ and $r$, delete the last entry of the $r$th row of $s$, say $x_r$.
+where $j=k$ if $a_i\leq a$ for all $i=1,\dotsc, k$ and $j = \min\{i\mid a_{i+1}>a\}$.
+To recover $t$ and $x$ from $s=\ins(t,x)$ and $r$ (the number of the row into which the new box was added), delete the last entry of the $r$th row of $s$, say $x_r$.
 Let $u_{r-1}$ denote the $(r-1)$st row of $s$.
 Suppose $\rdel(x_r,u_{r-1}) = (v_{r-1},x_{r-1})$, replace the $(r-1)$st row of $s$ with $v_{r-1}$.
 Continue this process until $\rdel(x_2,u_1)=(v_1,x_1)$ is obtained and the first row of $s$ is replaced with $v_1$.
@@ -659,7 +656,7 @@ The preceding discussion shows:
 \end{exercise}
 \subsection{Tableaux and Words}
 \label{sec:tabl-assoc-word}
-Let $L^*_n$ denote the concatenation monoid of all words in the alphabet $L_n\{1,\dotsc,n\}$.
+Let $L^*_n$ denote the concatenation monoid of all words in the alphabet $L_n=\{1,\dotsc,n\}$.
 For any $w=a_1\dotsb a_k\in L^*_n$, Schensted's insertion algorithm allows us to associate a unique semistandard tableau $P(w)$ as follows:
 \begin{itemize}
 \item If $w=a$ has only one letter, then $P(a)$ is the single-cell tableau with entry $a$.
@@ -724,8 +721,8 @@ Then Exercise~\ref{exercise:row-col} can be restated as the identities:
   e_k = \ev(\mathbf E_k) \text{ and } h_k = \ev(\mathbf H_k).
 \end{displaymath}
 The evaluation map has a large kernel; is domain is the free algebra, and it maps onto the polynomial algebra.
-The algebra on the right contains our primary object of interest---the algebra $\mathbf Z[x_1,\dotsc,x_n]^{S_n}$ of symmetric polynomials.
-In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $L_n^*$, called \emph{Knuth equivalence}, such that the resulting quotient monoid $\pl(L_n):=L_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl(L_n)]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to $\mathbf Z[x_1,\dotsc, x_n]^{S_n}$ under the map $w\mapsto x^w$.
+Its image contains our primary object of interest---the algebra of symmetric polynomials in $n$ variables.
+In the next few sections, we shall learn about an equivalence relation ``$\equiv$'' on $L_n^*$, called \emph{Knuth equivalence}, such that the resulting quotient monoid $\pl(L_n):=L_n^*/\equiv$ (called the \emph{plactic monoid}) has the property that the subalgebra of $\mathbf Z[\pl(L_n)]$ generated by the elements $\{\mathbf E_k\}_{k=1}^\infty$ or the elements $\{\mathbf H_k\}_{k=1}^\infty$ is isomorphic to the subalgebra of symmetric polynomials in $\mathbf Z[x_1,\dotsc, x_n]$ under the evaluation map.
 \subsection{The Plactic Monoid}
 \label{sec:plactic-monoid}
 The plactic monoid $\pl(L_n)$ is the quotient of $L^*_n$ by the equivalence relation generated by the Knuth relations:
@@ -759,6 +756,13 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
 \end{exercise}
 \begin{exercise}
   Show that any evaluation-preserving equivalence on $L_3^*$ under which the images of $\mathbf E_1$ and $\mathbf E_2$ commute must include either the Knuth equivalences or Sch\"utzenberger's forgotten equivalences.
+\end{exercise}
+\begin{exercise}
+  \begin{enumerate}
+  \item Show that, if $\iota(r,x)=(y,r')$ (as in Section~\ref{sec:schenst-insert-algor}), then $rx\equiv yr'$.
+  \item Show that, if $tx\equiv \ins(t,x)$. Here tableaux are to be identified with their reading words.
+  \item Show that, for every $w\in L_n^*$, $w\equiv P(w)$.
+  \end{enumerate}
 \end{exercise}
 \subsection{The Plactic Pieri Rules}
 Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
@@ -808,6 +812,19 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   Lemma~\ref{lemma:two-step} implies that $\shape(P(wr))$ is obtained from\linebreak $\shape(P(w))$ by adding a horizontal strip, and that $\shape(P(wc))$ is obtained from $\shape(P(w))$ by adding a vertical strip.
   The bijectivity can be shown by repeated used of the $\del$ algorithm (because we know which box from $\mu$ has to be removed at each step).
 \end{proof}
+\begin{exercise}
+  \label{exercise:plactic-pieri}
+  Define an element of $\mathbf Z[L_n^*]$ by $\mathbf S_\lambda=\sum_{t\in \Tab_n(\lambda)} t$.
+  Let $S_\lambda$ denote the image of $\mathbf S_\lambda$ in $\mathbf Z[\pl(L_n)]$.
+  Use Theorem~\ref{theorem:plactic-pieri} to show that:
+  \begin{align*}
+    S_\lambda H_k&=\sum_{\mu/\lambda \text{ is a horizontal strip of size $k$}} S_\mu,\\
+    S_\lambda E_k&=\sum_{\mu/\lambda \text{ is a vertical strip of size $k$}} S_\mu,\\
+  \end{align*}
+\end{exercise}
+\begin{exercise}
+  Show that $E_k$ and $E_l$ (also $H_k$ and $H_l$) commute in $\mathbf Z[\pl(L_n)]$ for all positive integers $n$, $k$ and $l$.
+\end{exercise}
 \begin{corollary}
   [Kostka's definition of Schur polynomials]
   \label{corollary:kostka-def-schur}
@@ -817,63 +834,11 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   \end{displaymath}
 \end{corollary}
 \begin{proof}
-  Define $S_\lambda = \sum_{t\in \Tab_n(\lambda)} x^t$.
-  Then $S_{(n)} = h_n$, and $S_{(1^n)} = e_n$, just like the Schur polynomials.
-  Moreover, the class of polynomials $S_\lambda$ satisfy the Pieri rule, just like the Schur polynomials.
-  This suffices for the identities of Theorem~\ref{theorem:schur-to-eh} to hold with $s_\lambda$ replaced by $S_\lambda$.
+  Note that $\ev(\mathbf S_\lambda) = \sum_{t\in \Tab_n(\lambda)} x^t$.
+  Then $\ev(\mathbf S_{(n)}) = h_n$, and $\ev(\mathbf S_{(1^n)}) = e_n$, just like the Schur polynomials.
+  Moreover, since the evaluation map $\mathbf Z[L_n^*]$ factors through $\mathbf Z[\pl(L_n^*)]$, Exercise~\ref{exercise:plactic-pieri} implies that the polynomials $\ev(\mathbf S_\lambda)$ satisfy the Pieri rule, just like the Schur polynomials.
+  This suffices for the identities of Theorem~\ref{theorem:schur-to-eh} to hold with $s_\lambda$ replaced by $\ev(\mathbf S_\lambda)$.
   By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur polynomials, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
-\end{proof}
-\subsection{Greene's Theorem}
-\label{sec:greenes-theorem}
-Given a word $w = (a_1,\dotsc,a_k)\in L_n^*$, a subword is a word of the form $w' = a_{i_1}\dotsb a_{i_r}$, where $1\leq i_1<\dotsb < i_r\leq k$.
-This section is concerned with the enumeration of subwords which are rows or columns.
-For the purposes of such enumeration, given $1 \leq j_1<\dotsb <j_r\leq k$, $w'' = a_{j_1}\dotsb a_{j_r}$ will be considered to be a different subword from $w'$ \emph{even if} $w'=w''$ as words, unless the indices $j_1,\dotsc, j_r$ coincide with the indices $i_1,\dotsc,i_r$.
-Two subwords of will be said to be disjoint, if their indexing sets are disjoint.
-\begin{example}
-  The word $w=111$ has three subwords of length two, all of them equal to $11$.
-  No two of these subwords are disjoint.
-  However, each of them is disjoint from a subword of $w$ of length $1$.
-\end{example}
-\begin{definition}
-  [Greene invariants]
-  \label{definition:Greene-invars}
-  Given $w \in L_n^*$, for each integer $k\geq 0$, let $l_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint weakly increasing subwords of $w$.
-  Let $l'_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint strictly decreasing subwords of $w$.
-\end{definition}
-\begin{example}
-  If $w=2133$, then $l_1(w)=3$, $l_k(w)=4$ for all $k\geq 2$.
-  Also, $l'_1(w) = 2$, $l'_2(w)=3$, and $l'_k(w)=4$ for all $k\geq 3$.
-\end{example}
-\begin{theorem}
-  [Greene's Theorem]
-  \label{theorem:Greene}
-  Given a word $w$, define a partition $\lambda=(\lambda_1,\lambda_2,\dotsc)$ by $\lambda_k=l_k(w)-l_{k-1}(w)$ for each $k\geq 1$.
-  Then $\lambda$ is the shape of $P(w)$.
-  Moreover, if $\mu'_k=l'_k(w)-l'_{k-1}(w)$ for each $k\geq 1$, then $\mu=(\mu_1,\mu_2,\dotsc)$ is the partition conjugate to $\lambda$.
-\end{theorem}
-\begin{proof}
-  Greene's theorem follows by putting together two relatively simple observations---the first is that the Greene invariants $l_k(w)$ and $l'_k(w)$ remain unchanged when either of the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}) is applied to $w$.
-  The second is that when $w$ is the reading word of a semistandard tableau, then Greene's theorem holds.
-
-  To see the first, suppose that $w$ is of the form $u_1xzyu_2$, with $x\leq y < z$, and arbitrary $u_1,u_2\in L_n^*$.
-  Applying a Knuth transformation of the form (\ref{eq:k1}), $w$ transforms to $w'=u_1zxyu_2$.
-  Any weakly increasing subword of $w'$ is also a weakly increasing subword of $w$, so $l_k(w')\leq l_k(w)$.
-  On the other hand, if $v$ is a weakly increasing subword of $w$ of the form $v_1xzv_2$ (where $v_i$ is a subword of $u_i$ for $i=1,2$) it will not necessarily remain a weakly increasing subword of $w'$.
-  However, $v_1xyv_2$ \emph{is} a weakly increasing subword of $w$.
-  If a collection of $k$ weakly increasing subwords of $w$ contains $v_1xzv_2$ and another weakly increasing subword $v_1'yv_2'$, replacing them by $v_1yzv'_2$ and  $v_1'xv_2$ gives a collection of $k$ weakly increasing subwords of $w'$ of the same cardinality.
-  It follows that $l_k(w')\geq l_k(w)$ also holds.
-  Thus the Knuth transformation (\ref{eq:k1}) preserves the Greene invariants $l_k(w)$.
-  Similar arguments can be used to show that both (\ref{eq:k1}) and (\ref{eq:k2}) preserve all the Greene invariants $l_k(w)$ and $l'_k(w)$.
-
-  Now suppose $w$ is the reading word of a tableau of shape $\lambda$.
-  Then the top $k$ rows of $w$ form a union of $k$ pairwise disjoint weakly increasing subwords of total size $\lambda_1+\dotsb+\lambda_k$.
-  Also, if $v$ is a weakly increasing subword of $w$, then the fact that the columns of $t$ are strictly increasing (and that the rows are read from \emph{bottom to top}) implies that $v$ cannot contain more than one element from each column of $w$.
-  Therefore, any collection of $k$ pairwise disjoint weakly increasing subwords of $w$ can have at most $k$ entries in each column of $w$.
-  Thus no union of $k$ pairwise disjoint weakly increasing subwords of $w$ can have cardinality more than $\lambda_1+\dotsb+\lambda_k$
-  Therefore, $l_k(w)=\lambda_1+\dotsb+\lambda_k$.
-
-  Similarly, the leftmost $k$ columns of $w$ (read bottom to top) form a union of $k$ pairwise disjoint strictly decreasing subwords of $w$, and any such union can only contain $k$ elements from each row.
-  It follows that if $\lambda'$ is the partition conjugate to $\lambda$, then $l'_k(w)=\lambda'_1+\dotsb + \lambda'_k$.
 \end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
@@ -1171,6 +1136,58 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
   \end{equation}
   It is not hard to see that the non-crossing path configurations $\{\omega_i:A_i\to B_i\}$ correspond to semistandard tableau of shape $(\alpha|\beta)$ (for an example, see Fig.~\ref{fig:giambelli}).
 \end{proof}
+\subsection{Greene's Theorem}
+\label{sec:greenes-theorem}
+Given a word $w = (a_1,\dotsc,a_k)\in L_n^*$, a subword is a word of the form $w' = a_{i_1}\dotsb a_{i_r}$, where $1\leq i_1<\dotsb < i_r\leq k$.
+This section is concerned with the enumeration of subwords which are rows or columns.
+For the purposes of such enumeration, given $1 \leq j_1<\dotsb <j_r\leq k$, $w'' = a_{j_1}\dotsb a_{j_r}$ will be considered to be a different subword from $w'$ \emph{even if} $w'=w''$ as words, unless the indices $j_1,\dotsc, j_r$ coincide with the indices $i_1,\dotsc,i_r$.
+Two subwords of will be said to be disjoint, if their indexing sets are disjoint.
+\begin{example}
+  The word $w=111$ has three subwords of length two, all of them equal to $11$.
+  No two of these subwords are disjoint.
+  However, each of them is disjoint from a subword of $w$ of length one.
+\end{example}
+\begin{definition}
+  [Greene invariants]
+  \label{definition:Greene-invars}
+  Given $w \in L_n^*$, for each integer $k\geq 0$, let $l_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint weakly increasing subwords of $w$.
+  Let $l'_k(w)$ denote the maximum cardinality of a union of $k$ pairwise disjoint strictly decreasing subwords of $w$.
+\end{definition}
+\begin{example}
+  If $w=2133$, then $l_1(w)=3$, $l_k(w)=4$ for all $k\geq 2$.
+  Also, $l'_1(w) = 2$, $l'_2(w)=3$, and $l'_k(w)=4$ for all $k\geq 3$.
+\end{example}
+\begin{theorem}
+  [Greene's Theorem]
+  \label{theorem:Greene}
+  Given a word $w$, define a partition $\lambda=(\lambda_1,\lambda_2,\dotsc)$ by $\lambda_k=l_k(w)-l_{k-1}(w)$ for each $k\geq 1$.
+  Then $\lambda$ is the shape of $P(w)$.
+  Moreover, if $\mu'_k=l'_k(w)-l'_{k-1}(w)$ for each $k\geq 1$, then $\mu=(\mu_1,\mu_2,\dotsc)$ is the partition conjugate to $\lambda$.
+\end{theorem}
+\begin{proof}
+  Greene's theorem follows by putting together two relatively simple observations---the first is that the Greene invariants $l_k(w)$ and $l'_k(w)$ remain unchanged when either of the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}) is applied to $w$.
+  The second is that when $w$ is the reading word of a semistandard tableau, then Greene's theorem holds.
+
+  To see the first, suppose that $w$ is of the form $u_1xzyu_2$, with $x\leq y < z$, and arbitrary $u_1,u_2\in L_n^*$.
+  Applying a Knuth transformation of the form (\ref{eq:k1}), $w$ transforms to $w'=u_1zxyu_2$.
+  Any weakly increasing subword of $w'$ is also a weakly increasing subword of $w$, so $l_k(w')\leq l_k(w)$.
+  On the other hand, if $v$ is a weakly increasing subword of $w$ of the form $v_1xzv_2$ (where $v_i$ is a subword of $u_i$ for $i=1,2$) it will not necessarily remain a weakly increasing subword of $w'$.
+  However, $v_1xyv_2$ \emph{is} a weakly increasing subword of $w$.
+  If a collection of $k$ weakly increasing subwords of $w$ contains $v_1xzv_2$ and another weakly increasing subword $v_1'yv_2'$, replacing them by $v_1yzv'_2$ and  $v_1'xv_2$ gives a collection of $k$ weakly increasing subwords of $w'$ of the same cardinality.
+  It follows that $l_k(w')\geq l_k(w)$ also holds.
+  Thus the Knuth transformation (\ref{eq:k1}) preserves the Greene invariants $l_k(w)$.
+  Similar arguments can be used to show that both (\ref{eq:k1}) and (\ref{eq:k2}) preserve all the Greene invariants $l_k(w)$ and $l'_k(w)$.
+
+  Now suppose $w$ is the reading word of a tableau of shape $\lambda$.
+  Then the top $k$ rows of $w$ form a union of $k$ pairwise disjoint weakly increasing subwords of total size $\lambda_1+\dotsb+\lambda_k$.
+  Also, if $v$ is a weakly increasing subword of $w$, then the fact that the columns of $t$ are strictly increasing (and that the rows are read from \emph{bottom to top}) implies that $v$ cannot contain more than one element from each column of $w$.
+  Therefore, any collection of $k$ pairwise disjoint weakly increasing subwords of $w$ can have at most $k$ entries in each column of $w$.
+  Thus no union of $k$ pairwise disjoint weakly increasing subwords of $w$ can have cardinality more than $\lambda_1+\dotsb+\lambda_k$
+  Therefore, $l_k(w)=\lambda_1+\dotsb+\lambda_k$.
+
+  Similarly, the leftmost $k$ columns of $w$ (read bottom to top) form a union of $k$ pairwise disjoint strictly decreasing subwords of $w$, and any such union can only contain $k$ elements from each row.
+  It follows that if $\lambda'$ is the partition conjugate to $\lambda$, then $l'_k(w)=\lambda'_1+\dotsb + \lambda'_k$.
+\end{proof}
 \subsection{The Robinson-Schensted-Knuth Correspondences}
 \label{sec:rsk}
 For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ and their duals $\cev u_A$ and $\cev v_A$ are defined as follows:
@@ -1372,6 +1389,11 @@ In view of Lemma~\ref{lemma:yamanouchi}, the Littlewood-Richardson rule becomes:
 \end{theorem}
 \begin{exercise}
   If $c^\lambda_{\alpha\beta}>0$ then $\lambda\supset \alpha$ and $\lambda\supset \beta$.
+\end{exercise}
+\begin{exercise}
+  Suppose $\lambda=(\lambda_1,\dotsc,\lambda_l)$, with $\lambda_1\leq m$.
+  Let $\check\lambda=(m-\lambda_l,\dotsc,m-\lambda_1)$, and let $\Lambda$ denote the partition $(l,\dotsc,l)$ (with $m$ repititions of $l$).
+  Show that $c^\Lambda_{\lambda\mu}=1$.
 \end{exercise}
 \subsection{Expansion of Skew-Schur polynomials}
 \label{sec:skew-lr}
