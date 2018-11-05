@@ -1,0 +1,67 @@
+\begin{thebibliography}{10}
+
+\bibitem{burge}
+W.~H. Burge.
+\newblock Four correspondences between graphs and generalized young tableaux.
+\newblock {\em Journal of Combinatorial Theory (A)}, 17, 1972.
+
+\bibitem{fulton}
+W.~Fulton.
+\newblock {\em Young Tableaux: With Applications to Representation Theory and
+  Geometry}.
+\newblock Cambridge University Press, 1997.
+
+\bibitem{llt}
+A.~Lascoux, B.~Leclerc, and J.-Y. Thibon.
+\newblock The plactic monoid.
+\newblock In {\em Algebraic Combinatorics on Words by M. Lothaire}, chapter~5.
+  Cambridge University Press, 2002.
+\newblock
+  \url{http://www-igm.univ-mlv.fr/~berstel/Lothaire/AlgCWContents.html}.
+
+\bibitem{ls}
+A.~Lascoux and M.-P. Sch\"utzenberger.
+\newblock Le mono\"ide plaxique.
+\newblock In {\em Non-commutative structures in Alegbra and Geometric
+  Combinatorics}, Quaderni de `La ricerca scientifica', n.~109. 1981.
+
+\bibitem{loehr}
+N.~A. Loehr.
+\newblock Abacus proofs of {S}chur function identities.
+\newblock {\em SIAM J. Discrete Math.}, 24, 2010.
+
+\bibitem{macd}
+I.~G. Macdonald.
+\newblock {\em Symmetric Functions and Hall Polynomials}.
+\newblock Oxford University Press, second edition, 1995.
+
+\bibitem{manivel}
+L.~Manivel.
+\newblock {\em Symmetric Functions, {S}chubert Polynomials and Degeneracy
+  Loci}.
+\newblock AMS/SMF, 1998.
+
+\bibitem{rtcv}
+A.~Prasad.
+\newblock {\em Representation Theory: A Combinatorial Viewpoint}.
+\newblock Cambridge University Press, 2015.
+
+\bibitem{ec2}
+R.~Stanley.
+\newblock {\em Enumerative Combinatorics, Volume 2}.
+\newblock Cambridge University Press, 1999.
+
+\bibitem{stembridge}
+J.~R. Stembridge.
+\newblock Nonintersecting paths, pfaffians, and plane partitions.
+\newblock {\em Advances in Mathematics}, 83, 1990.
+
+\bibitem{imsc2016}
+X.~Viennot.
+\newblock An introduction to enumerative, algebraic and bijective
+  combinatorics.
+\newblock \url{http://www.xavierviennot.org/coursIMSc2016}.
+\newblock A course taught at The Institute of Mathematical Sciences, Chennai in
+  2016.
+
+\end{thebibliography}

@@ -1,5 +1,5 @@
 \documentclass[11pt]{amsproc}
-\usepackage{ytableau,graphicx,xypic,hyperref}
+\usepackage{ytableau,graphicx,xypic,hyperref,accents}
 \makeatletter
 \DeclareRobustCommand{\cev}[1]{%
   \mathpalette\do@cev{#1}%
@@ -59,13 +59,15 @@
 \DeclareMathOperator{\tab}{Tab}
 \begin{document}
 \maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
 \subsection{Symmetric Polynomials}
 \label{sec:symmetric-functions}
-Consider polynomials with integer coefficients in variables $x_1,\dotsc,x_n$.
+Consider polynomials in $n$ variables \linebreak $x_1,\dotsc,x_n$ having integer coefficients.
 Given a multiindex $\alpha=(\alpha_1,\dotsc, \alpha_n)$, let $x^\alpha$ denote the monomial $x_1^{\alpha_1}\dotsb x_n^{\alpha_n}$.
 A \emph{symmetric polynomial} is a polynomial of the form
 \begin{displaymath}
-  f(x_1,\dotsc, x_n) = \sum_{\alpha} c_\alpha x^\alpha,
+  f(x_1,\dotsc, x_n) = \sum_{\alpha} c_\alpha x^\alpha, \text{ with } c_\alpha\in \mathbf Z,
 \end{displaymath}
 where, for any permutation $w\in S_n$,
 \begin{displaymath}
@@ -81,7 +83,7 @@ Note that $m_\lambda$ is homogeneous of degree $|\lambda|$ (the sum of the parts
   Take $n=4$. Compute the monomial symmetric polynomials $m_{(3)}$, $m_{(2,1)}$, and $m_{(1^3)}$.
 \end{exercise}
 \begin{theorem}
-The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partition of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
+The polynomials $m_\lambda(x_1,\dotsc,x_n)$, as $\lambda$ runs over all the integer partitions of $d$, form a basis for the space of homogeneous symmetric polynomials of degree $d$ in $n$ variables.
 \end{theorem}
 \subsection{Complete and Elementary Symmetric Polynomials}
 \label{sec:compl-elem-symm}
@@ -90,7 +92,7 @@ Recall that the coefficients of a polynomial are symmetric polynomials in its ro
   \label{eq:elem-id}
   (t-x_1)(t-x_2)\dotsb (t-x_n) \\= t^n - e_1(x_1,\dotsc, x_n)t^{n-1} + \dotsb + (-1)^n e_n(x_1,\dotsc, x_n),
 \end{multline}
-where coefficient $e_i(x_1,\dotsc, x_n)$ of $t^{n-i}$ is given by:
+where the expression $e_i(x_1,\dotsc, x_n)$ in the coefficient of $t^{n-i}$ is given by:
 \begin{equation}
   \label{eq:elem}
   e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1<\dotsb<j_i\leq n} x_{j_1}x_{j_2}\dotsb x_{j_i}.
@@ -111,17 +113,17 @@ Dually, the \emph{complete symmetric polynomials} are defined by the formal iden
   In three variables:
   \begin{align*}
     e_2(x_1,x_2,x_3) & = x_1x_2 + x_1x_3 + x_2x_3,\\
-    h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_2^3.
+    h_2(x_1,x_2,x_3) & = x_1^2 + x_1x_2 + x_1x_3 + x_2^2 + x_2x_3 + x_3^2.
   \end{align*}
 \end{example}
 \begin{exercise}
   Show that
   \begin{displaymath}
-    h_i(x_1,\dotsb x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+    h_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1\leq \dotsb \leq j_i\leq n} x_{j_1}\dotsb x_{j_i},
   \end{displaymath}
   and that
   \begin{displaymath}
-    e_i(x_1,\dotsb x_n) = \sum_{1\leq j_1< \dotsb < j_i\leq n} x_{j_1}\dotsb x_{j_i}.
+    e_i(x_1,\dotsc, x_n) = \sum_{1\leq j_1< \dotsb < j_i\leq n} x_{j_1}\dotsb x_{j_i}.
   \end{displaymath}
 \end{exercise}
 More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)$, define:
@@ -135,7 +137,8 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
   \begin{displaymath}
     h_\lambda = \sum_\mu M_{\lambda\mu} m_\mu.
   \end{displaymath}
-  Dually, let $=N_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with entries $0$ or $1$, whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Dually, let $N_{\lambda\mu}$ denote the number of integer matrices $(a_{ij})$ with entries $0$ or $1$, whose $i$th row sums to $\lambda_i$ for each $i$, and whose $j$th column sums to $\mu_j$ for each $j$.
+  Then
   \begin{displaymath}
     e_\lambda = \sum_\mu N_{\lambda\mu} m_\mu.
   \end{displaymath}
@@ -143,13 +146,13 @@ More generally, for any integer partition $\lambda=(\lambda_1,\dotsc, \lambda_l)
 \begin{proof}
   To prove the second identity involving elementary symmetric polynomials, note that a monomial in the expansion of
   \begin{displaymath}
-    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_j}}x_{j_1}\dotsb x_{j_{\lambda_i}}
+    e_\lambda = \prod_{i=1}^l \sum_{j_1<\dotsb<j_{\lambda_i}}x_{j_1}\dotsb x_{j_{\lambda_i}}
   \end{displaymath}
   is a product of summands, one chosen from each of the $l$ factors.
   Construct an $l\times m$ matrix $(a_{ij})$ corresponding to such a choice as follows:
   if the summand $x_{j_1}\dotsb x_{j_{\lambda_i}}$ is chosen from the $i$th factor, then set the entries $a_{i,j_1},\dotsc, a_{i, j_{\lambda_j}}$ to be $1$ (the remaining entries of the $i$th row are $0$).
   Clearly the $i$th row of such a matrix sums to $\lambda_i$.
-  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in the monomial corresponding to the $i$gth row is $\mu_j$. This is just the sum of the $j$th column of the matrix $(a_{ij})$.
+  The monomial corresponding to this choice is $x^\mu$ if, for each $j$, the the number of $i$ for which $x_j$ appears in the monomial corresponding to the $i$th row is $\mu_j$. This is just the sum of the $j$th column of the matrix $(a_{ij})$.
   It follows that the coefficient of $x^\mu$, and hence the coefficient of $m_\mu$ in the expansion of $e_\lambda$ in the basis of monomial symmetric polynomials of degree $n$, is $N_{\lambda\mu}$.
 
 A similar proof can be given for the first identity involving complete symmetric polynomials. The only difference is that variables may be repeated in the monomials that appear in $h_i$. Counting the number of repetitions (instead of just recording $0$ or $1$) gives non-negative integer matrices.
@@ -161,7 +164,7 @@ An \emph{alternating polynomial} in $x_1,\dotsc, x_n$ is of the form:
   \label{eq:alt-form}
   f(x_1,\dotsc,x_n) = \sum_{\alpha} c_\alpha x_\alpha,
 \end{equation}
-where, $c_{w(\alpha)} = \epsilon(w)c_\alpha$ for every multiindex $\alpha$ as in Section~\ref{sec:symmetric-functions}.
+where, $c_{(\alpha_{w(1)},\dotsc,\alpha_{w(n)})} = \epsilon(w)c_{(\alpha_1,\dotsc,\alpha_n)}$ for every multiindex $\alpha$ as in Section~\ref{sec:symmetric-functions}, and every permutation $w\in S_n$.
 Here $\epsilon:S_n\to \{\pm 1\}$ denotes the sign function.
 Equivalently, an alternating polynomial is one whose sign is reversed upon the interchange of any two variables.
 \begin{exercise}
@@ -176,7 +179,7 @@ Moreover, the polynomial is completely determined by the coefficients with stric
 \end{exercise}
 \begin{example}
   Let $\lambda = (\lambda_1,\dotsc, \lambda_n)$ be a weakly decreasing multiindex.
-  The polynomial:
+  The \emph{alternant} corresponding to $\lambda$, which is defined as:
   \begin{displaymath}
     a_{\lambda+\delta} = \det(x_i^{\lambda_j + n - j})
   \end{displaymath}
@@ -185,16 +188,16 @@ Moreover, the polynomial is completely determined by the coefficients with stric
 \begin{exercise}
   \label{exercise:alt-basis}
   The alternating polynomial of the form \textup{(\ref{eq:alt-form})} is equal to  \begin{displaymath}
-    \sum_{\lambda} c_\lambda a_{\lambda+\delta},
+    \sum_{\lambda} c_{\lambda+\delta} a_{\lambda+\delta},
   \end{displaymath}
   the sum being over all weakly decreasing multiindices $\lambda$.
 \end{exercise}
 \subsection{Interpretation of Alternants with Labeled Abaci}
 \label{sec:abaci}
-A labeled abacus with $n$ beads is a word $w=(w_k; k\geq 0)$ such that the subword of non-zero letters is a permutation of $1,2,\dotsc,n$.
+A labeled abacus with $n$ beads is a word $w=(w_k; k\geq 0)$ with letters $w_i\in \{0,\dotsc,n\}$ such that the subword of non-zero letters is a permutation of $1,2,\dotsc,n$.
 The sign $\epsilon(w)$ of the abacus is the sign of this permutation, the support is the set $\supp(w)=\{k\mid w_k>0\}$, and the weight is defined as:
 \begin{displaymath}
-  \wt(w) = \prod_k x_{w_k}^k.
+  \wt(w) = \prod_{k\in \supp(w)} x_{w_k}^k.
 \end{displaymath}
 The shape of the abacus, $\shape(w)$ is the unique partition $\lambda$ such that the components of $\lambda+\delta$ form the support of $w$.
 \begin{example}
@@ -235,7 +238,7 @@ The lowest degree polynomial of the form $a_{\lambda+\delta}$ arises when $\lamb
 \end{exercise}
 \begin{exercise}
   \label{exercise:vandermonde-iso}
-  Show that $f\mapsto fa_\delta$ is an isomorphism of the space of symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of alternating polynomials of degree $d + \binom n2$.
+  Show that $f\mapsto fa_\delta$ is an isomorphism of the space of homogeneous symmetric polynomials in $x_1,\dotsc, x_n$ of degree $d$ onto the space of homogeneous alternating polynomials of degree $d + \binom n2$.
 \end{exercise}
 This motivates the historically oldest definition of Schur polynomials---\emph{Cauchy's bialternant formula}:
 \begin{equation}
@@ -255,7 +258,7 @@ This is clearly a symmetric polynomial of degree $|\lambda|$.
   [Stability of Schur polynomials]
   Show that substituting $x_n=0$ in the Schur polynomial $s_\lambda(x_1,\dotsc, x_n)$ with $n$ variables gives the corresponding Schur polynomial $s_\lambda(x_1,\dotsc,x_{n-1})$ with $n-1$ variables.
 \end{exercise}
-\subsection{Pieri's Rule}
+\subsection{Pieri's rule}
 \label{sec:pieri}
 The set of integer partitions is endowed with the \emph{containment order}.
 We say that a partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ \emph{contains} a partition $\mu=(\mu_1,\dotsc, \mu_m)$ if $l \geq m$, and $\lambda_i\geq \mu_i$ for every $i=1,\dotsb, m$.
@@ -411,7 +414,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric polynomi
         &&&h_2 h_2 h_1\ar[d]&&&\\
         &&&s_{(2)} h_2 h_1\ar[dll]\ar[d]\ar[drr]&&\\
         &s_{(4)}h_1\ar[dl]\ar[d] && s_{(3,1)}h_1\ar[dl]\ar[d]\ar[dr] && s_{(3,2)}h_1 \ar[d]\ar[dr]&\\
-        h_{(5)} & s_{(4, 1)} & s_{(4,1)} & s_{(3, 2)} & s_{(3, 1^2)} & s_{(3,2)} & s_{(2,2,1)}
+        s_{(5)} & s_{(4, 1)} & s_{(4,1)} & s_{(3, 2)} & s_{(3, 1^2)} & s_{(3,2)} & s_{(2,2,1)}
       }
     }
   \end{displaymath}
@@ -455,7 +458,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric polynomi
 \end{example}
 \begin{definition}
   [Kostka number]
-  Given two partitions $\lambda$ and $\mu$, the Kostka number $K_{\lambda\mu}$ is the number of semistandard tableau of shape $\lambda$ and type $\mu$.
+  Given two partitions $\lambda$ and $\mu$, the Kostka number $K_{\lambda\mu}$ is the number of semistandard tableaux of shape $\lambda$ and type $\mu$.
 \end{definition}
 \begin{exercise}
   \label{exercise:unit-kostka}
@@ -467,7 +470,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric polynomi
 \end{definition}
 \begin{exercise}
   For a partition $\lambda$, let $\lambda^-$ denote the set of all partitions whose Young diagram can be obtained by removing one box from the Young diagram of $\lambda$.
-  Show that $f_\lambda = \sum_{\mu\in \lambda^-} f_\mu$.
+  For each $\lambda\neq \emptyset$, show that $f_\lambda = \sum_{\mu\in \lambda^-} f_\mu$.
 \end{exercise}
 \begin{exercise}
   A hook is a partition of the form $h(a,b)=(a+1,1^b)$.
@@ -510,11 +513,11 @@ If partitions $\lambda=(\lambda_1,\dotsc,\lambda_l)$ and $\mu=(\mu_1,\dotsc,\mu_
 then there exists a semistandard tableau $t$ of shape $\lambda$ and type $\mu$.
 Since the columns of $t$ are strictly increasing, all the $1$'s in $t$ must occur in its first row, so $\lambda_1\geq \mu_1$.
 Also, all the $2$'s must occur in the first two rows (along with all the $1$'s), so $\lambda_1+\lambda_2\geq \mu_1+\mu_2$.
-More generally, all the numbers $1,\dotsc, i$ for $i=1,\dotsc,m$ should occur in the first $m$ rows of $t$.
+More generally, all the numbers $1,\dotsc, i$ for $i=1,\dotsc,m$ should occur in the first $i$ rows of $t$.
 We have:
 \begin{equation}
   \label{eq:dominance}
-  \lambda_1+\dotsb + \lambda_i \geq \mu_1+\dotsb \mu_i \text{ for } i=1,\dotsc, m.
+  \lambda_1+\dotsb + \lambda_i \geq \mu_1+\dotsb+\mu_i \text{ for } i=1,\dotsc, m.
 \end{equation}
 \begin{definition}
   The integer partition $\lambda$ \emph{dominates} the integer partition $\mu$ if $|\lambda|=|\mu|$ and (\ref{eq:dominance}) holds for $i=1,\dotsc,m$.
@@ -528,14 +531,14 @@ We have:
 \begin{theorem}
   [Triangularity of Kostka Numbers]
   \label{theorem:Kostka-triangularity}
-  Given partition $\lambda$ and $\mu$ of an integer $n$, $K_{\lambda\mu}>0$ if and only if $\lambda\rhd\mu$.
+  Given partitions $\lambda$ and $\mu$ of an integer $n$, $K_{\lambda\mu}>0$ if and only if $\lambda\rhd\mu$.
 \end{theorem}
 \begin{proof}
   It only remains to construct, whenever $\lambda\rhd\mu$, a semistandard tableau of shape $\lambda$ and type $\mu$.
   In order to understand the algorithm that follows, it is helpful to keep in mind Example~\ref{example:can-tab} below.
   Since $\lambda\rhd\mu$, $\lambda_1\geq \mu_1\geq \mu_m$.
   Therefore, the Young diagram of $\lambda$ has at least $\mu_m$ cells in its first row, or in other words, it has at least $\mu_m$ columns.
-  Choose the smallest integer $i$ for which $\lambda_i\geq\mu_m$.
+  Choose the largest integer $i$ for which $\lambda_i\geq\mu_m$.
   Fill the bottom-most box in the $\lambda_{i+1}$ leftmost columns with $m$.
   Also, from the $i$th row, fill the rightmost $\mu_m-\lambda_{i+1}$ boxes with $m$.
   The remaining (unfilled) boxes in the Young diagram of $\lambda$ now form the Young diagram of the partition
@@ -562,7 +565,7 @@ We have:
 \begin{example}
   \label{example:can-tab}
   Consider the case where $\lambda=(7,3,2)$ and $\mu=(4,4,4)$.
-  Then the smallest integer $i$ such that $\lambda_i\geq 4$ is $1$.
+  Then the largest integer $i$ such that $\lambda_i\geq 4$ is $1$.
   Accordingly, we enter $3$ into the bottom-most boxes in the three leftmost columns, and also into one rightmost box in the first row:
   \begin{displaymath}
     \ytableaushort{{}{}{}{}{}{}3,{}{}3,33}
@@ -591,9 +594,9 @@ We have:
 \begin{proof}
   In view of the triangularity of Kostka numbers (Theorem~\ref{theorem:Kostka-triangularity}) and the fact that $K_{\lambda\lambda}=1$ (Exercise~\ref{exercise:unit-kostka}) the theorem follows from Theorem~\ref{theorem:schur-to-eh}.
 \end{proof}
-\subsection{Schensted's Insertion Algorithm}
+\subsection{Schensted's insertion algorithm}
 \label{sec:schenst-insert-algor}
-Let $t$ be a semistandard\linebreak tableau, and $x$ be a positive integer.
+Let $t$ be a semistandard tableau, and $x$ be a positive integer.
 Schensted's insertion algorithm is a method of inserting a box with the number $x$ into $t$, resulting in a new tableau $\ins(t, x)$.
 Applied repeatedly, it gives a way to convert any word into a tableau.
 This tableau succinctly expresses some combinatorial properties of the original word.
@@ -604,11 +607,11 @@ The algorithm $\rins$ takes as input the single row $t$ and a letter $x$, and re
 \begin{displaymath}
   \rins(a_1a_2\dotsb a_k, x) =
   \begin{cases}
-    (\emptyset, a_1\dotsb a_k x) & \text{if $x\geq a_k$},\\
-    (a_j, a_1\dotsb a_{j-1} x a_j \dotsb a_k) & \text{ if } j = \min\{r \mid a_r > x\}.
+    (\emptyset, a_1\dotsb a_k x) & \text{if $x\geq a_i$ for all $i$},\\
+    (a_j, a_1\dotsb a_{j-1} x a_{j+1} \dotsb a_k) & \text{if } j = \min\{r \mid a_r > x\}.
   \end{cases}
 \end{displaymath}
-In the second case, one says that \emph{$x$ has been inserted into $t=a_1\dotsb a_k$, obtaining $t'=a_1\dotsb a_{j-1} x a_j \dotsb a_k$, and \textbf{bumping out} $a_j$}.
+In the second case, one says that \emph{$x$ has been inserted into $t=a_1\dotsb a_k$, obtaining $t'=a_1\dotsb a_{j-1} x a_{j+1} \dotsb a_k$, and \textbf{bumping out} $a_j$}.
 Also, it is notationally convenient to write $\rins(t, \emptyset) = (\emptyset, t)$ (when nothing is inserted, $t$ remains unchanged, and nothing is bumped out).
 
 Now suppose $t$ is a tableau, with first row $r$.
@@ -764,7 +767,7 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
   \item Show that, for every $w\in L_n^*$, $w\equiv P(w)$.
   \end{enumerate}
 \end{exercise}
-\subsection{The Plactic Pieri Rules}
+\subsection{The plactic Pieri rules}
 Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\shape(t')$ is obtained by adding one box to $\shape(t)$.
 \begin{lemma}
   \label{lemma:two-step}
@@ -838,12 +841,12 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
   Then $\ev(\mathbf S_{(n)}) = h_n$, and $\ev(\mathbf S_{(1^n)}) = e_n$, just like the Schur polynomials.
   Moreover, since the evaluation map $\mathbf Z[L_n^*]$ factors through $\mathbf Z[\pl(L_n^*)]$, Exercise~\ref{exercise:plactic-pieri} implies that the polynomials $\ev(\mathbf S_\lambda)$ satisfy the Pieri rule, just like the Schur polynomials.
   This suffices for the identities of Theorem~\ref{theorem:schur-to-eh} to hold with $s_\lambda$ replaced by $\ev(\mathbf S_\lambda)$.
-  By the triangularity properties of of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur polynomials, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
+  By the triangularity properties of Kostka numbers (Section~\ref{sec:triang-kostka-numb}), these identities uniquely determine the Schur polynomials, therefore $S_\lambda=s_\lambda$ for every partition $\lambda$.
 \end{proof}
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
-Let $S$ be any set of points, and $v:S\times S\to R$ be any function (think of $v$ as a \emph{weight function}).
+Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $w$ as a \emph{weight function}).
 Given $s, t\in S$, a path in $S$ from $s$ to $t$ is is a sequence $\omega=(s=s_0,s_1,\dotsc,s_k=t)$ of distinct points in $S$.
 We denote this by $\omega:s\to t$.
 The weight of the path $\omega$ is defined to be:
@@ -881,7 +884,7 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
     \bar\omega = (\omega_i:A_i\to B_{w(i)}, i=1,\dotsc, n),
   \end{equation}
   where $w$ is a permutation of $\{1,\dotsc, n\}$.
-  Define the weight of $\bar\omega\in P$ by:
+  Define the weight of $\bar \omega\in P$ by:
   \begin{displaymath}
     v(\bar\omega) = \prod_{i=1}^n v(\omega_i)
   \end{displaymath}
@@ -893,8 +896,8 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   \end{equation}
   The cancelling involution $I:P\to P$ is defined by \emph{swapping the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
   In this case the crossing condition implies that $w$ is the identity permutation.
-  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $m$ such that $s_m$ belongs to another path from $\bar\omega$.
-  Now take the least $j>i$ such that $s_m$ occurs in $\omega_j$, and finally, if $\omega_j=(t_0,\dotsc,t_l)$, take the least $r$ such that $s_m=t_r$.
+  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $j$ such that $\omega_j=(t_0,\dotsc,t_l)$ crosses $\omega_i$.
+  Let $m$ be the smallest number such that a point $s_m$ of $\omega_i$ lies in the path $\omega_j$, say $s_m=t_r$.
   Let $I(\bar\omega)$ be the family of paths obtained from $\bar\omega$ by modifying $\omega_i$ and $\omega_j$ to $\omega'_i$ and $\omega'_j$ as follows:
   \begin{align*}
     \omega'_i & = (s_0,\dotsc, s_m, t_{r+1}, \dotsc, t_l),\\
@@ -910,10 +913,10 @@ We have seen that the Kostka numbers can be used to express complete and element
 The reverse operation---that of expressing Schur polynomials in terms of complete or elementary symmetric polynomials---is done by the Jacobi-Trudi identities:
 \begin{theorem}
   [Jacobi-Trudi identities]
-  For every integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ form the $l\times l$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda_i-i+j}$ respectively.
+  For every integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ form the $l\times l$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda'_i-i+j}$ respectively.
   Then
   \begin{displaymath}
-    s_\lambda = \det(h_{\lambda_i-i+j}), \quad s_{\lambda'} = \det(e_{\lambda_i-i+j}).
+    s_\lambda = \det(h_{\lambda_i-i+j})= \det(e_{\lambda'_j+i-j}).
   \end{displaymath}
 \end{theorem}
 \begin{proof}
@@ -926,21 +929,21 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
   The remaining weights are all zero.
   \begin{lemma}
     \label{lemma:entry}
-    For all integers $i>0$ and $j\geq 0$, we have:
+    For all integers $i>0$ and $k\geq 0$, we have:
     \begin{displaymath}
-      \sum_{\omega:(i, 1)\to (i+j, n)} v(\omega) = h_j(x_1,\dotsc,x_n).
+      \sum_{\omega:(i, 1)\to (i+k, n)} v(\omega) = h_k(x_1,\dotsc,x_n).
     \end{displaymath}
   \end{lemma}
   \begin{proof}
     Only rightward or upward steps have non-zero weights.
     So every path with non-zero weight is composed of unit upward and rightward steps.
-    A path with non-zero weight from $(i, 1)$ to $(i+j, n)$ must have exactly $j$ rightward steps, say in rows $1\leq i_1\geq i_2 \dotsb \leq i_j\leq n$.
-    The weight of such a path is $x_{i_1}\dotsb x_{i_j}$, and hence, the sum of the weights of all such paths is $h_j(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
+    A path with non-zero weight from $(i,1)$ to $(i+k, n)$ must have exactly $k$ rightward steps, say in rows $1\leq j_1\leq j_2 \dotsb \leq j_k\leq n$.
+    The weight of such a path is $x_{j_1}\dotsb x_{j_k}$, and hence, the sum of the weights of all such paths is $h_k(x_1,\dotsc, x_n)$. For an example, see Fig.~\ref{fig:path_example}.
   \end{proof}
   \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{path_example.png}
-    \caption{A path from $(0, 5)$ to $(6, 1)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
+    \caption{A path from $(0, 1)$ to $(6, 5)$ whose weight is the monomial $x_1^2x_3^3x_5$ in $h_6(x_1,\dotsc,x_5)$.}
     \label{fig:path_example}
   \end{figure}
   Given $\lambda=(\lambda_1,\dotsc,\lambda_l)$, and working with $n$ variables $x_1,\dotsc,x_n$, let $A_i = (l-i, 1)$ and $B_i=(\lambda_i+l-i, n)$ for $i=1,\dotsc, l$.
@@ -969,21 +972,21 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
   \begin{displaymath}
     S = \{(i,j)\mid i\geq 0,\;j\geq 0\}.
   \end{displaymath}
-  Define $v((i,j),(i+1,j))=1$ (as before) and $v((i-1,j),(i,j+1))=x_i$; all other weights are zero.
+  Define the weight of each upward vertical edge $v((i,j),(i,j+1))$ to be $1$ (as before) and the weight of a diagonal edge in the upper-right direction $v((i,j-1),(i+1,j))$ to be $x_j$; all other weights are zero.
   For the new weights, the analog of Lemma~\ref{lemma:entry} is:
   \begin{lemma}
     \label{lemma:entry-e}
-    For all integers $i>0$ and $j>0$, we have:
+    For all integers $i>0$ and $k>0$, we have:
     \begin{displaymath}
-      \sum_{\omega:(i,0)\to (i+j,n)} v(\omega) = e_j(x_1,\dotsc,x_n).
+      \sum_{\omega:(i,0)\to (i+k,n)} v(\omega) = e_k(x_1,\dotsc,x_n).
     \end{displaymath}
   \end{lemma}
   \begin{proof}
     Every path with non-zero weights consists of unit upward or upper-rightward diagonal steps.
-    A path with non-zero weight from $(i,0)$ to $(i+j,n)$ must have $n$ such steps, of which $j$ must be diagonal.
-    If the steps numbered $i_1,\dotsc,i_j$ are the diagonal steps, then the path has weight $x_{i_1}\dotsb x_{i_j}$.
+    A path with non-zero weight from $(i,0)$ to $(i+k,n)$ must have $n$ such steps, of which $k$ must be diagonal.
+    If the steps ending in rows $1\leq j_1<\dotsc<j_k\leq n$ are the diagonal steps, then the path has weight $x_{j_1}\dotsb x_{j_k}$.
     For an example of such a path, see Fig.~\ref{fig:example_path_e}.
-    Summing over all possible paths gives $e_j(x_1,\dotsc,x_n)$.
+    Summing over all possible paths gives $e_k(x_1,\dotsc,x_n)$.
   \end{proof}
   \begin{figure}
     \centering
@@ -995,12 +998,12 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
   In order to apply the Lindstr\"om-Gessel-Viennot lemma to obtain the second Jacobi-Trudi identity, take $A_i=(k-i, 0)$ and $B_i=(\lambda'_i+k-i, n)$ for $i=1,\dotsc,k$.
   Then by Lemma~\ref{lemma:entry-e},
   \begin{displaymath}
-    \sum_{\omega_i:A_i\to B_j} v(\omega) = e_{\lambda_j+i-j}.
+    \sum_{\omega_i:A_i\to B_j} v(\omega) = e_{\lambda'_j+i-j}.
   \end{displaymath}
   So the left-hand-side of the second Jacobi-Trudi identity is the left-hand-side of the Lindstr\"om-Gessel-Viennot lemma.
 
   The right hand side of the Lindstr\"om-Gessel-Viennot lemma consists of a sequence of non-crossing paths $(\omega_1,\dotsc,\omega_n)$, where $\omega_i:A_i\to B_i$.
-  Reading the row numbers where the upper-rightward steps in $\omega_i$ originate gives a strictly increasing sequence of integers $1\leq k_1 \leq \dotsb \leq k_{\lambda'_i}\leq n$.
+  Reading the row numbers where the upper-rightward steps in $\omega_i$ terminate gives a strictly increasing sequence of integers $1\leq j_1 < \dotsb < j_{\lambda'_i}\leq n$.
   Enter these numbers into the $i$th column of the Young diagram of $\lambda$.
   Since the paths are non-crossing, the $j$th upper-rightward step of $\omega_i$ must be no lower than the $j$th upper-rightward step of $\omega_{i+1}$.
   This means that the rows of the resulting numbering are weakly increasing, resulting in a semistandard tableau of shape $\lambda$
@@ -1019,16 +1022,16 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
 \end{proof}
 \subsection{Skew-Schur Polynomials}
 \label{sec:skew-schur-functions}
-In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(\lambda_1,\dotsc,\lambda_l)$, we used:
+In the proof of the first Jacobi-Trudi identity for $s_\lambda$, where $\lambda=(\lambda_1,\dotsc, \lambda_l)$, we used:
 \begin{align*}
   A_i & = (l-i, 1),\\
   B_i & = (\lambda_i+l-i, n)
 \end{align*}
 for $i=1,\dotsc, l$.
-Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu\subset \lambda$, and take:
+Now suppose $\mu = (\mu_1,\dotsc, \mu_l)$ is a partition (possibly padded with zero's so that it has the same number of parts as $\lambda$) such that $\mu\subset \lambda$, then we can take:
 \begin{align*}
-  A_i & = (\mu_i+l-i, n),\\
-  B_i & = (\lambda_i+l-1, n).
+  A_i & = (\mu_i+l-i, 1),\\
+  B_i & = (\lambda_i+l-i, n).
 \end{align*}
 Consider a collection of non-crossing paths $\omega_i:A_i\to B_i$, $i=1,\dotsc,l$.
 The path $\omega_i$ has $\lambda_i-\mu_i$ horizontal steps.
@@ -1056,7 +1059,7 @@ The polynomials $s_{\lambda/\mu}$ generalize the Schur polynomials and are calle
 A modification of the proof of the second Jacobi-Trudi identity gives:
 \begin{equation}
   \label{eq:skew-jti}
-  s_{\lambda'/\mu'}(x_1,\dotsc,x_n) = \det(e_{\lambda_j-\mu_j+i-j}),
+  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(e_{\lambda'_j-\mu'_j+i-j}),
 \end{equation}
 \begin{exercise}
   Expand the skew-Schur polynomial $s_{(2,1)/(1)}(x_1,x_2,x_3)$ in the basis of Schur polynomials.
@@ -1073,7 +1076,7 @@ A modification of the proof of the second Jacobi-Trudi identity gives:
 \end{definition}
 \begin{example}
   The hook partition $(a+1,1^b)$ has Frobenius coordinates $(a|b)$.
-  Hook partitions are precisely those partitions which have Durfee rank one.
+  Hook partitions are precisely those partitions which have Durfee rank $1$.
   The partition with Frobenius coordinates $(5,2,1|4,3,0)$ is $(6,4,4,2,2)$.
   If $\lambda$ has Frobenius coordinates $(\alpha|\beta)$, then its conjugate $\lambda'$ has Frobenius coordinates $(\beta|\alpha)$.
   The size of a partition with Durfee rank $d$ and Frobenius coordinates $(\alpha|\beta)$ is $d+|\alpha|+|\beta|$. 
@@ -1104,7 +1107,7 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
   \end{displaymath}
 \end{example}
 \begin{proof}
-  Giambelli's identity can be proved using the Lindstr\"om-Gessel-Viennot Lemma (Theorem~\ref{lemma:lgv}).
+  Giambelli's identity can be proved using the Lindstr\"om-Gessel-Viennot Lemma.
   Let $\lambda=(\alpha_1,\dotsc,\alpha_d|\beta_1,\dotsc,\beta_d)$ be given.
   Working with $n$ variables, set
   \begin{displaymath}
@@ -1119,16 +1122,16 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
   \ytableausetup{smalltableaux}
   Define a weight function as follows (see Fig.~\ref{fig:giambelli}):
   \begin{align*}
-    v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 1 \leq j \leq n,\\
-    v((-i,j+1), v(-(i-1),j)) & = x_j \text{ for all } i>0, 1\leq j\neq n,\\
+    v((-i,j+1), v(-i,j)) & = 1 \text{ for all } i> 0, 0 \leq j \leq n,\\
+    v((-i,j+1), v(-(i-1),j)) & = x_j \text{ for all } i>0, j\geq 1,\\
     v((i,j), (i+1,j)) & = x_j \text{ for all } i\geq 0, 1\leq j\leq n,\\
-    v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j < n.
+    v((i,j),(i,j+1)) & = 1 \text{ for all } i\geq 0, 1\leq j \leq n.
   \end{align*}
   All other weights are set to zero.
-  A path from $(-(b+1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandard tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
+  A path from $(-(b-1),n+1)$ to $(a,n)$ has weight $x^t$, where $t$ is a semistandard tableau of shape $(a|b)$ in $x_1,\dotsc,x_n$.
   For instance, the path in Fig.~\ref{fig:giambelli} from $(-4,6)$ to $(3,5)$ corresponds to the tableau $\ytableaushort{1113,2,4,5}$.
 
-  Thus, setting $A_i=(-(\beta_i+1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
+  Thus, setting $A_i=(-(\beta_i-1),n+1)$ and $B_i=(\alpha_i,n)$ for $i=1,\dotsc,d$, 
   the $(i,j)$th entry of the determinant on the right hand side of (\ref{eq:giambelli}) can be written as:
   \begin{equation}
     \label{eq:giambelli-det}
@@ -1141,7 +1144,7 @@ Schur polynomials of hook partitions can be calculated using Exercise~\ref{exerc
 Given a word $w = (a_1,\dotsc,a_k)\in L_n^*$, a subword is a word of the form $w' = a_{i_1}\dotsb a_{i_r}$, where $1\leq i_1<\dotsb < i_r\leq k$.
 This section is concerned with the enumeration of subwords which are rows or columns.
 For the purposes of such enumeration, given $1 \leq j_1<\dotsb <j_r\leq k$, $w'' = a_{j_1}\dotsb a_{j_r}$ will be considered to be a different subword from $w'$ \emph{even if} $w'=w''$ as words, unless the indices $j_1,\dotsc, j_r$ coincide with the indices $i_1,\dotsc,i_r$.
-Two subwords of will be said to be disjoint, if their indexing sets are disjoint.
+Two subwords of $w$ will be said to be disjoint, if their indexing sets are disjoint.
 \begin{example}
   The word $w=111$ has three subwords of length two, all of them equal to $11$.
   No two of these subwords are disjoint.
@@ -1212,7 +1215,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{lemma}
 \begin{proof}
   The proof is an application of Greene's theorem (Theorem~\ref{theorem:Greene}).
-  Any weakly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with repetitions of up to $a_{i_1j_1},\dotsc, a_{i_rj_r}$ respectively, with $i_1\leq \dotsb \leq i_r$ and $j_1\leq \dotsc\leq j_r)$.
+  Any weakly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with repetitions of up to $a_{i_1j_1},\dotsc, a_{i_rj_r}$ respectively, with $i_1\leq \dotsb \leq i_r$ and $j_1\leq \dotsc\leq j_r$.
   If $A$ is an $m\times n$ matrix, its entries are indexed by the rectangular lattice $P_{mn} = \{(i,j)\mid 1\leq i\leq m,\;1\leq j\leq n\}$ which may be regarded as a poset under $(i,j)\leq (i',j')$ if $i\leq i'$ and $j\leq j'$.
   It follows that
   \begin{displaymath}
@@ -1221,7 +1224,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   where the maximum is over all subsets $C_k$ of $P_{mn}$ which can be written as a union of $k$ chains in the partially ordered set $P_{mn}$.
   This description of the shape of $P(u_A)$ is invariant under interchanging the rows and columns of $A$, and therefore also the shape of $P(v_A)$.
 
-  For the dual RSK correspondence, if $A$ is a $0$-$1$ matrix, note that a strictly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with entries equal to $1$, and with $i_1\leq \dotsb \leq i_r$ and $j_1<\dotsc<j_r)$.
+  For the dual RSK correspondence, if $A$ is a $0$-$1$ matrix, note that a strictly increasing subword of $u_A$ comes from reading the column number of a sequence of entries $(i_1,j_1),\dotsc,(i_r,j_r)$ with entries equal to $1$, and with $i_1\leq \dotsb \leq i_r$ and $j_1<\dotsc<j_r$.
   Define a new partial order $P_{mn}$ by $(i,j)<(i',j')$ if $i\leq i'$ and $j<j'$.
   It follows that
   \begin{displaymath}
@@ -1253,7 +1256,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \begin{displaymath}
     \mathbf M_{m\times n} \tilde\to \coprod_\lambda \Tab_n(\lambda)\times \Tab_m(\lambda).
   \end{displaymath}
-  That it maps $\mathbf M_{\lambda\mu}$ onto $\coprod_\lambda \Tab(\lambda,\mu)\times \Tab(\lambda,\nu)$ follows from the definition.
+  For the definition it is clear that this bijection will map the left hand side of (\ref{eq:rsk}) onto its right hand side.
 
   Let $A'$ be the matrix consisting of the first $m-1$ rows of $A$.
   Let $r=1^{a_{m1}}2^{a_{m2}}\dotsb n^{a_{mn}}$ be the column word of the last row of $A$.
@@ -1289,7 +1292,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 
   Combining the bijections (\ref{eq:bij1}) and (\ref{eq:bij2}) gives rise to the RSK correspondence, which is therefore also a bijection.
 
-  The proof for the bijectivity of $\rsk^*$ is similar (with some interesting twists) and is left as an exercise.
+  The proof for the bijectivity of $\rsk^*$ is similar (although with a few twists) and is left as an interesting exercise to the reader.
 \end{proof}
 \begin{exercise}
   [The Burge Correspondence]
@@ -1330,19 +1333,20 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
   \end{displaymath}
 \end{theorem}
 \begin{proof}
-  Let $\alpha\in \Tab_a(\alpha)$ for some integer $a$.
+  Let $t_\alpha\in \Tab_a(\alpha)$ for some integer $a$.
   By Lemma~\ref{lemma:section}, we have:
   \begin{align}
-    \nonumber s_\alpha s_\beta & = \sum_{\{A_{a\times n}\mid P(v_{A'}) = t_\alpha\}} x^{u_{A'}} \sum_{\{B_{b\times n}\mid P(v_B) = t_\beta\}} x^{u_{A''}}\\
-    \label{eq:sum-C} & = \sum_{C_\alpha\beta} x^{u_C},
+    \nonumber s_\alpha s_\beta & = \sum_{\{A_{a\times n}\mid P(v_{A}) = t_\alpha\}} x^{u_{A}} \sum_{\{B_{b\times n}\mid P(v_B) = t_\beta\}} x^{u_{B}}\\
+    \label{eq:sum-C} & = \sum_{C_{\alpha\beta}} x^{u_C},
   \end{align}
   where
   \begin{displaymath}
     C_{\alpha\beta} = \{\tbinom AB\mid P(v_A)=t_\alpha\text{ and } P(v_B)=t_\beta\}.
   \end{displaymath}
-  Define a monoid homomorphism $\pi_a:L_{a+b}^*\to L_a$ by taking $\pi_a(w)$ to be the word obtained by discarding all letters in $w$ that are not in $\{1,\dotsc,a\}$.
+  Define a monoid homomorphism $\pi_a:L_{a+b}^*\to L^*_a$ by taking $\pi_a(w)$ to be the word obtained by discarding all letters in $w$ that are not in $\{1,\dotsc,a\}$.
   Also define $\pi_b:L_{a+b}^*\to L_b^*$ by taking $\pi_b(w)$ to be the word obtained discarding all letters in $w$ that are not in $\{a+1,\dotsc, a+b\}$, and then replacing the letter $a+i$ by $i$.
   It is not hard to see that $\pi_a$ and $\pi_b$ preserve the Knuth relations (\ref{eq:k1}) and (\ref{eq:k2}).
+  Let $C=\tbinom AB$.
   The words $v_A$ and $v_B$ are obtained from $v_C$ as follows:
   \begin{displaymath}
     v_A = \pi_a(v_C) \text{ and } v_B = \pi_b(v_C).
@@ -1385,17 +1389,17 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{proof}
 In view of Lemma~\ref{lemma:yamanouchi}, the Littlewood-Richardson rule becomes:
 \begin{theorem}
-  For partition $\alpha,\beta,\lambda$, $c^\lambda_{\alpha\beta}$ is the number of semistandard tableau of shape $\lambda/\alpha$ and type $\beta$ whose reading word is a Yamanouchi word.
+  For partition $\alpha,\beta,\lambda$, $c^\lambda_{\alpha\beta}$ is the number of semistandard tableaux of shape $\lambda/\alpha$ and type $\beta$ whose reading word is a Yamanouchi word.
 \end{theorem}
 \begin{exercise}
   If $c^\lambda_{\alpha\beta}>0$ then $\lambda\supset \alpha$ and $\lambda\supset \beta$.
 \end{exercise}
 \begin{exercise}
   Suppose $\lambda=(\lambda_1,\dotsc,\lambda_l)$, with $\lambda_1\leq m$.
-  Let $\check\lambda=(m-\lambda_l,\dotsc,m-\lambda_1)$, and let $\Lambda$ denote the partition $(l,\dotsc,l)$ (with $m$ repititions of $l$).
+  Let $\check\lambda=(m-\lambda_l,\dotsc,m-\lambda_1)$, and let $\Lambda$ denote the partition $(l,\dotsc,l)$ (with $m$ repetitions of $l$).
   Show that $c^\Lambda_{\lambda\mu}=1$.
 \end{exercise}
-\subsection{Expansion of Skew-Schur polynomials}
+\subsection{Skew-Schur polynomials and the Littlewood-Richardson Rule}
 \label{sec:skew-lr}
 Littlewood-Richardson coefficients also answer the question of expanding skew-Schur polynomials in terms of Schur polynomials:
 \begin{theorem}
@@ -1426,9 +1430,21 @@ Littlewood-Richardson coefficients also answer the question of expanding skew-Sc
 \end{exercise}
 \subsection{Sources}
 \label{sec:notes-literature}
-The arrangement of topics in these notes loosely follows Manivel \cite{manivel}. The use of labelled abaci to prove Schur polynomial identities is from Loehr \cite{loehr}. A nice exposition of the LGV lemma can be found in Viennot's 2016 lectures at The Institute of Mathematical Sciences, Chennai \cite{imsc2016}. The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}. The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}. However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere. My use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread. Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}. The preceding list leaves out many standard references in the area, and is only a list of what I read while preparing these notes.
+The arrangement of topics in these notes loosely follows the first Chapter of Manivel's book \cite{manivel}.
+The use of labelled abaci to prove Schur polynomial identities is from Loehr \cite{loehr}.
+A nice exposition of the LGV lemma can be found in Viennot's 2016 lectures at The Institute of Mathematical Sciences, Chennai \cite{imsc2016}.
+The LGV-lemma proof of the Giambelli identity has been published by Stembridge \cite{stembridge}.
+The treatment of the RSK correspondence and the Littlewood-Richardson rule is guided by Lascoux and Sch\"utzenberger\cite{ls}, and Lascoux, Leclerc and Thibon \cite{llt}.
+However, I have not seen the precise definition of $\rsk$ and $\rsk^*$ that I used in these notes published elsewhere.
+My use of integer matrices to prove the Littlewood-Richardson rule does not appear to be widespread.
+Exercise~\ref{exercise:burge} describes a correspondence introduced by Burge in \cite{burge}.
+Besides the above references, readers who wish to go deeper into the subject may consult Fulton's book on Young tableaux \cite{fulton}, Chapter~7 and Fomin's appendix in the second volume of Stanley's book on Enumerative Combinatorics \cite{ec2}.
+The relationship between the RSK correspondence, its dual, symmetric functions, and representation theory is the subject of my own book on Representation Theory \cite{rtcv}, which is written at a relatively elementary level.
+Finally, there is no single book which has had a greater impact on the theory of symmetric functions that Macdonald's classic \cite{macd}.
+
 Many details of proofs and perspectives emerged in discussions with Digjoy Paul.
 I benefited greatly from informal discussions with Bishal Deb, Sudhir Ghorpade, Sridhar P.~Narayanan, K.~N.~Raghavan, Vijay Ravikumar, Evgeny Smirnov, and  S.~Viswanath, and indeed all the participants of the ATM Workshop on Schubert Varieties, held at The Institute of Mathematical Sciences (see \url{https://www.atmschools.org/2017/atmw/sv}).
+Darij Grinberg sent me a list of corrections to an earlier version of this article.
 \bibliographystyle{abbrv}
 \bibliography{refs}
 \end{document}
