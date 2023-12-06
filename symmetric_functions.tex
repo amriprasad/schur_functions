@@ -302,7 +302,7 @@ A skew-shape is called a \emph{horizontal strip} (respectively, a \emph{vertical
   the sum on the right being over all partitions $\mu\supset\lambda$ such that $\mu/\lambda$ is a horizontal strip.
   We will define an involution $I$ on the $\abc(\lambda)\times M(n,k)$ whose fixed points correspond to elements of
 \begin{displaymath}
-  \coprod_{\mu/\lambda \text{ is a horiz. strip of size $k$}}\abc(\mu)\times M(n,k)
+  \coprod_{\mu/\lambda \text{ is a horiz. strip of size $k$}}\abc(\mu)
 \end{displaymath}
 under a bijection that preserves weights and signs, and such that if $I(w, \alpha)=(w', \alpha')$ then $\wt(w)\wt(\alpha)=\wt(w')\wt(\alpha')$ and $\epsilon(w') = -\epsilon(w)$.
   Then all terms on the left hand side, except for those which do not correspond to fixed points, will cancel, and the surviving terms will give the right hand side.
@@ -448,7 +448,7 @@ Pieri's rule allows us to compute the complete and elementary symmetric polynomi
   where $\lambda^{(i)}/\lambda^{(i-1)}$ is a horizontal strip of size $\mu_i$.
 \end{exercise}
 \begin{example}
-  The semistandard tableau of type $(3,2)$ and type $(2,2,1)$ are $\ytableaushort{112,23}$ and $\ytableaushort{113,22}$.
+  The semistandard tableau of shape $(3,2)$ and type $(2,2,1)$ are $\ytableaushort{112,23}$ and $\ytableaushort{113,22}$.
   They correspond to the chains:
   \begin{displaymath}
     \ydiagram{2}\subset \ydiagram{3,1}\subset \ydiagram{3,2} \text{ and } \ydiagram{2}\subset \ydiagram{2,2}\subset \ydiagram{3,2},
@@ -687,11 +687,12 @@ Since the first entry of each row is strictly smaller than the last entry of the
   Let $w$ denote the reading word of a tableau $t$.
   Show that $P(w)=t$.
 \end{exercise}
-Not every word comes from a semistandard tableau; for example the word $132$, when broken up at descents gives rise to $\ytableaushort{2,13}$.
+Not every word comes from a semistandard tableau; for example the word $132$, when broken up at descents, gives rise to $\ytableaushort{2,13}$.
 We shall say that a word is a tableau if it is the reading word of a semistandard tableau.
 
 Call the word $w=a_1\dotsb a_k$ a \emph{row} if $a_1\leq \dotsb \leq a_k$.
 Call it a \emph{column} if $a_1>\dotsb>a_k$.
+Rows and columns are tableaux, with one row and one column respectively.
 Write $x^w$ for the monomial $x_{a_1}x_{a_2}\dotsb x_{a_k}$.
 \begin{exercise}
   \label{exercise:row-col}
@@ -763,7 +764,7 @@ Let $E_k$ denote the image of $\mathbf E_k$ and $H_k$ denote the image of $\math
 \begin{exercise}
   \begin{enumerate}
   \item Show that, if $\iota(r,x)=(y,r')$ (as in Section~\ref{sec:schenst-insert-algor}), then $rx\equiv yr'$.
-  \item Show that, if $tx\equiv \ins(t,x)$. Here tableaux are to be identified with their reading words.
+  \item Show that $tx\equiv \ins(t,x)$. Here tableaux are to be identified with their reading words.
   \item Show that, for every $w\in L_n^*$, $w\equiv P(w)$.
   \end{enumerate}
 \end{exercise}
@@ -846,7 +847,7 @@ Observe that, if for any tableau $t$ and $x\in L_n$, if $t'=\ins(t,x)$, then $\s
 \subsection{The Lindstr\"om-Gessel-Viennot Lemma}
 \label{sec:lgv}
 Let $R$ be a commutative ring.
-Let $S$ be any set of points, and $v:S\times S\to R$ be any function (we think of $w$ as a \emph{weight function}).
+Let $S$ be any finite set of points, and $v:S\times S\to R$ be any function (we think of $v$ as a \emph{weight function}).
 Given $s, t\in S$, a path in $S$ from $s$ to $t$ is is a sequence $\omega=(s=s_0,s_1,\dotsc,s_k=t)$ of distinct points in $S$.
 We denote this by $\omega:s\to t$.
 The weight of the path $\omega$ is defined to be:
@@ -860,7 +861,7 @@ The weight of the path $\omega$ is defined to be:
 \begin{definition}
   [Crossing condition]
   \label{definition:crossing-condition}
-  Given a set $S$ of points, a weight function $v:S\times S\to R$, and a points $A_1,\dotsc,A_n$, and $B_1,\dotsc, B_n$, we say that the \emph{crossing condition} is satisfied if, whenever $1\leq i<j\leq n$ and $1\leq i'<j'\leq n$, and $\omega:i \to j'$ and $\eta: j\to i'$ are paths such that $v(\omega)\neq 0$ and $v(\eta)\neq 0$, then the paths $\omega$ and $\eta$ cross.
+  Given a set $S$ of points, a weight function $v:S\times S\to R$, and a points $A_1,\dotsc,A_n$, and $B_1,\dotsc, B_n$, we say that the \emph{crossing condition} is satisfied if, whenever $1\leq i<j\leq n$ and $1\leq i'<j'\leq n$, and $\omega:A_i \to B_{j'}$ and $\eta: A_j\to B_{i'}$ are paths such that $v(\omega)\neq 0$ and $v(\eta)\neq 0$, then the paths $\omega$ and $\eta$ cross.
 \end{definition}
 Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\times n$ matrix $(a_{ij})$ by:
 \begin{displaymath}
@@ -896,14 +897,19 @@ Fix points $A_1,\dotsc, A_n$ and $B_1,\dotsc, B_n$ in $S$, and define an $n\time
   \end{equation}
   The cancelling involution $I:P\to P$ is defined by \emph{swapping the first crossing of the first path that crosses another path}: given $\bar\omega$ as in (\ref{eq:paths}), if the paths are pairwise non-crossing, then $\bar\omega$ is a fixed point for $I$.
   In this case the crossing condition implies that $w$ is the identity permutation.
-  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path, and then the least $j$ such that $\omega_j=(t_0,\dotsc,t_l)$ crosses $\omega_i$.
-  Let $m$ be the smallest number such that a point $s_m$ of $\omega_i$ lies in the path $\omega_j$, say $s_m=t_r$.
+  Otherwise, take the least $i$ such that the path $\omega_i=(s_0,\dotsc,s_k)$ crosses another path.
+  Let $m$ be the least integer such that $s_m$ lies in another path in the system $\bar\omega$.
+  Now choose the least $j$ such that $s_m$ lies in $\omega_j =(t_0,\dotsc,t_l)$.
+  Thus we have $i<j$, and $s_m=t_r$ for some $0\leq r\leq l$.
+
   Let $I(\bar\omega)$ be the family of paths obtained from $\bar\omega$ by modifying $\omega_i$ and $\omega_j$ to $\omega'_i$ and $\omega'_j$ as follows:
   \begin{align*}
     \omega'_i & = (s_0,\dotsc, s_m, t_{r+1}, \dotsc, t_l),\\
     \omega'_j & = (t_0,\dotsc, t_r, s_{m+1}, \dotsc, s_k).
   \end{align*}
-  Clearly, $v(I(\bar\omega)) = v(\bar\omega)$ and $\epsilon(I(\bar\omega)) = - \epsilon(\bar\omega)$.
+  Clearly, $v(I(\bar\omega)) = v(\bar\omega)$.
+  If $\omega_i:A_i\to A_{\sigma(i)}$ and $\omega_j:A_j\to B_{\sigma(j)}$, then $\omega'_i:A_i\to B_{\sigma(j)}$ and $\omega'_j:A_k\to B_{\sigma(i)}$.
+  Therefore $\epsilon(I(\bar\omega)) = - \epsilon(\bar\omega)$.
   It is not hard to see that $I$ is an involution.
   This involution cancels out all the terms in (\ref{eq:det-expansion}) except those that occur on the right hand side of (\ref{eq:lgv}).
 \end{proof}
@@ -916,7 +922,7 @@ The reverse operation---that of expressing Schur polynomials in terms of complet
   For every integer partition $\lambda=(\lambda_1,\dotsc,\lambda_l)$ form the $l\times l$ matrices with $(i,j)$th entry $h_{\lambda_i-i+j}$ and $e_{\lambda'_i-i+j}$ respectively.
   Then
   \begin{displaymath}
-    s_\lambda = \det(h_{\lambda_i-i+j})= \det(e_{\lambda'_j+i-j}).
+    s_\lambda = \det(h_{\lambda_j+i-j})= \det(e_{\lambda'_j+i-j}).
   \end{displaymath}
 \end{theorem}
 \begin{proof}
@@ -1048,7 +1054,7 @@ For an example, see Figure~\ref{fig:skew-jth}.
 Therefore the symmetric polynomial
 \begin{equation}
   \label{eq:skew-jth}
-  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(h_{\lambda_j-\mu_j+i-j}),
+  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(h_{\lambda_j-\mu_i+i-j}),
 \end{equation}
 by the Lindstr\"om-Gessel-Viennot, is also given by
 \begin{equation}
@@ -1059,7 +1065,7 @@ The polynomials $s_{\lambda/\mu}$ generalize the Schur polynomials and are calle
 A modification of the proof of the second Jacobi-Trudi identity gives:
 \begin{equation}
   \label{eq:skew-jti}
-  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(e_{\lambda'_j-\mu'_j+i-j}),
+  s_{\lambda/\mu}(x_1,\dotsc,x_n) = \det(e_{\lambda'_j-\mu'_i+i-j}),
 \end{equation}
 \begin{exercise}
   Expand the skew-Schur polynomial $s_{(2,1)/(1)}(x_1,x_2,x_3)$ in the basis of Schur polynomials.
@@ -1377,7 +1383,7 @@ For an $m\times n$ matrix $A=(a_{ij})$, the column word $u_A$, row word $v_A$ an
 \end{proof}
 \begin{definition}
   [Yamanouchi Word]
-  A word $w\in L_n^*$ is called a Yamanouchi word if $x^u$ is a monomial with weakly increasing powers for every suffix $u$ of $w$.
+  A word $w\in L_n^*$ is called a Yamanouchi word if $x^u$ is a monomial with weakly decreasing powers for every suffix $u$ of $w$.
 \end{definition}
 \begin{lemma}
   \label{lemma:yamanouchi}
@@ -1426,7 +1432,7 @@ Littlewood-Richardson coefficients also answer the question of expanding skew-Sc
   \begin{displaymath}
     K_{\lambda/\alpha,\mu} = \sum_\beta c^\lambda_{\alpha\beta} K_{\beta\mu}.
   \end{displaymath}
-  Here $K_{\lambda/\alpha}$ is the number of skew-tableaux of shape $\lambda/\alpha$ and type $\mu$.
+  Here $K_{\lambda/\alpha,\mu}$ is the number of skew-tableaux of shape $\lambda/\alpha$ and type $\mu$.
 \end{exercise}
 \subsection{Sources}
 \label{sec:notes-literature}
